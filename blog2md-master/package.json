@@ -1,0 +1,16 @@
+{
+  "name": "blogger-to-md",
+  "version": "1.0.0",
+  "description": "Blogger backup to markdown",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "palaniraja",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.22.2",
+    "turndown": "^4.0.2",
+    "xml2js": "^0.4.19"
+  }
+}
