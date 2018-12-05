@@ -95,6 +95,14 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `wp`,
+        path: `${__dirname}/wp-data/out/`
+      }
+    },
+    `gatsby-transformer-json`,
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [

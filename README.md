@@ -1,5 +1,18 @@
 # HeroBlog
 
+## TODO
+
+- render pages from `wp-data/out/*.json`
+- rm demo pages and posts
+- fix TODOs in `blog2md`, re-generate data
+- update title etc. in `./content/meta/config.js`
+- check tags, categories pages
+- set up GA, ...
+
+## Original
+
+----
+
 A [GatsbyJS](https://www.gatsbyjs.org/) blog starter. <br /><br />
 
 [![GitHub tag](https://img.shields.io/github/tag/greglobinski/gatsby-starter-hero-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog)
