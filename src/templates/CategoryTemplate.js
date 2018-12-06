@@ -12,7 +12,7 @@ const CategoryTemplate = props => {
   const {
     pageContext: { category },
     data: {
-      allMarkdownRemark: { totalCount, edges },
+      allContentPage: { totalCount, edges },
       site: {
         siteMetadata: { facebook }
       }
@@ -57,17 +57,15 @@ export default CategoryTemplate;
 // eslint-disable-next-line no-undef
 export const categoryQuery = graphql`
   query PostsByCategory($category: String) {
-    allMarkdownRemark(
+    allContentPage(
       limit: 1000
-      sort: { fields: [fields___prefix], order: DESC }
+      sort: { fields: [prefix], order: DESC }
       filter: { frontmatter: { category: { eq: $category } } }
     ) {
       totalCount
       edges {
         node {
-          fields {
-            slug
-          }
+          slug
           excerpt
           timeToRead
           frontmatter {

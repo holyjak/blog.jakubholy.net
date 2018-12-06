@@ -7,7 +7,7 @@ const Promise = require("bluebird");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
+  const { createNode, createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode });
     const fileNode = getNode(node.parent);
@@ -32,7 +32,94 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `source`,
       value: source
     });
+    const {
+      id,
+      internal,
+      frontmatter,
+      fields
+    } = node;
+    createNode({
+      id: `cp-${id}`,
+      parentType: "MarkdownRemark",
+      parent: id,
+      internal: {
+        //mediaType: "text/html", // FIXME plaintext here, html for Json
+        type: "ContentPage",
+        content: internal.content,
+        contentDigest: internal.contentDigest
+      },
+      ...fields,
+      frontmatter,
+      excerpt: "TODO via resolver",
+      timeToRead: 0 // TODO via resolver
+      // tableOfContents, wordCount  // TODO via resolver
+    });
+  } else if (node.internal.type === `PostsJson`) {
+    // FIXME The trouble: The Remark node doesn't have just data but
+    // many extra fields with resolvers def in `gatsby-transformer-remark/src/extend-node-type.js`
+    // No idea how to wrap these. I could copy-paste ...
+    // E.g. html is computed on-demand, not a static field :(
+    // WHAT I NEED: A way to re-use custom plugin fields (graphql resolvers)
+    // from a child node / child node field resolver
+    // const {
+    //   id,
+    //   title,
+    //   published,
+    //   postType,
+    //   slug,
+    //   status,
+    //   tags,
+    //   categories,
+    //   content,
+    //   excerpt,
+    //   internal
+    // } = node;
+    // createNode({
+    //   id: `cp-${id}`,
+    //   parentType: "Json",
+    //   parent: id,
+    //   internal: {
+    //     mediaType: "text/html",
+    //     type: "ContentPage",
+    //     content,
+    //     contentDigest: internal.contentDigest
+    //   },
+    //   frontmatter: {
+    //     title,
+    //     category: categories[0],
+    //     author: "me",
+    //     menuTitle: null
+    //   },
+    //   excerpt,
+    //   timeToRead: 0 // FIXME seems not yet being set at this point
+    //   // tableOfContents, wordCount
+    // });
   }
+};
+
+const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
+  .setFieldsOnGraphQLNodeType;
+exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
+  const { type, getNode } = args;
+  if (type.name !== `ContentPage`) {
+    return {};
+  }
+  console.log(">>> pluginOptions", pluginOptions);
+  const fakeRemarkPluginOptions = { plugins: []}; // FIXME Load from gatsby-config.js
+  // See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-remark/src/extend-node-type.js
+  return remarkSetFieldsOnGraphQLNodeType({ ...args, type: { name: `MarkdownRemark` }}, fakeRemarkPluginOptions)
+   .then(({ html, excerpt, headings, timeToRead, tableOfContents, wordCount }) => {
+     return {
+       html: {
+          type: html.type,
+          resolve(contentPageNode) {
+            if (contentPageNode.parentType === "Json") return contentPageNode.content;
+            const markdownNode = getNode(contentPageNode.parent);
+            return html.resolve(markdownNode);
+          }
+        }
+      };
+   })
 };
 
 exports.createPages = ({ graphql, actions }) => {
