@@ -11,7 +11,7 @@ import Seo from "../components/Seo";
 const CategoryPage = props => {
   const {
     data: {
-      posts: { edges: posts },
+      content: { edges: nodes },
       site: {
         siteMetadata: { facebook }
       }
@@ -20,7 +20,7 @@ const CategoryPage = props => {
 
   // Create category list
   const categories = {};
-  posts.forEach(edge => {
+  nodes.forEach(edge => {
     const {
       node: {
         frontmatter: { category }
@@ -84,31 +84,29 @@ export default CategoryPage;
 
 //eslint-disable-next-line no-undef
 export const query = graphql`
-  query PostsQuery {
-    posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
-      sort: { fields: [fields___prefix], order: DESC }
+  query ContentQuery {
+    content: allContentPage(
+      filter: { contentTypeAndVisibility: { in: ["post_public", "page_public"] } }
+      sort: { fields: [published], order: DESC }
     ) {
       edges {
         node {
           excerpt
-          fields {
-            slug
-            prefix
-          }
+          slug
+          published
           frontmatter {
             title
             category
             author
-            cover {
-              children {
-                ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
+#            cover { # FIXME - re-enable after re-adding remakr plugins
+#              children {
+#                ... on ImageSharp {
+#                  fluid(maxWidth: 800, maxHeight: 360) {
+#                    ...GatsbyImageSharpFluid_withWebp
+#                  }
+#                }
+#              }
+#            }
           }
         }
       }

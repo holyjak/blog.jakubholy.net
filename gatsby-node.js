@@ -32,12 +32,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `source`,
       value: source
     });
-    const {
-      id,
-      internal,
-      frontmatter,
-      fields
-    } = node;
+    const { id, internal, frontmatter, fields } = node;
+    const contentType = {
+        posts: "post",
+        pages: "page",
+        parts: "part"
+    }[fields.source] || `unknown:${fields.source}`;
+    const draft = !!fields.prefix;
     createNode({
       id: `cp-${id}`,
       parentType: "MarkdownRemark",
@@ -48,55 +49,65 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         content: internal.content,
         contentDigest: internal.contentDigest
       },
-      ...fields,
       frontmatter,
+      ...fields,
+      contentType,
+      published: fields.prefix,
+      draft,
+      publicContent: !draft && contentType !== "part",
+      tags: [],
+      contentTypeAndVisibility: `${contentType}_${draft ? "draft" : "public"}`,
       excerpt: "TODO via resolver",
       timeToRead: 0 // TODO via resolver
       // tableOfContents, wordCount  // TODO via resolver
     });
-  } else if (node.internal.type === `PostsJson`) {
-    // FIXME The trouble: The Remark node doesn't have just data but
-    // many extra fields with resolvers def in `gatsby-transformer-remark/src/extend-node-type.js`
-    // No idea how to wrap these. I could copy-paste ...
-    // E.g. html is computed on-demand, not a static field :(
-    // WHAT I NEED: A way to re-use custom plugin fields (graphql resolvers)
-    // from a child node / child node field resolver
-    // const {
-    //   id,
-    //   title,
-    //   published,
-    //   postType,
-    //   slug,
-    //   status,
-    //   tags,
-    //   categories,
-    //   content,
-    //   excerpt,
-    //   internal
-    // } = node;
-    // createNode({
-    //   id: `cp-${id}`,
-    //   parentType: "Json",
-    //   parent: id,
-    //   internal: {
-    //     mediaType: "text/html",
-    //     type: "ContentPage",
-    //     content,
-    //     contentDigest: internal.contentDigest
-    //   },
-    //   frontmatter: {
-    //     title,
-    //     category: categories[0],
-    //     author: "me",
-    //     menuTitle: null
-    //   },
-    //   excerpt,
-    //   timeToRead: 0 // FIXME seems not yet being set at this point
-    //   // tableOfContents, wordCount
-    // });
+  } else if (node.internal.type === `PostsJson` || node.internal.type === `PagesJson`) {
+    const {
+      id,
+      title,
+      published,
+      postType,
+      slug,
+      status,
+      tags,
+      categories,
+      content,
+      excerpt,
+      internal
+    } = node;
+    const fields = { slug };
+    const draft = status !== "publish";
+    createNode({
+      id: `cp-${id}`,
+      parentType: "Json",
+      parent: id,
+      internal: {
+        mediaType: "text/html",
+        type: "ContentPage",
+        content,
+        contentDigest: internal.contentDigest
+      },
+      frontmatter: {
+        title,
+        category: categories[0], // TODO Support multiple categories??
+        author: "me",
+        menuTitle: null
+      },
+      ...fields,
+      contentType: postType,
+      published,
+      tags,
+      draft,
+      publicContent: !draft,
+      contentTypeAndVisibility: `${postType}_${draft ? "draft" : "public"}`,
+      excerpt,
+      timeToRead: 0 // FIXME seems not yet being set at this point
+      // tableOfContents, wordCount
+    });
   }
 };
 
+const graphql = require(`gatsby/graphql`);
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
   .setFieldsOnGraphQLNodeType;
 exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
@@ -104,22 +115,32 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
   if (type.name !== `ContentPage`) {
     return {};
   }
-  console.log(">>> pluginOptions", pluginOptions);
-  const fakeRemarkPluginOptions = { plugins: []}; // FIXME Load from gatsby-config.js
+  const fakeRemarkPluginOptions = { plugins: [] }; // FIXME Load from gatsby-config.js
   // See https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-remark/src/extend-node-type.js
-  return remarkSetFieldsOnGraphQLNodeType({ ...args, type: { name: `MarkdownRemark` }}, fakeRemarkPluginOptions)
-   .then(({ html, excerpt, headings, timeToRead, tableOfContents, wordCount }) => {
-     return {
-       html: {
-          type: html.type,
-          resolve(contentPageNode) {
-            if (contentPageNode.parentType === "Json") return contentPageNode.content;
-            const markdownNode = getNode(contentPageNode.parent);
-            return html.resolve(markdownNode);
-          }
+  return remarkSetFieldsOnGraphQLNodeType(
+    { ...args, type: { name: `MarkdownRemark` } },
+    fakeRemarkPluginOptions
+  ).then(({ html, excerpt, headings, timeToRead, tableOfContents, wordCount }) => {
+    const ContentTypes = new graphql.GraphQLEnumType({
+      name: `ContentTypes`,
+      values: {
+        PAGE: { value: `page` },
+        POST: { value: `post` },
+        PART: { value: `part` }
+      }
+    });
+    return {
+      // Copied from MarkdownRemark:
+      html: {
+        type: html.type,
+        resolve(contentPageNode) {
+          if (contentPageNode.parentType === "Json") return contentPageNode.content;
+          const markdownNode = getNode(contentPageNode.parent);
+          return html.resolve(markdownNode);
         }
-      };
-   })
+      }
+    };
+ })
 };
 
 exports.createPages = ({ graphql, actions }) => {
@@ -133,19 +154,17 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allMarkdownRemark(
-              filter: { fields: { slug: { ne: null } } }
-              sort: { fields: [fields___prefix], order: DESC }
+            allContentPage(
+              filter: { publicContent: { eq: true } }
+              sort: { fields: [published], order: DESC }
               limit: 1000
             ) {
               edges {
                 node {
                   id
-                  fields {
-                    slug
-                    prefix
-                    source
-                  }
+                  slug
+                  prefix
+                  contentType
                   frontmatter {
                     title
                     category
@@ -161,7 +180,7 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        const items = result.data.allMarkdownRemark.edges;
+        const items = result.data.allContentPage.edges;
 
         // Create category list
         const categorySet = new Set();
@@ -190,12 +209,11 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // Create posts
-        const posts = items.filter(item => item.node.fields.source === "posts");
+        const posts = items.filter(item => item.node.contentType === "post");
         posts.forEach(({ node }, index) => {
-          const slug = node.fields.slug;
+          const slug = node.slug;
           const next = index === 0 ? undefined : posts[index - 1].node;
           const prev = index === posts.length - 1 ? undefined : posts[index + 1].node;
-          const source = node.fields.source;
 
           createPage({
             path: slug,
@@ -203,24 +221,21 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug,
               prev,
-              next,
-              source
+              next
             }
           });
         });
 
         // and pages.
-        const pages = items.filter(item => item.node.fields.source === "pages");
+        const pages = items.filter(item => item.node.contentType === "pag");
         pages.forEach(({ node }) => {
-          const slug = node.fields.slug;
-          const source = node.fields.source;
+          const slug = node.slug;
 
           createPage({
             path: slug,
             component: pageTemplate,
             context: {
-              slug,
-              source
+              slug
             }
           });
         });

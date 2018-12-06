@@ -12,7 +12,7 @@ const List = props => {
           const {
             node: {
               frontmatter: { title },
-              fields: { slug }
+              slug
             }
           } = edge;
 
