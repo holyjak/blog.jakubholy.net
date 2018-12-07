@@ -52,13 +52,11 @@ export default PostTemplate;
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`
   query PostBySlug($slug: String!) {
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
+    post: contentPage(slug: { eq: $slug }) {
       id
       html
-      fields {
-        slug
-        prefix
-      }
+      slug
+      published
       frontmatter {
         title
         author

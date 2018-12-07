@@ -80,16 +80,14 @@ class Layout extends React.Component {
       <StaticQuery
         query={graphql`
           query LayoutgQuery {
-            pages: allMarkdownRemark(
-              filter: { fileAbsolutePath: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
-              sort: { fields: [fields___prefix], order: ASC }
+            pages: allContentPage(
+              filter: { contentType: { eq: "page" }, draft: { eq: false } }
+              sort: { fields: [published], order: ASC }
             ) {
               edges {
                 node {
-                  fields {
-                    slug
-                    prefix
-                  }
+                  slug
+                  published
                   frontmatter {
                     title
                     menuTitle
@@ -195,15 +193,13 @@ export default Layout;
 export const postQuery = graphql`
   query LayoutQuery {
     pages: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
-      sort: { fields: [fields___prefix], order: ASC }
+      filter: { contentType: { eq: "page" }, draft: { eq: false } }
+      sort: { fields: [published], order: ASC }
     ) {
       edges {
         node {
-          fields {
-            slug
-            prefix
-          }
+          slug
+          published
           frontmatter {
             title
             menuTitle

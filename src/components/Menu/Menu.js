@@ -16,7 +16,7 @@ class Menu extends React.Component {
     this.itemList = React.createRef();
 
     const pages = props.pages.map(page => ({
-      to: page.node.fields.slug,
+      to: page.node.slug,
       label: page.node.frontmatter.menuTitle
         ? page.node.frontmatter.menuTitle
         : page.node.frontmatter.title

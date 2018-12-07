@@ -2,12 +2,20 @@
 
 ## TODO
 
-- render pages from `wp-data/out/*.json`
+- fix data, make it work for old WP pages
+- include `excerpt` for both source types
 - rm demo pages and posts
 - fix TODOs in `blog2md`, re-generate data
+  - WP: Fix `[code ..]` segments, include gists
 - update title etc. in `./content/meta/config.js`
 - check tags, categories pages
 - set up GA, ...
+
+Later:
+
+- show pages not mixed with posts, preserve wiki structure, show
+  top pages on desktop
+- ensure OK on mobile, remove unnecessary spacing
 
 ## Original
 

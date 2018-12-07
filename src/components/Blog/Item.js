@@ -12,14 +12,13 @@ const Item = props => {
     theme,
     post: {
       excerpt,
-      fields: { slug, prefix },
+      slug,
+      published,
       frontmatter: {
         title,
         category,
         author,
-        cover: {
-          children: [{ fluid }]
-        }
+        cover: { children: [{ fluid }] } = { children: [{}] }
       }
     }
   } = props;
@@ -28,15 +27,13 @@ const Item = props => {
     <React.Fragment>
       <li>
         <Link to={slug} key={slug} className="link">
-          <div className="gatsby-image-outer-wrapper">
-            <Img fluid={fluid} />
-          </div>
+          <div className="gatsby-image-outer-wrapper">{fluid ? <Img fluid={fluid} /> : null}</div>
           <h1>
             {title} <FaArrowRight className="arrow" />
           </h1>
           <p className="meta">
             <span>
-              <FaCalendar size={18} /> {prefix}
+              <FaCalendar size={18} /> {published}
             </span>
             <span>
               <FaUser size={18} /> {author}

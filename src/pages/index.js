@@ -74,30 +74,28 @@ export default IndexPage;
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
-    posts: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
-      sort: { fields: [fields___prefix], order: DESC }
+    posts: allContentPage(
+      filter: { contentType: { eq: "page" }, draft: { eq: false } }
+      sort: { fields: [published], order: DESC }
     ) {
       edges {
         node {
           excerpt
-          fields {
-            slug
-            prefix
-          }
+          slug
+          published
           frontmatter {
             title
             category
             author
-            cover {
-              children {
-                ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
+#            cover { # FIXME re-enable when remark plugins re-added
+#              children {
+#                ... on ImageSharp {
+#                  fluid(maxWidth: 800, maxHeight: 360) {
+#                    ...GatsbyImageSharpFluid_withWebp
+#                  }
+#                }
+#              }
+#           }
           }
         }
       }

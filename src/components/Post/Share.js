@@ -19,7 +19,7 @@ import config from "../../../content/meta/config";
 const PostShare = props => {
   const {
     post: {
-      fields: { slug },
+      slug,
       frontmatter: { title },
       excerpt
     },

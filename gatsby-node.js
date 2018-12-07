@@ -38,7 +38,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         pages: "page",
         parts: "part"
     }[fields.source] || `unknown:${fields.source}`;
-    const draft = !!fields.prefix;
+    const draft = !fields.prefix;
     createNode({
       id: `cp-${id}`,
       parentType: "MarkdownRemark",
@@ -77,7 +77,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     } = node;
     const fields = { slug };
     const draft = status !== "publish";
-    createNode({
+    if(false)createNode({
       id: `cp-${id}`,
       parentType: "Json",
       parent: id,

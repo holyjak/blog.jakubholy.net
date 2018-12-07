@@ -8,14 +8,8 @@ import { FaArrowLeft } from "react-icons/fa/";
 const NextPrev = props => {
   const {
     theme,
-    next: {
-      fields: { prefix: nextPrefix, slug: nextSlug } = {},
-      frontmatter: { title: nextTitle } = {}
-    } = {},
-    prev: {
-      fields: { prefix: prevPrefix, slug: prevSlug } = {},
-      frontmatter: { title: prevTitle } = {}
-    } = {}
+    next: { published: nextPublished, slug: nextSlug, frontmatter: { title: nextTitle } = {} } = {},
+    prev: { published: prevPublished, slug: prevSlug, frontmatter: { title: prevTitle } = {} } = {}
   } = props;
 
   return (
@@ -25,7 +19,7 @@ const NextPrev = props => {
           <Link to={nextSlug}>
             <FaArrowRight />
             <h4>
-              {nextTitle} <time>{nextPrefix} </time>
+              {nextTitle} <time>{nextPublished} </time>
             </h4>
           </Link>
         )}
@@ -33,7 +27,7 @@ const NextPrev = props => {
           <Link to={prevSlug}>
             <FaArrowLeft />
             <h4>
-              {prevTitle} <time>{prevPrefix}</time>
+              {prevTitle} <time>{prevPublished}</time>
             </h4>
           </Link>
         )}

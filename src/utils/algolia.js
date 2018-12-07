@@ -1,6 +1,6 @@
 module.exports = function(chunksTotal, { node }) {
   const {
-    fields: { slug },
+    slug,
     frontmatter: { title },
     internal: { content }
   } = node;

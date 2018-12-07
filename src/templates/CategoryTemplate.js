@@ -59,7 +59,7 @@ export const categoryQuery = graphql`
   query PostsByCategory($category: String) {
     allContentPage(
       limit: 1000
-      sort: { fields: [prefix], order: DESC }
+      sort: { fields: [published], order: DESC }
       filter: { frontmatter: { category: { eq: $category } } }
     ) {
       totalCount

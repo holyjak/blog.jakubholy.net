@@ -13,9 +13,7 @@ const Blog = props => {
           {posts.map(post => {
             const {
               node,
-              node: {
-                fields: { slug }
-              }
+              node: { slug }
             } = post;
             return <Item key={slug} post={node} theme={theme} />;
           })}
