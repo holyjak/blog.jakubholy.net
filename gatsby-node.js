@@ -124,22 +124,47 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
     { ...args, type: { name: `MarkdownRemark` } },
     fakeRemarkPluginOptions
   ).then(({ html, excerpt, headings, timeToRead, tableOfContents, wordCount }) => {
-    const ContentTypes = new graphql.GraphQLEnumType({
-      name: `ContentTypes`,
+    // const ContentTypes = new graphql.GraphQLEnumType({
+    //   name: `ContentTypes`,
+    //   values: {
+    //     PAGE: { value: `page` },
+    //     POST: { value: `post` },
+    //     PART: { value: `part` }
+    //   }
+    // });
+    /// Just reusing the excerpt.args.format fails with "Error: Schema must contain unique named types ..."
+    const ExcerptFormats = new graphql.GraphQLEnumType({
+      name: `ExcerptFormatsCopy`,
       values: {
-        PAGE: { value: `page` },
-        POST: { value: `post` },
-        PART: { value: `part` }
+        PLAIN: { value: `plain` },
+        HTML: { value: `html` }
       }
     });
+
     return {
-      // Copied from MarkdownRemark:
+      // +- Copied from MarkdownRemark:
       html: {
         type: html.type,
         resolve(contentPageNode) {
           if (contentPageNode.parentType === "Json") return contentPageNode.content;
           const markdownNode = getNode(contentPageNode.parent);
           return html.resolve(markdownNode);
+        }
+      },
+      excerpt: {
+        type: excerpt.type,
+        args: {
+          pruneLength: excerpt.args.pruneLength,
+          truncate: excerpt.args.truncate,
+          format: {
+            type: ExcerptFormats,
+            defaultValue: `plain`
+          }
+        },
+        resolve(contentPageNode, myArgs) {
+          if (contentPageNode.parentType === "Json") return contentPageNode.excerpt; // TODO Or take first N words
+          const markdownNode = getNode(contentPageNode.parent);
+          return excerpt.resolve(markdownNode, myArgs);
         }
       }
     };
