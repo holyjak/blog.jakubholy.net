@@ -37,7 +37,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         posts: "post",
         pages: "page",
         parts: "part"
-    }[fields.source] || `unknown:${fields.source}`;
+      }[fields.source] || `unknown:${fields.source}`;
     const draft = !fields.prefix;
     createNode({
       id: `cp-${id}`,
@@ -49,7 +49,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         content: internal.content,
         contentDigest: internal.contentDigest
       },
-      frontmatter,
+      frontmatter: {
+        menuTitle: "",
+        ...frontmatter
+      },
       ...fields,
       contentType,
       published: fields.prefix,
@@ -57,7 +60,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       publicContent: !draft && contentType !== "part",
       tags: [],
       contentTypeAndVisibility: `${contentType}_${draft ? "draft" : "public"}`,
-      excerpt: "TODO via resolver",
+      excerpt: "TODO via resolver - excerpt",
       timeToRead: 0 // TODO via resolver
       // tableOfContents, wordCount  // TODO via resolver
     });
@@ -140,7 +143,7 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
         }
       }
     };
- })
+  });
 };
 
 exports.createPages = ({ graphql, actions }) => {
@@ -227,7 +230,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // and pages.
-        const pages = items.filter(item => item.node.contentType === "pag");
+        const pages = items.filter(item => item.node.contentType === "page");
         pages.forEach(({ node }) => {
           const slug = node.slug;
 
