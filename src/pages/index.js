@@ -75,7 +75,7 @@ export default IndexPage;
 export const query = graphql`
   query IndexQuery {
     posts: allContentPage(
-      filter: { contentType: { eq: "page" }, draft: { eq: false } }
+      filter: { contentType: { eq: "post" }, draft: { eq: false } }
       sort: { fields: [published], order: DESC }
     ) {
       edges {
