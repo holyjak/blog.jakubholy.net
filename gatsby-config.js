@@ -56,7 +56,7 @@ module.exports = {
         component: require.resolve(`./src/layouts/`)
       }
     },
-    {
+    /*{
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : "",
@@ -65,7 +65,7 @@ module.exports = {
         queries,
         chunkSize: 10000 // default: 1000
       }
-    },
+    },*/
     {
       resolve: `gatsby-source-filesystem`,
       options: {
