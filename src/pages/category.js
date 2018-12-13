@@ -86,7 +86,7 @@ export default CategoryPage;
 export const query = graphql`
   query ContentQuery {
     content: allContentPage(
-      filter: { contentTypeAndVisibility: { in: ["post_public", "page_public"] } }
+      filter: { publicContent: { eq: true }, contentType: { in: ["post", "page"] } }
       sort: { fields: [published], order: DESC }
     ) {
       edges {
