@@ -2,20 +2,20 @@
 
 ## TODO
 
-- fix data, make it work for old WP pages
-- include `excerpt` for both source types
-- rm demo pages and posts
-- fix TODOs in `blog2md`, re-generate data
-  - WP: Fix `[code ..]` segments, include gists
-- update title etc. in `./content/meta/config.js`
-- check tags, categories pages
-- set up GA, ...
-
-Later:
-
-- show pages not mixed with posts, preserve wiki structure, show
-  top pages on desktop
-- ensure OK on mobile, remove unnecessary spacing
+- Menu: Re-enable search and contact (see commit 0eb0dde) after configuring their backends
+- Look & feel:
+   - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
+   - don't show the author info at / (based on frontmatter's `author: name`)
+   - don't show author info the end of each post
+   - desktop: show top pages, tag cloud, ...
+- Old WP posts
+  - fix data, make it work for old WP pages
+  - fix TODOs in `blog2md`, re-generate data
+  - Fix `[code ..]` segments, include gists
+  - Merge / remove some categories such as J2EE, DB2
+- Old WP pages
+  - export them to .md, check, put under content/pages/, preserve nesting
+- Add tag cloud
 
 ## Original
 
