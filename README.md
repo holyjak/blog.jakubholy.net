@@ -2,7 +2,7 @@
 
 ## TODO
 
-- Menu: Re-enable search and contact (see commit 0eb0dde) after configuring their backends
+- Menu: Re-enable search and contact (see commits 0eb0dde, 66da8f1) after configuring their backends
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
    - don't show the author info at / (based on frontmatter's `author: name`)
