@@ -1,7 +1,7 @@
 module.exports = {
   siteTitle: "Holy on Dev", // <title>
   shortSiteTitle: "Holy on Dev", // <title> ending for posts and pages
-  siteDescription: "Software development, productivity, and tea",
+  siteDescription: "Building the right thing, building it right, fast",
   siteUrl: "https://blog.jakubholy.net",
   // pathPrefix: "",
   siteImage: "preview.jpg",
