@@ -56,7 +56,7 @@ const Meta = props => {
 
 Meta.propTypes = {
   published: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   category: PropTypes.string,
   theme: PropTypes.object.isRequired
 };

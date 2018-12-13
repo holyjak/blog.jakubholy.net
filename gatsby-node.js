@@ -107,6 +107,16 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
+function fixWordpressFormatting(html) {
+  // <script src="https://gist.github.com/holyjak/c57c6e31d515259ed05f5a520571bb2c.js"></script>
+  return html
+    // FIXME Gist .js do not execute ?!
+    .replace(/\n(https:\/\/gist\.github\.com\/[^\n]*)\n/g, '<script src="$1.js"></script>')
+    .replace(/\n\n/g, "<br><br>")
+    .replace(/\[code[^\]]*\]/g, "<pre><code>")
+    .replace(/\[\/code\]/g, "</code></pre>");
+}
+
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
   .setFieldsOnGraphQLNodeType;
 const graphqlLib = require(`gatsby/graphql`);
@@ -144,7 +154,7 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
         type: html.type,
         resolve(contentPageNode) {
           if (contentPageNode.parentType === "Json") {
-            return contentPageNode.internal.content;
+            return fixWordpressFormatting(contentPageNode.internal.content);
           }
           const markdownNode = getNode(contentPageNode.parent);
           return html.resolve(markdownNode);
