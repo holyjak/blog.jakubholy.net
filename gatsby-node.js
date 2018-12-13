@@ -59,12 +59,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       draft,
       publicContent: !draft && contentType !== "part",
       tags: [],
-      contentTypeAndVisibility: `${contentType}_${draft ? "draft" : "public"}`,
-      excerpt: "TODO via resolver - excerpt",
       timeToRead: 0 // TODO via resolver
       // tableOfContents, wordCount  // TODO via resolver
     });
-  } else if (node.internal.type === `PostsJson` || node.internal.type === `PagesJson`) {
+  } else if (node.internal.type === `PostsJson` /*|| node.internal.type === `PagesJson`*/) {
     const {
       id,
       title,
@@ -80,7 +78,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     } = node;
     const fields = { slug };
     const draft = status !== "publish";
-    if(false)createNode({
+    createNode({
       id: `cp-${id}`,
       parentType: "Json",
       parent: id,
@@ -93,16 +91,15 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       frontmatter: {
         title,
         category: categories[0], // TODO Support multiple categories??
-        author: "me",
+        author: null,
         menuTitle: null
       },
       ...fields,
       contentType: postType,
       published,
-      tags,
       draft,
       publicContent: !draft,
-      contentTypeAndVisibility: `${postType}_${draft ? "draft" : "public"}`,
+      tags,
       excerpt,
       timeToRead: 0 // FIXME seems not yet being set at this point
       // tableOfContents, wordCount
@@ -110,9 +107,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-const graphql = require(`gatsby/graphql`);
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
   .setFieldsOnGraphQLNodeType;
+const graphqlLib = require(`gatsby/graphql`);
 exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
   const { type, getNode } = args;
   if (type.name !== `ContentPage`) {
@@ -133,7 +130,7 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
     //   }
     // });
     /// Just reusing the excerpt.args.format fails with "Error: Schema must contain unique named types ..."
-    const ExcerptFormats = new graphql.GraphQLEnumType({
+    const ExcerptFormats = new graphqlLib.GraphQLEnumType({
       name: `ExcerptFormatsCopy`,
       values: {
         PLAIN: { value: `plain` },
@@ -146,7 +143,9 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
       html: {
         type: html.type,
         resolve(contentPageNode) {
-          if (contentPageNode.parentType === "Json") return contentPageNode.content;
+          if (contentPageNode.parentType === "Json") {
+            return contentPageNode.internal.content;
+          }
           const markdownNode = getNode(contentPageNode.parent);
           return html.resolve(markdownNode);
         }
@@ -162,7 +161,18 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
           }
         },
         resolve(contentPageNode, myArgs) {
-          if (contentPageNode.parentType === "Json") return contentPageNode.excerpt; // TODO Or take first N words
+          if (contentPageNode.parentType === "Json") {
+            // TODO Fix UI to support HTML excerpt
+            // const content = contentPageNode.internal.content;
+            // const end =
+            //   1 +
+            //   Math.max(content.indexOf("<!--more-->"),
+            //     content.indexOf("</p>"),
+            //     content.indexOf("\n\n"));
+            // const fallbackExcerpt = content.substr(0, end);
+            // return contentPageNode.excerpt || fallbackExcerpt;
+            return "";
+          }
           const markdownNode = getNode(contentPageNode.parent);
           return excerpt.resolve(markdownNode, myArgs);
         }
@@ -191,7 +201,6 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   slug
-                  prefix
                   contentType
                   frontmatter {
                     title

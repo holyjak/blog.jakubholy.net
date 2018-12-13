@@ -1,25 +1,27 @@
-# HeroBlog
+# blog.jakubholy.net
 
 ## TODO
 
+- Old WP posts
+  - enable excerpts (here html x new plaintext)
+  - replace `\n\n` with `<p>...`
+  - fix TODOs in `blog2md`, re-generate data
+  - Fix `[code ..]` segments, include gists
+  - Merge / remove some categories such as J2EE, DB2
+  - Download imgs from WP, use these
+- Old WP pages
+  - export them to .md, check, put under content/pages/, preserve nesting
+- Add tag cloud
 - Menu: Re-enable search and contact (see commits 0eb0dde, 66da8f1) after configuring their backends
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
    - don't show the author info at / (based on frontmatter's `author: name`)
    - don't show author info the end of each post
    - desktop: show top pages, tag cloud, ...
-- Old WP posts
-  - fix data, make it work for old WP pages
-  - fix TODOs in `blog2md`, re-generate data
-  - Fix `[code ..]` segments, include gists
-  - Merge / remove some categories such as J2EE, DB2
-- Old WP pages
-  - export them to .md, check, put under content/pages/, preserve nesting
-- Add tag cloud
 
-## Original
+---
 
-----
+# Original README
 
 A [GatsbyJS](https://www.gatsbyjs.org/) blog starter. <br /><br />
 
