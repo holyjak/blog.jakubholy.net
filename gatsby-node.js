@@ -149,8 +149,8 @@ async function fixWordpressFormatting(html) {
 
   fixedHtml = fixedHtml
     .replace(/\n\n/g, "<br><br>")
-    .replace(/\[code[^\]]*\]/g, "<pre><code>")
-    .replace(/\[\/code\]/g, "</code></pre>");
+    .replace(/\[(?:source)?code[^\]]*\]/g, "<pre><code>")
+    .replace(/\[\/(?:source)?code\]/g, "</code></pre>");
 
   return { html: fixedHtml, stylesheets: gistStylesheet ? [gistStylesheet] : [] };
 }

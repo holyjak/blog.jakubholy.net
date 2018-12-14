@@ -4,10 +4,7 @@
 
 - Old WP posts
   - enable excerpts (here html x new plaintext)
-  - replace `\n\n` with `<p>...`
   - fix TODOs in `blog2md`, re-generate data
-  - Fix `[code ..]` segments, include gists
-    - see /2018/11/26/java-understanding-the-different-network-https-exceptions/
   - Merge / remove some categories such as J2EE, DB2
   - Download imgs from WP, use these
 - Old WP pages
