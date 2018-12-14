@@ -121,6 +121,7 @@ module.exports = {
             }
           },
           `gatsby-remark-prismjs`,
+          `gatsby-remark-embed-gist`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
           {
