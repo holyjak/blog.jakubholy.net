@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 require("prismjs/themes/prism-okaidia.css");
 
@@ -22,6 +23,11 @@ const PostTemplate = props => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        {post.stylesheets.map(url => (
+          <link key={url} rel="stylesheet" href={url} />
+        ))}
+      </Helmet>
       <ThemeContext.Consumer>
         {theme => (
           <Article theme={theme}>
@@ -55,6 +61,7 @@ export const postQuery = graphql`
     post: contentPage(slug: { eq: $slug }) {
       id
       html
+      stylesheets
       slug
       published
       frontmatter {

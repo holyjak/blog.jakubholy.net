@@ -3,10 +3,11 @@ const _ = require("lodash");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const path = require("path");
 const Promise = require("bluebird");
+const crypto = require("crypto");
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+exports.onCreateNode = async ({ node, getNode, actions }) => {
   const { createNode, createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode });
@@ -33,7 +34,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       value: source
     });
     const { id, internal, frontmatter, fields } = node;
-    const contentType = {
+    const contentType =
+      {
         posts: "post",
         pages: "page",
         parts: "part"
@@ -49,6 +51,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         content: internal.content,
         contentDigest: internal.contentDigest
       },
+      stylesheets: [],
       frontmatter: {
         menuTitle: "",
         ...frontmatter
@@ -73,11 +76,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       tags,
       categories,
       content,
-      excerpt,
-      internal
+      excerpt
     } = node;
     const fields = { slug };
     const draft = status !== "publish";
+    const { html, stylesheets } = await fixWordpressFormatting(content);
     createNode({
       id: `cp-${id}`,
       parentType: "Json",
@@ -85,9 +88,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       internal: {
         mediaType: "text/html",
         type: "ContentPage",
-        content,
-        contentDigest: internal.contentDigest
+        content: html,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(html)
+          .digest(`hex`)
       },
+      stylesheets,
       frontmatter: {
         title,
         category: categories[0], // TODO Support multiple categories??
@@ -107,14 +114,45 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-function fixWordpressFormatting(html) {
+const fetch = require("node-fetch");
+function fetchGist(url) {
+  return fetch(`${url}.json`)
+    .then(g => g.json())
+    .then(j => ({ html: j.div, stylesheet: j.stylesheet }))
+    .catch(err => {
+      console.error("Failed fetching gist", url, err);
+      return null;
+    });
+}
+
+async function fixWordpressFormatting(html) {
   // <script src="https://gist.github.com/holyjak/c57c6e31d515259ed05f5a520571bb2c.js"></script>
-  return html
-    // FIXME Gist .js do not execute ?!
-    .replace(/\n(https:\/\/gist\.github\.com\/[^\n]*)\n/g, '<script src="$1.js"></script>')
+  // FIXME Use something that can strip comments (gists in comments => huge files)
+
+  // Replace gists
+  // FIXME What about the gist stylesheet? How to add that?
+  const gistRE = /(?:<div class="wp-block-embed__wrapper">|\n|<br><br>)\s*(https:\/\/gist\.github\.com\/(?:\/|\w)*)/g;
+  const replacements = {};
+  let match;
+  let gistStylesheet; // same for all gists
+  while ((match = gistRE.exec(html)) !== null) {
+    const gistUrl = match[1];
+    const gist = await fetchGist(gistUrl);
+    if (gist) {
+      // TODO Support highlights? See https://github.com/weirdpattern/gatsby-remark-embed-gist/blob/master/src/index.js#L133
+      replacements[gistUrl] = gist.html;
+      gistStylesheet = gist.stylesheet;
+    }
+  }
+
+  let fixedHtml = html.replace(gistRE, (_match, gistUrl) => replacements[gistUrl] || gistUrl);
+
+  fixedHtml = fixedHtml
     .replace(/\n\n/g, "<br><br>")
     .replace(/\[code[^\]]*\]/g, "<pre><code>")
     .replace(/\[\/code\]/g, "</code></pre>");
+
+  return { html: fixedHtml, stylesheets: gistStylesheet ? [gistStylesheet] : [] };
 }
 
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
@@ -154,7 +192,7 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
         type: html.type,
         resolve(contentPageNode) {
           if (contentPageNode.parentType === "Json") {
-            return fixWordpressFormatting(contentPageNode.internal.content);
+            return contentPageNode.internal.content;
           }
           const markdownNode = getNode(contentPageNode.parent);
           return html.resolve(markdownNode);
