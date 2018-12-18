@@ -15,9 +15,11 @@ class Menu extends React.Component {
     super(props);
     this.itemList = React.createRef();
 
-    const pages = props.pages.map(page => ({
+    const pages = props.pages
+    .filter(page => page.node.slug.startsWith("/pages/")) // TODO display an index page for each dir
+    .map(page => ({
       to: page.node.slug,
-      label: page.node.frontmatter.menuTitle
+        label: page.node.frontmatter.menuTitle
         ? page.node.frontmatter.menuTitle
         : page.node.frontmatter.title
     }));

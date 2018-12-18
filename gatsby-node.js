@@ -38,9 +38,10 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
       {
         posts: "post",
         pages: "page",
-        parts: "part"
+        parts: "part",
+        wp: "page" // FIXME ensure source = page or wp-page not just wp
       }[fields.source] || `unknown:${fields.source}`;
-    const draft = !fields.prefix;
+    const draft = !fields.prefix && fields.source !== "wp";
     createNode({
       id: `cp-${id}`,
       parentType: "MarkdownRemark",

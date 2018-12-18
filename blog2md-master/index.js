@@ -10,6 +10,8 @@ const path = require('path');
 const xml2js = require('xml2js');
 var moment = require('moment');
 
+const breakdance = require("breakdance");
+
 if (process.argv.length !== 4){
     console.log(`Usage: blog2md <BACKUP XML> <OUTPUT DIR>`)
     return 1;
@@ -84,6 +86,9 @@ function wordpressImport(backupXmlFile, outputDir){
                         JSON.stringify(postsByType[postType], null, 1),
                         true
                     );
+                    if (postType === "page") {
+                      writeToMarkdownFiles(`${outputDir}/pages`, postsByType[postType])
+                    }
                 })
 
         });
@@ -91,12 +96,29 @@ function wordpressImport(backupXmlFile, outputDir){
 
 }
 
-function writeToFile(filename, content, append=false){
+function writeToMarkdownFiles(outputDir, pages) {
+  // writeToMarkdownFiles(`${outputDir}/pages`, postsByType[postType])
+  pages.forEach(page => {
+    const filename = `${outputDir}/${page.slug.replace(/\/$/, "")}.md`
+    var parentDir = filename.replace(/[^/]+\.md/, "");
+    if (parentDir !== "" && !fs.existsSync(parentDir)) {
+      fs.mkdirSync(parentDir, { recursive: true });
+    }
 
-    // var parentDir = filename.replace(/[^/]+\.md/, "");
-    // if (parentDir !== "" && !fs.existsSync(parentDir)) {
-    //     fs.mkdirSync(parentDir, {recursive: true});
-    // }
+    // TODO HTML => .md
+    const markdownBody = breakdance(page.content);
+    const frontmatter = `---
+    title: "${page.title.replace(/"/g, '\\"')}"
+    ---
+
+    `.replace(/\n\s+/g, "\n");
+    const markdown = frontmatter + markdownBody;
+
+    writeToFile(filename, markdown);
+  })
+}
+
+function writeToFile(filename, content, append=false){
 
     if(append){
         console.log(`DEBUG: going to append to ${filename}`);

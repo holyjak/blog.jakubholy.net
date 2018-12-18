@@ -7,8 +7,16 @@
   - fix TODOs in `blog2md`, re-generate data
   - Merge / remove some categories such as J2EE, DB2
   - Download imgs from WP, use these
+  - FIXME handle `[gist https://gist.github.com/3683899 /]\` or gist at the end of the input if preceeded by a new line
 - Old WP pages
   - export them to .md, check, put under content/pages/, preserve nesting
+  - handle imgs `[caption id="attachment_4243" align="alignright" width="236"]`
+  - fix intrablog links in wiki, eg from http://me:8000/pages/wiki/,
+    http://me:8000/pages/best/
+  - fix pages with special chars in slug such as pages/%e2%99%80-heroes/, /pages/?page_id=814/
+  - Menu: Display only top-level pages and one for each dir with links
+    to pages
+  - review the migrated content
 - Add tag cloud
 - Menu: Re-enable search and contact (see commits 0eb0dde, 66da8f1) after configuring their backends
 - Look & feel:
