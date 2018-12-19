@@ -55,6 +55,7 @@ function wordpressImport(backupXmlFile, outputDir){
                     postOut.postType = post["wp:post_type"][0]; // post || page || ...
                     postOut.slug = post["link"][0]
                         .replace(/https:\/\/[^/]+\//, "/")
+                        .replace("?page_id=", "")
                         .replace("?p=", ""); // for old posts with `?p=123`
                     postOut.status = post["wp:status"][0];
                     postOut.tags = [];

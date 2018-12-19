@@ -17,10 +17,13 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0;
 
     if (source !== "parts") {
+      const safeSlug = slug.substring(shortSlugStart)
+        .replace(/%\w+/g, "") // rm html entities
+        .replace(/[^\x20-\x7E]/g, ""); // strip non-ASCII chars
       createNodeField({
         node,
         name: `slug`,
-        value: `${separtorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
+        value: `${separtorIndex ? "/" : ""}${safeSlug}`
       });
     }
     createNodeField({
