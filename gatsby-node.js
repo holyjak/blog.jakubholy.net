@@ -66,7 +66,7 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
       timeToRead: 0 // TODO via resolver
       // tableOfContents, wordCount  // TODO via resolver
     });
-  } else if (node.internal.type === `PostsJson` /*|| node.internal.type === `PagesJson`*/) {
+  } else if (node.internal.type === `PostsJson` && !skip(node) /*|| node.internal.type === `PagesJson`*/) {
     const {
       id,
       title,
@@ -114,6 +114,10 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
     });
   }
 };
+
+function skip(node) {
+  return node.slug === "/2011/09/07/practical-intr%e2%80%a6and-java-proxy/";
+}
 
 const fetch = require("node-fetch");
 function fetchGist(url) {
