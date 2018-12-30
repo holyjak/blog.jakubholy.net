@@ -80,17 +80,19 @@ Window -> Preferences -> Java -> Editor ->Templates.
 
 Log declaration ("logdef"):
 
-[code language="java" light="true"]
+```
+
 ${:import(org.apache.commons.logging.Log, org.apache.commons.logging.LogFactory)} private static final Log LOG = LogFactory.getLog(${enclosing_type}.class);
-[/code]
+```
 
 "debug":
 
-[code language="java" light="true"]
+```
+
 if (LOG.isDebugEnabled()) {
- LOG.debug("${enclosing_method}: ${msg}");
+   LOG.debug("${enclosing_method}: ${msg}");
 }
-[/code]
+```
 
 #### Variant B: Java logging
 
@@ -98,17 +100,19 @@ As above except the templates themselves.
 
 logdef:
 
-[code language="java" light="true"]
+```
+
 ${:import(java.util.logging.Logger)} private static final Logger LOG = Logger.getLogger(${enclosing_type}.class.getName()) ;
-[/code]
+```
 
 #### Default action in a catch block
 
 Change the action on exception in the template for try-catch blocks through Window -> Preferences -> Java -> Code Style -> Code Templates. Change the Code -> 'Catch block body' and  'Code in new catch blocks'  template to the following.
 
-[code language="java" light="true"]
+```
+
 LOG.error("${msg}", ${exception_var});
-[/code]
+```
 
 (Default is exception.printStackTrace().)
 
@@ -118,22 +122,24 @@ LOG.error("${msg}", ${exception_var});
 
 A slight modification of the default "Test" template:
 
-[code language="java" light="true"]
+```
+
 @${testType:newType(org.junit.Before)}
 public void setUp() throws Exception {
- //MockitoAnnotations.initMocks(this);
- ${cursor}
+	//MockitoAnnotations.initMocks(this);
+	${cursor}
 }
-[/code]
+```
 
 Also `setUp` may be useful:
 
-[code language="java" light="true"]
+```
+
 @${testType:newType(org.junit.Test)}
 public void ${testname}() throws Exception {
- ${staticImport:importStatic('org.junit.Assert.*')}fail("not yet implemented");${cursor}
+	${staticImport:importStatic('org.junit.Assert.*')}fail("not yet implemented");${cursor}
 }
-[/code]
+```
 
 # Favorite Plugins
 

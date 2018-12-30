@@ -28,4 +28,4 @@ _Note: The pages [Why lean?](http://theholyjava.wordpress.com/why-lean/ "Why le
 
 ### Software development
 
-* [Kent Beck: Making Making CoffeeScript](https://www.youtube.com/watch?v=nIonZ6-4nuU) [video, 20 min] - a wonderful and inspiring demonstration of some of the key values and practices of efficient software development (while developing a test framework for/in CoffeeScript) - focus on shortening the feedback loop and application of [parallel change](https://theholyjava.wordpress.com/wiki/development/parallel-design-parallel-change/); iterative evolution/emergence.
+* [Kent Beck: Making Making CoffeeScript](https://www.youtube.com/watch?v=nIonZ6-4nuU) [video, 20 min] - a wonderful and inspiring demonstration of some of the key values and practices of efficient software development (while developing a test framework for/in CoffeeScript) - focus on shortening the feedback loop and application of [parallel change](/wiki/development/parallel-design-parallel-change/); iterative evolution/emergence.

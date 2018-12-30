@@ -1,7 +1,7 @@
 ---
 title: "♀ Heroes"
 ---
-[caption id="attachment_4243" align="alignright" width="236"] Margaret Hamilton, lead software engineer, Project Apollo - showing off her source code[/caption]
+Margaret Hamilton, lead software engineer, Project Apollo - showing off her source code
 
 This page is dedicated to all the great women that contributed significantly to the evolution of software engineering and IT.
 

@@ -5,12 +5,15 @@
 
 */
 const fs = require('fs');
+const url = require('url');
 const os = require('os');
 const path = require('path');
 const xml2js = require('xml2js');
 var moment = require('moment');
+const fetch = require("node-fetch");
 
-const breakdance = require("breakdance");
+const breakdance = require('breakdance');
+//const breakdance = new Breakdance(/* options */);
 
 if (process.argv.length !== 4){
     console.log(`Usage: blog2md <BACKUP XML> <OUTPUT DIR>`)
@@ -30,6 +33,7 @@ wordpressImport(inputFile, outputDir);
 
 function wordpressImport(backupXmlFile, outputDir){
     var parser = new xml2js.Parser();
+    const images = new Set();
 
     fs.readFile(backupXmlFile, function(err, data) {
         parser.parseString(data, function (err, result) {
@@ -37,15 +41,12 @@ function wordpressImport(backupXmlFile, outputDir){
                 console.log(`Error parsing xml file (${backupXmlFile})\n${JSON.stringify(err)}`);
                 return 1;
             }
+            // wp:base_blog_url
+            const baseBlogUrl = result.rss.channel[0]["wp:base_blog_url"][0];
             var posts = result.rss.channel[0].item;
                 console.log(`Total Post count: ${posts.length}`);
 
-                // TODO Download, include wp:attachment_url
-                // TODO draft
                 // TODO What with post_type = attachment | nav_menu_item ?
-                // TODO Handle `<!-- wp:embed {"url":"https://gist.github.com/holyjak/f3f995173539be80ce518a579496c2ba","type":"rich","providerNameSlug":"","className":""} -->`
-                // TODO Handle [code lang=text]...[/code]
-                // TODO pages: <wp:post_parent>0</wp:post_parent>, <wp:menu_order>0</wp:menu_order>
 
                 const postsByType = posts.map((post) => {
                     var postOut = {};
@@ -58,6 +59,14 @@ function wordpressImport(backupXmlFile, outputDir){
                         .replace("?page_id=", "")
                         .replace("?p=", ""); // for old posts with `?p=123`
                     postOut.status = post["wp:status"][0];
+
+                    if (postOut.status === "inherit") {
+                      // Posts with status=inherit are there just to
+                      // provide an attachement for another post, should not
+                      // be displayed
+                      return null;
+                    }
+
                     postOut.tags = [];
                     postOut.categories = [];
                     var categoriesTags = post.category;
@@ -68,11 +77,12 @@ function wordpressImport(backupXmlFile, outputDir){
                         });
                     }
 
-                    postOut.content = post["content:encoded"][0];
-                    postOut.excerpt = post["excerpt:encoded"][0];
+                    postOut.content = fixWordpressFormatting({ baseBlogUrl, images }, post["content:encoded"][0]);
+                    postOut.excerpt = fixWordpressFormatting({ baseBlogUrl, images }, post["excerpt:encoded"][0]);
 
                     return postOut;
                 })
+                .filter(v => v !== null)
                 .reduce(
                     (acc, p) => {
                         if (!acc[p.postType]) acc[p.postType] = [];
@@ -90,11 +100,71 @@ function wordpressImport(backupXmlFile, outputDir){
                     if (postType === "page") {
                       writeToMarkdownFiles(`${outputDir}/pages`, postsByType[postType])
                     }
-                })
+                });
 
+                return downloadImages(`${outputDir}/images`, images);
         });
     });
 
+}
+
+function downloadImages(destDir, urlSet) {
+  if (urlSet.size === 0) return Promise.resolve();
+
+  console.log("Images to download: ", urlSet.size);
+
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+
+  const ps = [];
+  urlSet.forEach(href => {
+    const urlObj = url.parse(href);
+    const pathname = urlObj.pathname;
+    const filename = destDir + pathname;
+    if (fs.existsSync(filename)) return;
+
+    const parentPath = pathname.substring(0, pathname.lastIndexOf("/"));
+    const parentDir = destDir + parentPath;
+
+    if (parentPath && !fs.existsSync(parentDir)) {
+      fs.mkdirSync(parentDir, { recursive: true });
+    }
+
+    console.log(` downloading ${href} -> ${filename}`);
+    ps.push(fetch(href).then(res => res.body.pipe(fs.createWriteStream(filename))));
+  });
+
+  return Promise.all(ps);
+}
+
+const urlPathRE = /\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+
+function fixWordpressFormatting({ baseBlogUrl, images }, html) {
+  if (!html) return html;
+  const baseBlogImageUrl = baseBlogUrl
+    .replace(/^https:/, "")
+    .replace(".wordpress.com", ".files.wordpress.com");
+  const baseBlogImageRE = new RegExp(/(https?:)?/.source + baseBlogImageUrl);
+  const blogImgRE = new RegExp(baseBlogImageRE.source + urlPathRE.source, "g");
+  const fixedHtml = html
+    .replace(/\n\n/g, "<br><br>") // normally ignored in HTML
+    .replace(/\[gist ([^\]]+) \/\]/g, "\n\n$1\n\n")
+    .replace(/\[((?:source)?code|source)[^\]]*\]/g, "<pre><code>")
+    .replace(/\[\/((?:source)?code|source)\]/g, "</code></pre>")
+    // Just drop img captions; it is too much work to try to
+    // extract and use its title
+    .replace(/\[caption[^\]]*\]/g, "")
+    .replace(/\[\/caption\]/g, "")
+    // Make intra-blog links relative
+    .replace(new RegExp(baseBlogUrl, "g"), "")
+    // Replace with downloaded images
+    .replace(blogImgRE, url => {
+      images.add(url); // store it
+      return url.replace(baseBlogImageRE, "/images");
+    });
+
+  return fixedHtml;
 }
 
 function writeToMarkdownFiles(outputDir, pages) {
@@ -106,8 +176,9 @@ function writeToMarkdownFiles(outputDir, pages) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
 
-    // TODO HTML => .md
-    const markdownBody = breakdance(page.content);
+    // For md., replace back br with newline (added in fixWordpressFormatting)
+    const content = page.content.replace(/(\s*<br>\s*){2,}/g, "\n\n");
+    const markdownBody = breakdance(content);
     const frontmatter = `---
     title: "${page.title.replace(/"/g, '\\"')}"
     ---

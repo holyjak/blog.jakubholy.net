@@ -138,7 +138,6 @@ async function fixWordpressFormatting(html) {
   // FIXME Use something that can strip comments (gists in comments => huge files)
 
   // Replace gists
-  // FIXME What about the gist stylesheet? How to add that?
   const gistRE = /(?:<div class="wp-block-embed__wrapper">|\n|<br><br>)\s*(https:\/\/gist\.github\.com\/(?:\/|\w)*)/g;
   const replacements = {};
   let match;
@@ -153,13 +152,7 @@ async function fixWordpressFormatting(html) {
     }
   }
 
-  let fixedHtml = html.replace(gistRE, (_match, gistUrl) => replacements[gistUrl] || gistUrl);
-
-  fixedHtml = fixedHtml
-    .replace(/\n\n/g, "<br><br>")
-    .replace(/\[(?:source)?code[^\]]*\]/g, "<pre><code>")
-    .replace(/\[\/(?:source)?code\]/g, "</code></pre>");
-
+  const fixedHtml = html.replace(gistRE, (_match, gistUrl) => replacements[gistUrl] || gistUrl);
   return { html: fixedHtml, stylesheets: gistStylesheet ? [gistStylesheet] : [] };
 }
 

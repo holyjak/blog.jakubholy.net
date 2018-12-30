@@ -18,7 +18,7 @@ Persistent computer-related notes that are still under development.
   - [Frontend](/wiki/development/frontend/ "Frontend")
   - [Practices](http://theholyjava.wordpress.com/wiki/development/practicies/ "Practices")
     + [Continuous Delivery](http://theholyjava.wordpress.com/wiki/development/practicies/continuous-delivery/ "Continuous Delivery")
-  - [Compiled "Must Watch/Read" Resources](https://theholyjava.wordpress.com/wiki/development/compiled-must-watchread-resources/ "Compiled "Must Watch/Read" Resources") - JS, functional JS, ...
+  - [Compiled "Must Watch/Read" Resources](/wiki/development/compiled-must-watchread-resources/ "Compiled "Must Watch/Read" Resources") - JS, functional JS, ...
 * [Better Work](http://theholyjava.wordpress.com/wiki/better-work/ "Better Work")- creating more effective organizations with happier people and customers
 * [Tools & OS](http://theholyjava.wordpress.com/wiki/tools/ "Tools")
   - [Ubuntu@ThinkPad](http://theholyjava.wordpress.com/wiki/tools/ubuntuatthinkpad/ "Ubuntu@Thinkpad") - My experiences from running Ubuntu on Lenovo ThinkPad

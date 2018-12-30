@@ -27,4 +27,4 @@ AngularJS: [Batarang](https://github.com/angular/angularjs-batarang/) is a must
 
 ### Related
 
-* [Tools for Editor – Browser Integration for Interactive JS/HTML Development](https://theholyjava.wordpress.com/2013/03/25/tools-for-editor-browser-integration-for-interactive-jshtml-development/ "Permanent link to Tools for Editor – Browser Integration for Interactive JS/HTML Development") (3/2013)
+* [Tools for Editor – Browser Integration for Interactive JS/HTML Development](/2013/03/25/tools-for-editor-browser-integration-for-interactive-jshtml-development/ "Permanent link to Tools for Editor – Browser Integration for Interactive JS/HTML Development") (3/2013)

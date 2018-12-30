@@ -54,7 +54,7 @@ Testing is a key practice enabling clean code.
 
 Local testing-related posts:
 
-* [Do You Know Why You Are Testing?! (On The Principles Underlying TDD)](https://theholyjava.wordpress.com/2012/10/27/the-principles-underlying-test-driven-development-or-why-you-should-tdd/)
+* [Do You Know Why You Are Testing?! (On The Principles Underlying TDD)](/2012/10/27/the-principles-underlying-test-driven-development-or-why-you-should-tdd/)
 * [Clean Test Design](http://theholyjava.wordpress.com/wiki/development/clean-test-design/)
 * [Principles for Creating Maintainable and Evolvable Tests](http://theholyjava.wordpress.com/2011/11/21/principles-for-creating-maintainable-and-evolvable-tests/)
 * [Never Mix Public and Private Unit Tests! (Decoupling Tests from Implementation Details)](http://theholyjava.wordpress.com/2011/10/20/never-mix-public-and-private-unit-tests/)

@@ -271,6 +271,13 @@ module.exports = {
       options: {
         include: /svg-icons/
       }
+    },
+    {
+      resolve: "gatsby-plugin-copy",
+      options: {
+        verbose: true,
+        "wp-data/out/images": "static/images"
+      }
     }
   ]
 };

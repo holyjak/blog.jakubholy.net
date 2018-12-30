@@ -139,7 +139,7 @@ Logs
 
 * [LogStash](http://logstash.net/) - a popular tool that can collect (directly/via [distributed] syslog), parse (=> extract timestamp etc), and store logs - support for indexing storing in ElasticSearch for searching, parses e.g. Apache logs out of the box. See this [Logstash slides](http://semicomplete.com/presentations/logstash-puppetconf-2012/#/7) (9/2012).
   - Can also [send metrics to statsD](http://cookbook.logstash.net/recipes/statsd-metrics/) / Graphite
-* [Kibana](http://kibana.org/infrastructure.html) - a web interface to seach logs from LogStash, view them in realtime (based on a query) etc. See the overview of [Kibana's powers](https://theholyjava.wordpress.com/2013/08/31/most-interesting-links-of-august-13/kibana.org/about.html).
+* [Kibana](http://kibana.org/infrastructure.html) - a web interface to seach logs from LogStash, view them in realtime (based on a query) etc. See the overview of [Kibana's powers](/2013/08/31/most-interesting-links-of-august-13/kibana.org/about.html).
 
 Other
 

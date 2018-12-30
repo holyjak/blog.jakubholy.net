@@ -32,7 +32,7 @@ Different people will have different testing strategies based on this philosophy
 
 Kent Beck has posted a good summary of the benefits of TDD in "[Functional TDD: A Clash of Cultures](https://m.facebook.com/note.php?note_id=472392329460303)" – double checking of the logic (by the implementation and the, preferably quite different, test), solution decomposition (focus on part of the problem, once solve be sure it stays solved),  automatic checking of correctness, outside in design (API first, implementation after that). Plus the pleasant experience of the continuous cycle of tension (failing test) – relief (green).
 
-Update: See [Do You Know Why You Are Testing?! (On The Principles Underlying TDD)](https://theholyjava.wordpress.com/2012/10/27/the-principles-underlying-test-driven-development-or-why-you-should-tdd/ "Permanent link to Do You Know Why You Are Testing?! (On The Principles Underlying TDD)")
+Update: See [Do You Know Why You Are Testing?! (On The Principles Underlying TDD)](/2012/10/27/the-principles-underlying-test-driven-development-or-why-you-should-tdd/ "Permanent link to Do You Know Why You Are Testing?! (On The Principles Underlying TDD)")
 
 ## References
 

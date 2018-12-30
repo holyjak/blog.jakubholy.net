@@ -9,7 +9,9 @@ _(See the [parent page](/wiki/) with its global index for development-related su
 
 ##### Loop from 00 til 11
 
-[code language="bash"]for i in $(seq -f '%02g' 2 14); do ... done[/code]
+```
+for i in $(seq -f '%02g' 2 14); do ... done
+```
 
 ### Remote pair-programming tools
 
@@ -62,7 +64,7 @@ Sources: Tom Pope's blog about the [50/72 format](http://tbaggery.com/2008/04/1
 
 * [Nathan Marz: Principles of Software Engineering, Part 1](http://nathanmarz.com/blog/principles-of-software-engineering-part-1.html) - Nathan has worked with Big Data at Twitter and other places and really knows the perils or large, distributed, real-time systems and this post contains plenty of valuable advice for making robust, reliable SW. Main message: "_there's a lot of **uncertainty** in software engineering_"; every SW operates correctly only for a certain range of inputs (including volume, HW it runs on, ...) and you never control all of them so there always is an opportunity for failure; you can't predict what inputs you will encounter in the wild. _"[..] while software is deterministic, you can't treat it as deterministic in any sort of practical sense if you want to build robust software._" "_**Making software robust is an iterative process**: you build and test it as best you can, but inevitably in production you'll discover new areas of the input space that lead to failure. Like rockets, it's **crucial to have excellent monitoring** in place so that these issues can be diagnosed._". From the content: Sources of uncertainty (bugs, humans, requirements, inputs, ..), Engineering for uncertainty (minimize dependencies, lessen % of cascading failure [JH: ->[Hystrix](https://github.com/Netflix/Hystrix)], measure and monitor)
   - [Suffering-oriented programming](http://nathanmarz.com/blog/suffering-oriented-programming.html) is certainly also worth reading (summary: do not start with great designs; only start generalizing and creating libs when you have suffered enough from doing things more manually and thus learned the domain; make it possible > make it beautiful > make it fast, repeat)
-* Kent Beck:[Making Making CoffeeScript](https://www.youtube.com/watch?v=nIonZ6-4nuU) (screencast, 19min) - an inspiring demonstration of some key development practices: a super-short feedback loop, evolving and refactoring code in small steps without ever breaking it (->[Parallel Change](https://theholyjava.wordpress.com/wiki/development/parallel-design-parallel-change/ "Parallel Design (Parallel Change)")), TDD as a vessel of feadback, without a testing framework.
+* Kent Beck:[Making Making CoffeeScript](https://www.youtube.com/watch?v=nIonZ6-4nuU) (screencast, 19min) - an inspiring demonstration of some key development practices: a super-short feedback loop, evolving and refactoring code in small steps without ever breaking it (->[Parallel Change](/wiki/development/parallel-design-parallel-change/ "Parallel Design (Parallel Change)")), TDD as a vessel of feadback, without a testing framework.
 
 ### Web dev
 

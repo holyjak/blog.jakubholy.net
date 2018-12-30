@@ -9,13 +9,14 @@ An example of a high-level parallel design is the replacement of a RDBMS with a 
 
 An example of a micro-level parallel design is the replacement of method parameters (message etc.) with the object they come from (an Edge), as [we did for notifyComment](https://github.com/iterate/codecamp2012/commit/cc04f0bb60d8260456049790793d462ce8810ef2#diff-1):
 
-[code]
+```
+
 - public void notifyComment(String message, String eventName, String user) {
-- notifications.add(user + ": commented on " + eventName + " " + message);
+-    notifications.add(user + ": commented on " + eventName + " " + message);
 ---
 + public void notifyComment(Edge target) {
-+ notifications.add(target.getTo().getId() + ": commented on " + target.getFrom().getId() + " " + target.get("comment"));
-[/code]
++    notifications.add(target.getTo().getId() + ": commented on " + target.getFrom().getId() + " " + target.get("comment"));
+```
 
 The steps were:
 
@@ -39,7 +40,7 @@ My mentor called this Parallel Design but I prefer the name Parallel Change use
 
 * [ParallelChange](http://martinfowler.com/bliki/ParallelChange.html) at MartinFowler.com by D. Sato - break the change into expand, migrate, and contract; nice examples and useful links
 * [Joshua Kerievsky's talk The Limited Red Society](http://www.infoq.com/presentations/The-Limited-Red-Society) - the author argues for keeping periods when code doesn't compile or tests fail to minimum and shows examples of Big Leap and Parallel Change (referred to as Paralle Design here) strategies; highly recommended
-* [Summary of Kent Beck's talk Best Practices for Software Design with Low Feature Latency and High Throughput](https://theholyjava.wordpress.com/2012/03/12/kent-beck-best-practices-for-software-design-with-low-feature-latency-and-high-throughput/)
+* [Summary of Kent Beck's talk Best Practices for Software Design with Low Feature Latency and High Throughput](/2012/03/12/kent-beck-best-practices-for-software-design-with-low-feature-latency-and-high-throughput/)
 * Kent Beck's presentation [Effective Design](http://www.slideshare.net/deimos/kent-beck-effective-design) (slides 8 and 9)
 * [The Succession entry in Kent Beck's Software Design Glossary](https://www.facebook.com/notes/facebook-engineering/software-design-glossary/10150309412413920) - "[..] _Succession_is the art of taking a single conceptual change, breaking it into safe steps, and then finding an order for those steps that optimizes safety, feedback, and efficiency. [..]"
 * Dan Milstein:[How To Survive a Ground-Up Rewrite Without Losing Your Sanity](http://onstartups.com/tabid/3339/bid/97052/Screw-You-Joel-Spolsky-We-re-Rewriting-It-From-Scratch.aspx) - quotes: "Over my career, I've come to place a really strong value on figuring out how to break big changes into small, safe, value-generating pieces." And: "Here's what I'm going to say: always insert that dual-write layer. _Always_. It's a minor, generally somewhat fixed cost that buys you an incredible amount of insurance. It allows you, as we did above, to gradually switch over from one system to another. It allows you to back out at any time if you discover major problems with the way the data was migrated (which you will, over and over again). It means your migration of data can take a week, and that's not a problem, because you don't have to freeze writes to _both_ systems during that time. And, as a bonus, it surfaces a bunch of those weird situations where "other" systems are writing directly to your old database."

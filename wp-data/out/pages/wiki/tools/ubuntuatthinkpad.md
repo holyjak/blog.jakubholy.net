@@ -370,20 +370,25 @@ Environment: Eclipse 3.5, Gnome 2.30.2, Ubuntu 10.04.
 
 To avoid the error
 
-[code light="true"]
-SQL5043N Support for one or more communications protocols failed to start successfully.
-However, core database manager functionality started successfully.[/code]
+```
+
+SQL5043N  Support for one or more communications protocols failed to start successfully.
+However, core database manager functionality started successfully.
+```
 
 with the following cause (resulting with inaccessibility over TCP/IP):
 
-[code light="true"]
+```
+
 DIA3201E The service name "db2c_db2inst1" specified in the database
-manager configuration file cannot be found in the TCP/IP services file.
-[/code]
+manager configuration file cannot be found in the TCP/IP services  file.
+```
 
 You need to add into /etc/services an entry like:
 
-[code light="true"]db2c_db2inst1 50000/tcp # DB2 connections for db2inst1[/code]
+```
+db2c_db2inst1          50000/tcp    # DB2 connections for db2inst1
+```
 
 See a [detailed explanation at ServerFault](http://serverfault.com/questions/113244/sql5043n-support-for-one-or-more-communications-protocols-failed-to-start-success) .
 
@@ -391,14 +396,20 @@ See a [detailed explanation at ServerFault](http://serverfault.com/questions/113
 
 If connection via JDBC fails with
 
-[code light="true"]com.ibm.db2.jcc.b.SqlException: Connection authorization failure occurred. Reason: Local security service non-retryable error.[/code]
+```
+com.ibm.db2.jcc.b.SqlException: Connection authorization failure occurred. Reason: Local security service non-retryable error.
+```
 
 and connection via the db2 command line client (connect to MyDb user myDbUser using MySecretPsw) fails with
 
-[code light="true"]SQL30082N  Security processing failed with reason "15" ("PROCESSING FAILURE").[/code]
+```
+SQL30082N&#xA0; Security processing failed with reason "15" ("PROCESSING FAILURE").
+```
 
 but you can normally log-in as the user (su - myDbUser) then you need to change the hashing mechanism for your password, e.g. like this:
 
-[code light="true"]sudo usermod --password `openssl passwd MySecretPsw` myDbUser[/code]
+```
+sudo usermod --password `openssl passwd MySecretPsw` myDbUser
+```
 
 Many thanks to Jan Šťastný for [describing the cause and solution](http://blog.stastnarodina.com/honza-en/spot/db2-sql30082n-security-processing-failed-with-reason-15/)!
