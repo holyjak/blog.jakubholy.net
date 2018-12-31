@@ -2,6 +2,7 @@
 
 ## TODO
 
+- The <main>'s top is hidden behind the <header> on some pages such as 404 => add margin-top: 80px or something
 - Old WP posts
   - enable excerpts (here html x new plaintext)
   - Merge / remove some categories such as J2EE, DB2

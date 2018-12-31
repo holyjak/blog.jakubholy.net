@@ -3,7 +3,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import ContentList from "../components/ContentList";
 
-class PagesIndexPage extends React.Component {
+class PostsIndexPage extends React.Component {
   separator = React.createRef();
 
   scrollToContent = e => {
@@ -13,7 +13,7 @@ class PagesIndexPage extends React.Component {
   render() {
     const {
       data: {
-        pages: { edges: contentPages = [] },
+        posts: { edges: contentPages = [] },
         bgDesktop: {
           resize: { src: desktop }
         },
@@ -35,22 +35,22 @@ class PagesIndexPage extends React.Component {
       mobile
     };
 
-    return <ContentList contentPages={contentPages} backgrounds={backgrounds} type="page" />;
+    return <ContentList contentPages={contentPages} backgrounds={backgrounds} type="post" />;
   }
 }
 
-PagesIndexPage.propTypes = {
+PostsIndexPage.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-export default PagesIndexPage;
+export default PostsIndexPage;
 
 //eslint-disable-next-line no-undef
 export const query = graphql`
-  query PagesIndexQuery {
-    pages: allContentPage(
-      filter: { contentType: { eq: "page" }, draft: { eq: false } }
-      sort: { fields: [frontmatter___title], order: DESC }
+  query PostsIndexQuery {
+    posts: allContentPage(
+      filter: { contentType: { eq: "post" }, draft: { eq: false } }
+      sort: { fields: [slug], order: DESC }
     ) {
       edges {
         node {
