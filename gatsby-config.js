@@ -276,7 +276,8 @@ module.exports = {
       resolve: "gatsby-plugin-copy",
       options: {
         verbose: true,
-        "wp-data/out/images": "static/images"
+        "wp-data/out/images": "static/images",
+        _headers: "public/_headers"
       }
     }
   ]
