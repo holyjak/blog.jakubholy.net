@@ -10,10 +10,18 @@ const os = require('os');
 const path = require('path');
 const xml2js = require('xml2js');
 var moment = require('moment');
-const fetch = require("node-fetch");
 
-const breakdance = require('breakdance');
-//const breakdance = new Breakdance(/* options */);
+const { Readable, Transform } = require("stream");
+const multiStream = require("multistream");
+const fetch = require("node-fetch");
+const pandoc = require("simple-pandoc"); // BEWARE: Requires pandoc to be installed separately
+const split2 = require("split2");
+const htmlToMarkdown = pandoc(
+  "html",
+  "gfm", // GitHub Markdown
+  "--wrap=preserve", // Don't wrap text as it could insert newlines that change the meaning, e.g. before a `-`
+  "--eol=lf"
+);
 
 if (process.argv.length !== 4){
     console.log(`Usage: blog2md <BACKUP XML> <OUTPUT DIR>`)
@@ -142,13 +150,14 @@ const urlPathRE = /\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
 
 function fixWordpressFormatting({ baseBlogUrl, images }, html) {
   if (!html) return html;
+  const baseBlogRE = new RegExp(/https?:/.source + baseBlogUrl.replace(/^https?:/, ""), "g");
   const baseBlogImageUrl = baseBlogUrl
     .replace(/^https:/, "")
     .replace(".wordpress.com", ".files.wordpress.com");
   const baseBlogImageRE = new RegExp(/(https?:)?/.source + baseBlogImageUrl);
   const blogImgRE = new RegExp(baseBlogImageRE.source + urlPathRE.source, "g");
   const fixedHtml = html
-    .replace(/\n\n/g, "<br><br>") // normally ignored in HTML
+    .replace(/\r?\n\r?\n/g, "<br><br>") // normally \n ignored in HTML
     .replace(/\[gist ([^\]]+) \/\]/g, "\n\n$1\n\n")
     .replace(/\[((?:source)?code|source)[^\]]*\]/g, "<pre><code>")
     .replace(/\[\/((?:source)?code|source)\]/g, "</code></pre>")
@@ -157,11 +166,11 @@ function fixWordpressFormatting({ baseBlogUrl, images }, html) {
     .replace(/\[caption[^\]]*\]/g, "")
     .replace(/\[\/caption\]/g, "")
     // Make intra-blog links relative
-    .replace(new RegExp(baseBlogUrl, "g"), "")
+    .replace(baseBlogRE, "")
     // Replace with downloaded images
-    .replace(blogImgRE, url => {
-      images.add(url); // store it
-      return url.replace(baseBlogImageRE, "/images");
+    .replace(blogImgRE, imgUrl => {
+      images.add(imgUrl); // store it
+      return imgUrl.replace(baseBlogImageRE, "/images");
     });
 
   return fixedHtml;
@@ -177,17 +186,40 @@ function writeToMarkdownFiles(outputDir, pages) {
     }
 
     // For md., replace back br with newline (added in fixWordpressFormatting)
-    const content = page.content.replace(/(\s*<br>\s*){2,}/g, "\n\n");
-    const markdownBody = breakdance(content);
+    const content = page.content; // .replace(/(\s*<br>\s*){2,}/g, "\n\n");
+
     const frontmatter = `---
     title: "${page.title.replace(/"/g, '\\"')}"
     ---
 
     `.replace(/\n\s+/g, "\n");
-    const markdown = frontmatter + markdownBody;
 
-    writeToFile(filename, markdown);
-  })
+    const markdownBodyStream = htmlToMarkdown
+      .stream(str2stream(content))
+      .pipe(split2())
+      .pipe(linesTransformer());
+
+    const markdownStream = multiStream([str2stream(frontmatter), markdownBodyStream]);
+
+    markdownStream.pipe(fs.createWriteStream(filename));
+  });
+}
+
+function linesTransformer() {
+  return new Transform({
+    transform(chunk, encoding, callback) {
+      this.push(chunk.toString("utf8").replace(/\s+$/, ""));
+      this.push("\n"); // re-add end-of-line removed by split2()
+      callback();
+    }
+  });
+}
+
+function str2stream(string) {
+  const contentStream = new Readable();
+  contentStream.push(string);
+  contentStream.push(null);
+  return contentStream;
 }
 
 function writeToFile(filename, content, append=false){

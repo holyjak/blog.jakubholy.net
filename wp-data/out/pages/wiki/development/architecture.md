@@ -12,19 +12,20 @@ It's crucial to understand the needs of the domain - f.ex. the complex, often ch
 The goal of architecture is to satisfy requirements (enable delivering desired qualities, respect constraints, costs) -
 
 > Architecture that never refers to necessary qualities, performance characteristics, costs, and constraints is not really architecture of any kind.
+
 Real arch.:
 
-* Has multidimensional clear design performance **objectives** [performance = all regarding how it functions, not just speed etc.]
-* Has clear multiple **constraints**
-* Produces **architecture ideas** which enable and permit objectives to be met reasonably within constraints [and we can try which works best or combine multiple]
-* Estimates expected effects
+  - Has multidimensional clear design performance **objectives** \[performance = all regarding how it functions, not just speed etc.\]
+  - Has clear multiple **constraints**
+  - Produces **architecture ideas** which enable and permit objectives to be met reasonably within constraints \[and we can try which works best or combine multiple\]
+  - Estimates expected effects
 
 ## Resources
 
 ### Studying architecture
 
-* [The Architecture of Open Source Applications](http://www.amazon.com/dp/B00557TMN4/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=15C6Q8OEGS1X2&coliid=I2NEOT2RQLTZB6 "The Architecture of Open Source Applications") and [The Architecture of Open Source Applications, Volume II: Structure, Scale, and a Few More Fearless Hacks](http://www.amazon.com/dp/B008940UYK/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=15C6Q8OEGS1X2&coliid=I3ADMW0YBTXFUP "The Architecture of Open Source Applications, Volume II: Structure, Scale, and a Few More Fearless Hacks") - " the authors of twenty-five open source applications explain how their software is structured, and why"
+  - [The Architecture of Open Source Applications](http://www.amazon.com/dp/B00557TMN4/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=15C6Q8OEGS1X2&coliid=I2NEOT2RQLTZB6 "The Architecture of Open Source Applications") and [The Architecture of Open Source Applications, Volume II: Structure, Scale, and a Few More Fearless Hacks](http://www.amazon.com/dp/B008940UYK/ref=wl_it_dp_o_pC_nS_ttl?_encoding=UTF8&colid=15C6Q8OEGS1X2&coliid=I3ADMW0YBTXFUP "The Architecture of Open Source Applications, Volume II: Structure, Scale, and a Few More Fearless Hacks") - " the authors of twenty-five open source applications explain how their software is structured, and why"
 
 ### Other
 
-* [Architecture War Stories](http://www.infoq.com/presentations/architecture-disaster) by Stefan Tilkov on Oct 04, 2014 (talk, 45 min)
+  - [Architecture War Stories](http://www.infoq.com/presentations/architecture-disaster) by Stefan Tilkov on Oct 04, 2014 (talk, 45 min)

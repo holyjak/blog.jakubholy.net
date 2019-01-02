@@ -5,13 +5,13 @@ title: "Vagrant Notes"
 
 Base boxes
 
-* [VagrantBox.es](http://www.vagrantbox.es/) (including boxes available at vagrantup.com and the Ubuntu boxes below)
-* [Ubuntu-provided base boxes](http://cloud-images.ubuntu.com/vagrant/)
+  - [VagrantBox.es](http://www.vagrantbox.es/) (including boxes available at vagrantup.com and the Ubuntu boxes below)
+  - [Ubuntu-provided base boxes](http://cloud-images.ubuntu.com/vagrant/)
 
 ## The Cool Stuff
 
-* Broken environment, vagrant cannot ssh, ...? Just run vagrant destroy and vagrant up again.
-* Have you encountered the "works for me" syndrom? With everybody using Vagrant (with the same version of it and VirtualBox), this shouldn't happen anymore
+  - Broken environment, vagrant cannot ssh, ...? Just run vagrant destroy and vagrant up again.
+  - Have you encountered the "works for me" syndrom? With everybody using Vagrant (with the same version of it and VirtualBox), this shouldn't happen anymore
 
 ## Tips
 
@@ -23,10 +23,8 @@ For Vagrant to be able to comunicate properly with a VM, the version of Virtual 
 
 When you first use the [vagrant base box](http://files.vagrantup.com/lucid32.box), it's cached on your machine forever. However the Vagrant guys sometimes update the box with the latest Virtual Box Guest Additions so it's useful to remove and re-download it (unless you use  [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)):
 
-```
-vagrant box list
-vagrant box remove lucid32
-```
+    vagrant box list
+    vagrant box remove lucid32
 
 ### It might help to remove host-only adatpers from Vagrant
 
@@ -38,7 +36,7 @@ If you experience Vagrant not being able to connect to the VM after having creat
 
 It's very important that your version of VirtualBox and the VirtualBox Guest Additions installed into the virtual machine match otherwise Vagrant will likely have problems connecting to the VM, signaled by waiting very long after printing "Waiting for VM to boot. This can take a few minutes."
 
-See the related problem 'Vagrant up/halt/ssh Timeouts with "Failed to connect to VM via SSH"' in [Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)](http://theholyjava.wordpress.com/2012/03/24/note-to-self-how-to-solve-vagrant-destroy-failing-with-error-in-api-call-in-ffi-rb/ "Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)") .
+See the related problem 'Vagrant up/halt/ssh Timeouts with "Failed to connect to VM via SSH"' in [Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)](/2012/03/24/note-to-self-how-to-solve-vagrant-destroy-failing-with-error-in-api-call-in-ffi-rb/ "Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)").
 
 ### Beware memory mapped files (e.g. Apache) etc.
 
@@ -54,19 +52,19 @@ File permissions between the host and guest are much more limited then you would
 
 If a directory that you share with a vagrant VM contains a symbolic link, the link will most likely not be accessible from the VM (ex.: cannot access /vagrant/puppet-files-symlink/: No such file or directory).
 
-VirtualBox has now support for symlinks with the proper host+guest combination however there clearly are still issues. The Vagrant issue 713 has [some workarounds and useful links to more information](https://github.com/mitchellh/vagrant/issues/713#issuecomment-4397462) . There is also a [related VB issue](https://www.virtualbox.org/ticket/818#comment:92) .
+VirtualBox has now support for symlinks with the proper host+guest combination however there clearly are still issues. The Vagrant issue 713 has [some workarounds and useful links to more information](https://github.com/mitchellh/vagrant/issues/713#issuecomment-4397462). There is also a [related VB issue](https://www.virtualbox.org/ticket/818#comment:92).
 
 (Host: OS X, Guest: lucid32, VB: 4.1.4, Vagrant: 1.0.2)
 
 ## Troubleshooting
 
-See the blog post [Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)](http://theholyjava.wordpress.com/2012/03/24/note-to-self-how-to-solve-vagrant-destroy-failing-with-error-in-api-call-in-ffi-rb/ "Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)") for:
+See the blog post [Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)](/2012/03/24/note-to-self-how-to-solve-vagrant-destroy-failing-with-error-in-api-call-in-ffi-rb/ "Note To Self: What to Do When a Vagrant Machine Stops Working (Destroy or Up Failing)") for:
 
-* Vagrant Destroy Failing with "Error in API call" in ffi.rb
-* Vagrant up/halt/ssh Timeouts with "Failed to connect to VM via SSH"
-* Installing Virtual Box Guess Additions
+  - Vagrant Destroy Failing with "Error in API call" in ffi.rb
+  - Vagrant up/halt/ssh Timeouts with "Failed to connect to VM via SSH"
+  - Installing Virtual Box Guess Additions
 
-### vagrant up stops with "[default] Waiting for VM to boot. This can take a few minutes."
+### vagrant up stops with "\[default\] Waiting for VM to boot. This can take a few minutes."
 
 If it takes more then few minutes than likely there was a failure in network setup in the VM.
 
@@ -78,12 +76,12 @@ Solution 2: Reconfigure vagrant to start the VM in GUI mode, log into it via Vir
 
 ##### wget must be run in the quiet mode?
 
-Wget has been failing for me when run by puppet with "change from notrun to 0 failed: wget ... returned 8 instead of one of [0]" (8 = server error) while the same command executed from the command line worked just fine. It seems that wget used within an exec needs to be run with -q (or &> /some/file).
+Wget has been failing for me when run by puppet with "change from notrun to 0 failed: wget ... returned 8 instead of one of \[0\]" (8 = server error) while the same command executed from the command line worked just fine. It seems that wget used within an exec needs to be run with -q (or &\> /some/file).
 
 ### Useful Plugins
 
 There are [many plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins), some especially interesting are:
 
-* [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) - automatically upgrade VirtualBox Guest Additions on the guest if your VB version is newer
-* [vagrant-notify](https://github.com/fgrehm/vagrant-notify) - forward notifications from the guest (send via send-notify) to the host system to show them via its notification facilities (Growl/Notification Center/local send-notify); great if you run a build tool in the VM and want to be notfiied of errors etc. (see f.ex. grunt-notify)
-* [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - enable of caching apt/yum/.. packages on the host and reuse them when starting a new machine (to save downloading time and bandwidth and to be able to run vagrant destroy+up offline)
+  - [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) - automatically upgrade VirtualBox Guest Additions on the guest if your VB version is newer
+  - [vagrant-notify](https://github.com/fgrehm/vagrant-notify) - forward notifications from the guest (send via send-notify) to the host system to show them via its notification facilities (Growl/Notification Center/local send-notify); great if you run a build tool in the VM and want to be notfiied of errors etc. (see f.ex. grunt-notify)
+  - [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) - enable of caching apt/yum/.. packages on the host and reuse them when starting a new machine (to save downloading time and bandwidth and to be able to run vagrant destroy+up offline)

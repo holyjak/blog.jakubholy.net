@@ -1,0 +1,11 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Wrap Json nodes in new nodes conforming to the MarkdownRemark format",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakub Holý <jakubholy@jakubholy.net> (http://theholyjava.wordpress.com)",
+  "license": "ISC"
+}
