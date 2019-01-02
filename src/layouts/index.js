@@ -135,8 +135,6 @@ class Layout extends React.Component {
                       *:after,
                       *:before {
                         box-sizing: inherit;
-                        margin: 0;
-                        padding: 0;
                       }
                       body {
                         font-family: ${this.state.font400loaded
@@ -149,7 +147,6 @@ class Layout extends React.Component {
                         font-weight: ${this.state.font600loaded ? 600 : 400};
                         line-height: 1.1;
                         letter-spacing: -0.03em;
-                        margin: 0;
                       }
                       h1 {
                         letter-spacing: -0.04em;

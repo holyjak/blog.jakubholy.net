@@ -62,6 +62,25 @@ const Bodytext = props => {
             padding: 0.1em 0.3em 0.2em;
             border-radius: 0.1em;
           }
+          :global(blockquote) {
+            border-left: 3px solid #ccc;
+            padding: 15px 20px 15px 45px;
+            box-shadow: 2px 2px 15px #ccc;
+            position: relative;
+          }
+          :global(blockquote::before) {
+            content: "\u201C";
+            font-family: Georgia, serif;
+            font-size: 60px;
+            font-weight: bold;
+            color: #999;
+            position: absolute;
+            left: 10px;
+            top: 5px;
+          }
+          :global(blockquote p:last-of-type), :global(li p:last-of-type) {
+            margin-bottom: 0px;
+          }
         }
 
         @keyframes bodytextEntry {
