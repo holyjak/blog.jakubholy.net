@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "prismjs/themes/prism-okaidia.css";
+import "prismjs/themes/prism-solarizedlight.css";
 
 import asyncComponent from "../AsyncComponent";
 import Headline from "../Article/Headline";

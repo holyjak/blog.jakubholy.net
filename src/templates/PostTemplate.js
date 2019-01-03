@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
-require("prismjs/themes/prism-okaidia.css");
+import "prismjs/themes/prism-solarizedlight.css";
 
 import Seo from "../components/Seo";
 import Article from "../components/Article";
