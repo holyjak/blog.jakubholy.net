@@ -16,7 +16,7 @@ class Menu extends React.Component {
     this.itemList = React.createRef();
 
     const pages = props.pages
-    .filter(page => page.node.slug.startsWith("/pages/")) // TODO display an index page for each dir
+    .filter(page => page.node.slug.split("/").length <= 3) // Display only top pages
     .map(page => ({
       to: page.node.slug,
         label: page.node.frontmatter.menuTitle
@@ -25,11 +25,11 @@ class Menu extends React.Component {
     }));
 
     this.items = [
-      { to: "/", label: "Home", icon: FaHome },
+      { to: "/", label: "", icon: FaHome },
       { to: "/category/", label: "Categories", icon: FaTag },
-      //{ to: "/search/", label: "Search", icon: FaSearch },
+      //{ to: "/search/", label: "", icon: FaSearch },
       ...pages,
-      { to: "/contact/", label: "Contact", icon: FaEnvelope }
+      { to: "/contact/", label: "", icon: FaEnvelope }
     ];
 
     this.renderedItems = []; // will contain references to rendered DOM elements of menu

@@ -2,6 +2,8 @@
 title: About
 ---
 
+**Subpages: [No CV](/about/nocv/) | [My competency matrix](/about/my-competency-matrix/) | [How I learn](/about/how-i-learn/) | [Contact](/contact/)**
+
 <img style="margin:5px; float: left;" src="https://lh5.googleusercontent.com/-MWInauot6bc/Tlp7fibsn7I/AAAAAAAACK0/p9hAB-x7XJo/s800/foto-jakub-at-iterate.jpg" alt="Me in 2011" />I'm a full stack developer from the JVM/JS land since 2005, working currently with [Telia Norway](https://www.telia.no/), in Oslo, Norway. Until 2015 I was a member of the great [Iterate AS]("https://www.iterate.no/") family and for a couple of years before that I had also the pleasure to work with IBM Austria and [IBA CZ]("http://www.ibacz.eu/-English-"). During the years I've worked on large and long-term international projects as well as small local ones and both on new and maintenance projects in various positions.
 
 I enjoy working with people, sharing knowledge, being creative and exploring new stuff. I don't like tedious, repetitive work (though it really is sometimes necessary) and am thus a big fan of automation and tools that can take it over. Having maintained a lot of old code, I really appreciate high-quality, well-written code and good and automated unit tests. I am especially interested in developer productivity, DevOps, testing, and performance.

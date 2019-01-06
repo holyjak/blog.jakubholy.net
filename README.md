@@ -10,15 +10,12 @@
   - Merge / remove some categories such as J2EE, DB2
   - FIXME handle `[gist https://gist.github.com/3683899 /]\` or gist at the end of the input if preceeded by a new line
 - Old WP pages
-  - export them to .md, check, put under content/pages/, preserve nesting
   - have them under / not `/pages` so that old intra links will work
-  - fix intrablog links in wiki, eg from http://me:8000/pages/wiki/,
-    http://me:8000/pages/best/
   - Menu: Display only top-level pages and one for each dir with links
     to pages
-  - review the migrated content
   - replace indented with fenced code blocks, add lang
   - 👎 /pages/-heroes/: the image should be on right and the text flow next to it, ie 2 columns
+  - 5--craft.md - make the Content items into links <> autolink headings
 - Add tag cloud
 - Test in Firefox
 - Menu: Re-enable search and contact (see commits 0eb0dde, 66da8f1) after configuring their backends
