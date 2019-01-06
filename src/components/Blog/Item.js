@@ -44,7 +44,7 @@ const Item = props => {
               </span>
             )}
           </p>
-          <p>{excerpt}</p>
+          <section dangerouslySetInnerHTML={{ __html: excerpt }} />
         </Link>
       </li>
 

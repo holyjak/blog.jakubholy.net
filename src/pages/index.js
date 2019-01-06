@@ -80,7 +80,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          excerpt
+          excerpt(format: HTML)
           slug
           published
           frontmatter {

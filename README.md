@@ -2,23 +2,19 @@
 
 ## TODO
 
+2. Tags
+3. Search (Google)
+
 - All images over https (see Netlify build log)
 - Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png
 - The <main>'s top is hidden behind the <header> on some pages such as 404 => add margin-top: 80px or something
 - Old WP posts
-  - enable excerpts (here html x new plaintext)
   - Merge / remove some categories such as J2EE, DB2
   - FIXME handle `[gist https://gist.github.com/3683899 /]\` or gist at the end of the input if preceeded by a new line
 - Old WP pages
-  - have them under / not `/pages` so that old intra links will work
-  - Menu: Display only top-level pages and one for each dir with links
-    to pages
   - replace indented with fenced code blocks, add lang
   - 👎 /pages/-heroes/: the image should be on right and the text flow next to it, ie 2 columns
   - 5--craft.md - make the Content items into links <> autolink headings
-- Add tag cloud
-- Test in Firefox
-- Menu: Re-enable search and contact (see commits 0eb0dde, 66da8f1) after configuring their backends
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
    - don't show the author info at / (based on frontmatter's `author: name`)

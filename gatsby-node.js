@@ -156,6 +156,19 @@ async function fixWordpressFormatting(html) {
   return { html: fixedHtml, stylesheets: gistStylesheet ? [gistStylesheet] : [] };
 }
 
+function excerptWpPost(content, { moreOnly = false } = {}) {
+  const moreIdx = content.indexOf("<!--more-->");
+  if (moreIdx > 0) {
+    return content.substring(0, moreIdx).replace(/(<br>)+$/, "");
+  }
+  if (moreOnly) return null;
+  const paraIdx = content.indexOf("<br><br>");
+  if (paraIdx > 0) {
+    return content.substring(0, paraIdx);
+  }
+  return content.substring(0, 500).replace(/(<([^>]+)>)/gi, "");
+}
+
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
   .setFieldsOnGraphQLNodeType;
 const graphqlLib = require(`gatsby/graphql`);
@@ -211,18 +224,10 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
         },
         resolve(contentPageNode, myArgs) {
           if (contentPageNode.parentType === "Json") {
-            // TODO Fix UI to support HTML excerpt
-            // const content = contentPageNode.internal.content;
-            // const end =
-            //   1 +
-            //   Math.max(content.indexOf("<!--more-->"),
-            //     content.indexOf("</p>"),
-            //     content.indexOf("\n\n"));
-            // const fallbackExcerpt = content.substr(0, end);
-            // return contentPageNode.excerpt || fallbackExcerpt;
-            return "";
+            return excerptWpPost(contentPageNode.internal.content);
           }
           const markdownNode = getNode(contentPageNode.parent);
+          // TODO excerptWpPost(html???, { moreOnly: true });
           return excerpt.resolve(markdownNode, myArgs);
         }
       }
