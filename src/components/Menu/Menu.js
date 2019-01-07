@@ -27,7 +27,7 @@ class Menu extends React.Component {
     this.items = [
       { to: "/", label: "", icon: FaHome },
       { to: "/category/", label: "Categories", icon: FaTag },
-      //{ to: "/search/", label: "", icon: FaSearch },
+      { to: "/search/", label: "", icon: FaSearch },
       ...pages,
       { to: "/contact/", label: "", icon: FaEnvelope }
     ];
@@ -149,7 +149,7 @@ class Menu extends React.Component {
         <nav className={`menu ${open ? "open" : ""}`} rel="js-menu">
           <ul className="itemList" ref={this.itemList}>
             {this.items.map(item => (
-              <Item item={item} key={item.label} icon={item.icon} theme={theme} />
+              <Item item={item} key={item.to} icon={item.icon} theme={theme} />
             ))}
           </ul>
           {this.state.hiddenItems.length > 0 && <Expand onClick={this.toggleMenu} theme={theme} />}

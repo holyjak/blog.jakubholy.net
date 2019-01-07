@@ -3,7 +3,7 @@
 ## TODO
 
 2. Tags
-3. Search (Google)
+4. SSR
 
 - All images over https (see Netlify build log)
 - Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png

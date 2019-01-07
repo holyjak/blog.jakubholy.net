@@ -1,16 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { InstantSearch, SearchBox, Hits, Stats, Pagination } from "react-instantsearch/dom";
+import Helmet from "react-helmet";
+//import { InstantSearch, SearchBox, Hits, Stats, Pagination } from "react-instantsearch/dom";
 
 import Hit from "./Hit";
 
 const Search = props => {
-  const { algolia, theme } = props;
+  const { theme } = props;
 
   return (
     <React.Fragment>
-      <div className="search">
-        {algolia &&
+      <Helmet>
+        <script
+          type="text/javascript"
+          async="true"
+          src="https://cse.google.com/cse.js?cx=002569886493326753627:gfau88phbqo"
+        />
+      </Helmet>
+      <div className="gcse-search">
+        {/*algolia &&
           algolia.appId && (
             <InstantSearch
               appId={algolia.appId}
@@ -22,11 +30,11 @@ const Search = props => {
               <Hits hitComponent={Hit} />
               <Pagination />
             </InstantSearch>
-          )}
+          )*/}
       </div>
 
       {/* --- STYLES --- */}
-      <style jsx global>{`
+      {/*<style jsx global>{`
         .ais-SearchBox {
           width: 100%;
         }
@@ -80,13 +88,13 @@ const Search = props => {
         .ais-Pagination-item.ais-Pagination-item--nextPage a {
           padding: 0.4em 0.5em 0.6em;
         }
-      `}</style>
+      `}</style>*/}
     </React.Fragment>
   );
 };
 
 Search.propTypes = {
-  algolia: PropTypes.object.isRequired,
+  //algolia: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
