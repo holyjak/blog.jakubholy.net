@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "prismjs/themes/prism-solarizedlight.css";
 
+import { Link } from "gatsby";
 import asyncComponent from "../AsyncComponent";
 import Headline from "../Article/Headline";
 import Bodytext from "../Article/Bodytext";
@@ -18,6 +19,39 @@ const Share = asyncComponent(() =>
     .catch(error => {})
 );
 
+const Tag = ({ tag, last }) => (
+  <span>
+    <Link
+      to={`/tag/${tag
+        .toLowerCase()
+        .split(" ")
+        .join("-")}`}
+    >
+      {tag}
+    </Link>
+    {last ? "" : ", "}
+  </span>
+);
+
+const Tags = ({ tags }) =>
+  tags && tags.length > 0 ?
+    <React.Fragment>
+      <p className="tags">
+        Tagged:{" "}
+        {tags.map((t, idx) => (
+          <Tag key={t} tag={t} last={idx + 1 === tags.length} />
+        ))}
+      </p>
+      <style jsx>{`
+        .tags {
+          margin-top: 1em;
+          padding-top: 0.5em;
+          border-top: 1px dashed black;
+        }
+      `}</style>
+    </React.Fragment>
+  : null;
+
 const Post = props => {
   const {
     post,
@@ -25,7 +59,7 @@ const Post = props => {
       html,
       published,
       slug,
-      frontmatter: { title, author, category }
+      frontmatter: { title, author, category, tags }
     },
     authornote,
     facebook,
@@ -42,6 +76,7 @@ const Post = props => {
       </header>
       <Bodytext html={html} theme={theme} />
       <footer>
+        <Tags tags={tags} />
         <Share post={post} theme={theme} />
         <Author note={authornote} theme={theme} />
         <NextPrev next={nextPost} prev={prevPost} theme={theme} />

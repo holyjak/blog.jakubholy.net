@@ -58,6 +58,7 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
       stylesheets: [],
       frontmatter: {
         menuTitle: "",
+        tags: [],
         ...frontmatter
       },
       ...fields,
@@ -65,7 +66,6 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
       published: fields.prefix,
       draft,
       publicContent: !draft && contentType !== "part",
-      tags: [],
       timeToRead: 0 // TODO via resolver
       // tableOfContents, wordCount  // TODO via resolver
     });
@@ -98,10 +98,11 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
           .update(html)
           .digest(`hex`)
       },
-      stylesheets,
+      stylesheets: stylesheets || [],
       frontmatter: {
         title,
         category: categories[0], // TODO Support multiple categories??
+        tags,
         author: null,
         menuTitle: null
       },
@@ -110,7 +111,6 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
       published,
       draft,
       publicContent: !draft,
-      tags,
       excerpt,
       timeToRead: 0 // FIXME seems not yet being set at this point
       // tableOfContents, wordCount

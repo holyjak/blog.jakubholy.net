@@ -5,6 +5,7 @@
 2. Tags
 4. SSR
 
+- ? for WP posts, fetch gists ahead of getsby build
 - All images over https (see Netlify build log)
 - Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png
 - The <main>'s top is hidden behind the <header> on some pages such as 404 => add margin-top: 80px or something
