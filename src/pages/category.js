@@ -1,7 +1,7 @@
 import { FaTag } from "react-icons/fa/";
 import PropTypes from "prop-types";
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { ThemeContext } from "../layouts";
 import Article from "../components/Article/";
 import Headline from "../components/Article/Headline";
@@ -20,10 +20,11 @@ const CategoryPage = props => {
 
   // Create category list
   const categories = {};
+  const tagCount = {};
   nodes.forEach(edge => {
     const {
       node: {
-        frontmatter: { category }
+        frontmatter: { category, tags }
       }
     } = edge;
 
@@ -33,9 +34,22 @@ const CategoryPage = props => {
       }
       categories[category].push(edge);
     }
+    if (tags) {
+      tags.forEach(t => {
+        if (tagCount[t]) {
+          tagCount[t]++;
+        } else {
+          tagCount[t] = 1;
+        }
+      });
+    }
   });
 
   const categoryList = [];
+  const tagList = Object.keys(tagCount)
+    .filter(t => tagCount[t] > 1)
+    .sort() // by name
+    .sort((t1, t2) => tagCount[t2] - tagCount[t1]);
 
   for (var key in categories) {
     categoryList.push([key, categories[key]]);
@@ -47,8 +61,24 @@ const CategoryPage = props => {
         {theme => (
           <Article theme={theme}>
             <header>
-              <Headline title="Posts by categories" theme={theme} />
+              <Headline title="Posts by categories and tags" theme={theme} />
             </header>
+            <h2>Tags</h2>
+            <p>
+              {tagList.map((tag, idx) => (
+                <span key={tag}>
+                  <Link
+                    to={`/tag/${tag
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`}>
+                    {tag}
+                  </Link>
+                  <sub>{tagCount[tag]}</sub>
+                  {(idx + 1 === tagList.length) ? "" : ", "}
+                </span>))}
+              </p>
+            <h2>Post by categories</h2>
             {categoryList.map(item => (
               <section key={item[0]}>
                 <h2>
@@ -97,6 +127,7 @@ export const query = graphql`
           frontmatter {
             title
             category
+            tags
             author
 #            cover { # FIXME - re-enable after re-adding remakr plugins
 #              children {
