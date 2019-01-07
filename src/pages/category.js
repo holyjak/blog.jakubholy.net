@@ -90,7 +90,7 @@ const CategoryPage = props => {
             {/* --- STYLES --- */}
             <style jsx>{`
               h2 {
-                margin: 0 0 0.5em;
+                margin: 0.5em 0 0.5em;
               }
               h2 :global(svg) {
                 height: 0.8em;
