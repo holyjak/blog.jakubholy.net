@@ -2,7 +2,6 @@
 
 ## TODO
 
-2. Tags
 4. SSR
 
 - ? for WP posts, fetch gists ahead of getsby build

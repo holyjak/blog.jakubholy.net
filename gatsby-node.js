@@ -169,6 +169,16 @@ function excerptWpPost(content, { moreOnly = false } = {}) {
   return content.substring(0, 500).replace(/(<([^>]+)>)/gi, "");
 }
 
+function descriptionWpPost(content, len = 300) {
+  return (
+    content
+      .substring(0, len + 200)
+      .replace(/(<([^>]+)>)/gi, "")
+      .replace(/\r?\n/g, " ")
+      .substring(0, len) + "…"
+  );
+}
+
 const remarkSetFieldsOnGraphQLNodeType = require("gatsby-transformer-remark/gatsby-node")
   .setFieldsOnGraphQLNodeType;
 const graphqlLib = require(`gatsby/graphql`);
@@ -210,6 +220,18 @@ exports.setFieldsOnGraphQLNodeType = (args, pluginOptions) => {
           }
           const markdownNode = getNode(contentPageNode.parent);
           return html.resolve(markdownNode);
+        }
+      },
+      description: {
+        // Used for page meta and og:description tag
+        type: graphqlLib.GraphQLString,
+        resolve(contentPageNode) {
+          if (contentPageNode.parentType === "Json") {
+            return descriptionWpPost(contentPageNode.internal.content);
+          }
+          const markdownNode = getNode(contentPageNode.parent);
+          return excerpt.resolve(markdownNode, { pruneLength: 300 })
+            .then(e => e.replace(/\r?\n/g, " "));
         }
       },
       excerpt: {
@@ -316,10 +338,8 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // Create tags pages
-        console.log(">>> ALL TAGS: ", Array.from(tagsSet));
         const tagsList = Array.from(tagsSet);
         tagsList.forEach(tag => {
-          console.log(">>> createPage", `/tag/${_.kebabCase(tag)}/`);
           createPage({
             path: `/tag/${_.kebabCase(tag)}/`,
             component: tagTemplate,

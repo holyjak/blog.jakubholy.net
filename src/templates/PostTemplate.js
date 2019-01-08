@@ -64,6 +64,7 @@ export const postQuery = graphql`
       stylesheets
       slug
       published
+      description
       frontmatter {
         title
         author
