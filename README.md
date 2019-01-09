@@ -2,8 +2,15 @@
 
 ## TODO
 
-4. SSR
+1. Performance, errors due to service worker, going back to / taking lot of time, ...
+2. Show pages inside/below the Hero banner at /
+3. On mobile, show only a few pages + "More icon", left-align (ie not 1/3 empty space on left)
+4. Optimize images for client screen size; use .webp if supported ...
+5. Check for broken links
 
+---
+
+- pagination at /
 - ? for WP posts, fetch gists ahead of getsby build
 - All images over https (see Netlify build log)
 - Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png
