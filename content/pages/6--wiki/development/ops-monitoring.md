@@ -3,13 +3,13 @@ title: "Ops: Monitoring"
 ---
 (*Work in progress.*)
 
-Tools for monitoring systems and applications, especially in the Java EE environment.
+Tools and practices for monitoring systems and applications, especially in the cloud and JVM-based environments.
 
+## Learn about monitoring
+
+* DigitalOcean's [Monitoring for Distributed and Microservices Deployments](https://www.digitalocean.com/community/tutorials/monitoring-for-distributed-and-microservices-deployments)
 
 ## Monitoring needs
-
-
-
 
 1.  Metric collection - collection of metrics from different machines, servers, services, perhaps diff. monitoring systems
 2.  Metric aggregation - avg/min/max/std.dev etc. over a configurable period of time
