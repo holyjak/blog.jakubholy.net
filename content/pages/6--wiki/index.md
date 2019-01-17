@@ -3,18 +3,20 @@ title: "Wiki"
 ---
 Persistent computer-related notes that are still under development.
 
+## Most important/active pages
+
+- [Performance & Performance Testing for Webapps](/wiki/development/performance-testing-for-webapps-notes/)
+- [Ops: Monitoring](/wiki/development/ops-monitoring/)
+- [Clojure](/wiki/development/clojure/) - links to libs, resources etc.
 
 ## Index of pages
-
-
-
 
   - [Development](/wiki/development/)
       - [Architecture](/wiki/development/architecture/ "Architecture")
       - [Development Books](/wiki/development/books/) - the most influential books about software development I've read
       - [Learning Programming](/wiki/development/learning-programming/ "Learning Programming") - resources
       - [Unit Testing Toolbox](/wiki/development/testing/ "Testing") (for Java) - collection of links to libraries, tools, concepts
-      - [Performance & Performance Testing for Webapps](/wiki/development/testing/performance-testing-for-webapps-notes/ "Performance Testing for Webapps Notes")
+      - [Performance & Performance Testing for Webapps](/wiki/development/performance-testing-for-webapps-notes/ "Performance Testing for Webapps Notes")
       - [Ops: Monitoring](/wiki/development/ops-monitoring/ "Ops: Monitoring")
       - [Clojure](/wiki/development/clojure/ "Clojure") - links to libs, resources etc.
       - [Cloud](/wiki/development/cloud/ "Cloud")
