@@ -7,6 +7,8 @@
 3. On mobile, show only a few pages + "More icon", left-align (ie not 1/3 empty space on left)
 4. Optimize images for client screen size; use .webp if supported ...
 5. Check for broken links
+6. Link to holyjak.tumblr.com
+7. Fix umages using http: instead of https:
 
 ---
 
