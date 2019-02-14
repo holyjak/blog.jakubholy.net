@@ -45,31 +45,36 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
         wp: "page" // FIXME ensure source = page or wp-page not just wp
       }[fields.source] || `unknown:${fields.source}`;
     const draft = !fields.prefix && fields.source !== "wp";
-    createNode({
-      id: `cp-${id}`,
-      parentType: "MarkdownRemark",
-      parent: id,
-      internal: {
-        //mediaType: "text/html", // FIXME plaintext here, html for Json
-        type: "ContentPage",
-        content: internal.content,
-        contentDigest: internal.contentDigest
-      },
-      stylesheets: [],
-      frontmatter: {
-        menuTitle: "",
-        tags: [],
-        ...frontmatter
-      },
-      ...fields,
-      contentType,
-      published: fields.prefix,
-      draft,
-      publicContent: !draft && contentType !== "part",
-      timeToRead: 0 // TODO via resolver
-      // tableOfContents, wordCount  // TODO via resolver
-    });
-  } else if (node.internal.type === `PostsJson` && !skip(node) /*|| node.internal.type === `PagesJson`*/) {
+    if (source !== "parts") {
+      createNode({
+        id: `cp-${id}`,
+        parentType: "MarkdownRemark",
+        parent: id,
+        internal: {
+          //mediaType: "text/html", // FIXME plaintext here, html for Json
+          type: "ContentPage",
+          content: internal.content,
+          contentDigest: internal.contentDigest
+        },
+        stylesheets: [],
+        frontmatter: {
+          menuTitle: "",
+          tags: [],
+          ...frontmatter
+        },
+        ...fields,
+        contentType,
+        published: fields.prefix,
+        draft,
+        publicContent: !draft && contentType !== "part",
+        timeToRead: 0 // TODO via resolver
+        // tableOfContents, wordCount  // TODO via resolver
+      });
+    }
+  } else if (
+    node.internal.type === `PostsJson` &&
+    !skip(node) /*|| node.internal.type === `PagesJson`*/
+  ) {
     const {
       id,
       title,
