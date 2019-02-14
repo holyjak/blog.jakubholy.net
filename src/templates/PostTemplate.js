@@ -18,7 +18,7 @@ const PostTemplate = props => {
         siteMetadata: { facebook }
       }
     },
-    pageContext: { next, prev }
+    pageContext: { previousItem: { node: prev } = {}, nextItem: { node: next } = {} }
   } = props;
 
   return (
@@ -50,15 +50,20 @@ const PostTemplate = props => {
 
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
-  pageContext: PropTypes.object.isRequired
+  pageContext: PropTypes.shape({
+    previousPagePath: PropTypes.string,
+    nextPagePath: PropTypes.string,
+    previousItem: PropTypes.object,
+    nextItem: PropTypes.object
+  })
 };
 
 export default PostTemplate;
 
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`
-  query PostBySlug($slug: String!) {
-    post: contentPage(slug: { eq: $slug }) {
+  query PostById($pageId: String!) {
+    post: contentPage(id: { eq: $pageId }) {
       id
       html
       stylesheets

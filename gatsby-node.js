@@ -6,6 +6,7 @@ const Promise = require("bluebird");
 const crypto = require("crypto");
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { paginate, createPagePerItem } = require("gatsby-awesome-pagination");
 
 exports.onCreateNode = async ({ node, getNode, actions }) => {
   const { createNode, createNodeField } = actions;
@@ -267,6 +268,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve("./src/templates/PostTemplate.js");
+    const postIndexTemplate = path.resolve("./src/templates/PostIndexTemplate.js");
     const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
     const categoryTemplate = path.resolve("./src/templates/CategoryTemplate.js");
     const tagTemplate = path.resolve("./src/templates/TagTemplate.js");
@@ -354,22 +356,23 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // Create posts
+        // Posts
         const posts = items.filter(item => item.node.contentType === "post");
-        posts.forEach(({ node }, index) => {
-          const slug = node.slug;
-          const next = index === 0 ? undefined : posts[index - 1].node;
-          const prev = index === posts.length - 1 ? undefined : posts[index + 1].node;
-
-          createPage({
-            path: slug,
-            component: postTemplate,
-            context: {
-              slug,
-              prev,
-              next
-            }
-          });
+        // Paginated post list
+        paginate({
+          createPage,
+          items: posts,
+          itemsPerPage: 15,
+          pathPrefix: "/", // Creates pages like `/`, `/2`, etc
+          component: postIndexTemplate
+        });
+        // Individual post pages
+        createPagePerItem({
+          createPage,
+          items: posts,
+          component: postTemplate,
+          itemToPath: "node.slug",
+          itemToId: "node.id"
         });
 
         // and pages.

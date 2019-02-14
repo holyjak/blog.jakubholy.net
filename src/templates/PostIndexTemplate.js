@@ -29,8 +29,16 @@ class IndexPage extends React.Component {
         site: {
           siteMetadata: { facebook }
         }
-      }
+      },
+      pageContext: { previousPagePath, nextPagePath, humanPageNumber, numberOfPages }
     } = this.props;
+
+    const pagination = {
+      previousPagePath,
+      nextPagePath,
+      pageNumber: humanPageNumber,
+      numberOfPages
+    };
 
     const backgrounds = {
       desktop,
@@ -49,7 +57,13 @@ class IndexPage extends React.Component {
         <hr ref={this.separator} />
 
         <ThemeContext.Consumer>
-          {theme => <Blog posts={posts} theme={theme} />}
+          {theme => (
+            <Blog
+              posts={posts}
+              theme={theme}
+              pagination={pagination}
+            />
+          )}
         </ThemeContext.Consumer>
 
         <Seo facebook={facebook} />
@@ -66,17 +80,24 @@ class IndexPage extends React.Component {
 }
 
 IndexPage.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.shape({
+    previousPagePath: PropTypes.string,
+    nextPagePath: PropTypes.string
+  })
 };
 
 export default IndexPage;
 
+// NOTE: $skip added by the pagination plugin
 //eslint-disable-next-line no-undef
 export const query = graphql`
-  query IndexQuery {
+  query IndexQuery($skip: Int!, $limit: Int!) {
     posts: allContentPage(
       filter: { contentType: { eq: "post" }, draft: { eq: false } }
       sort: { fields: [published], order: DESC }
+      skip: $skip
+      limit: $limit
     ) {
       edges {
         node {
