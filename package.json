@@ -6,7 +6,6 @@
   "dependencies": {
     "@trendmicro/react-iframe": "^1.0.1",
     "antd": "^3.13.2",
-    "fontfaceobserver": "^2.0.13",
     "gatsby": "^2.1.0",
     "gatsby-awesome-pagination": "^0.3.3",
     "gatsby-cli": "^2.4.10",

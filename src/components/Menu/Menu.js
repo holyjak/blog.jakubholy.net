@@ -44,7 +44,6 @@ class Menu extends React.Component {
     path: PropTypes.string.isRequired,
     fixed: PropTypes.bool.isRequired,
     screenWidth: PropTypes.number.isRequired,
-    fontLoaded: PropTypes.bool.isRequired,
     pages: PropTypes.array.isRequired,
     theme: PropTypes.object.isRequired
   };
@@ -57,8 +56,7 @@ class Menu extends React.Component {
     if (
       this.props.path !== prevProps.path ||
       this.props.fixed !== prevProps.fixed ||
-      this.props.screenWidth !== prevProps.screenWidth ||
-      this.props.fontLoaded !== prevProps.fontLoaded
+      this.props.screenWidth !== prevProps.screenWidth
     ) {
       if (this.props.path !== prevProps.path) {
         this.closeMenu();
