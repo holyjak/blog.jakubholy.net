@@ -25,6 +25,9 @@ const Seo = props => {
       {/* General tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
+      {/* Speed optimization */}
+      <link rel="dns-prefetch" href="https://github.githubassets.com" />
+      <link rel="dns-prefetch" href="https://assets-cdn.github.com" />
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
