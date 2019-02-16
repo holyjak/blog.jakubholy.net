@@ -10,7 +10,7 @@ tags: ["productivity", "experience"]
 
 ## Our story
 
-(_If you are in a hurry and not interested in the details, feel free to jump to Obstacles and speed-ups_)
+(_If you are in a hurry and not interested in the details, feel free to jump to [Obstacles and speed-ups](#obstacles-and-speed-ups)_)
 
 The task was simple: instead of calling a middleware service directly from the browser client, we wanted to proxy the request through our backend application (which also talked to it already). After a quick search and review of a few StackOverflow posts, we had a draft of the solution within an hour. So far so good, but now the troubles came.
 
