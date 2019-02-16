@@ -126,11 +126,20 @@ function downloadImages(destDir, urlSet) {
   }
 
   const ps = [];
+  const filesWip = new Set();
   urlSet.forEach(href => {
     const urlObj = url.parse(href);
     const pathname = urlObj.pathname;
     const filename = destDir + pathname;
     if (fs.existsSync(filename)) return;
+
+    // Two URLs that differ in query param will result in the same image,
+    // don't download twice in ||
+    if (filesWip.has(filename)) {
+      return;
+    } else {
+      filesWip.add(filename);
+    }
 
     const parentPath = pathname.substring(0, pathname.lastIndexOf("/"));
     const parentDir = destDir + parentPath;
@@ -161,6 +170,7 @@ function fixWordpressFormatting({ baseBlogUrl, images }, html) {
     .replace(/\[gist ([^\]]+) \/\]/g, "\n\n$1\n\n")
     .replace(/\[((?:source)?code|source)[^\]]*\]/g, "<pre><code>")
     .replace(/\[\/((?:source)?code|source)\]/g, "</code></pre>")
+    .replace(/((href|src)\s*=\s*("|'))http:\/\//g, "$1https://")
     // Just drop img captions; it is too much work to try to
     // extract and use its title
     .replace(/\[caption[^\]]*\]/g, "")
