@@ -113,6 +113,9 @@ class Layout extends React.Component {
                     body {
                       font-family: Arial, sans-serif;
                     }
+                    h1 {
+                      overflow-wrap: break-word; /* not to make too wide on mobile */
+                    }
                     h1,
                     h2,
                     h3 {
