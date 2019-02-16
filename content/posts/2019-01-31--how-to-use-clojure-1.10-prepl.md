@@ -6,6 +6,8 @@ tags: ["clojure"]
 
 Clojure 1.10 includes a new, program-friendly REPL or prepl (pronounced as "preppy," not p-repl). However there is still very little documentation about it, though it is reportedly in making (it is alpha, after all). Here I want to demonstrate how to start it and how to connect to it in a primitive way (I hope to improve the user experience of the client eventually).
 
+<!--more-->
+
 ### Start the server
 
 (Thanks to Oliver Caldwell' [Vim Conjure plugin docs](https://gist.github.com/Olical/8ddc726c41112be5eb450b12954d81f0) for this!)
@@ -49,4 +51,5 @@ We would likely want to show a nice user prompt and display nicely the output in
 
 Check out the [`clojure.core.server` api docs](https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.server) and the prepl schema:
 
-![prepl schema](https://clojure.org/images/content/reference/prepl/prepl.png)
+<!-- FIXME: This image is huge, get a smaller one somehow -->
+<img alt="prepl schema" title="prepl schema" src="https://clojure.org/images/content/reference/prepl/prepl.png" width="100%" />
