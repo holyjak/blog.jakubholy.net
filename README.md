@@ -4,17 +4,14 @@
 
 1. Performance, errors due to service worker, going back to / taking lot of time, ...
 2. Show pages inside/below the Hero banner at /
-3. On mobile, show only a few pages + "More icon", left-align (ie not 1/3 empty space on left)
-4. Optimize images for client screen size; use .webp if supported ...
+4. Optimize images for client screen size; use .webp if supported ... (the sharp plugin can do that, webp is off by default; only for local images though)
 5. Check for broken links
 6. Link to holyjak.tumblr.com
-7. Fix umages using http: instead of https:
+7. Fix images using http: instead of https:
 
 ---
 
-- pagination at /
 - ? for WP posts, fetch gists ahead of getsby build
-- All images over https (see Netlify build log)
 - Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png
 - The <main>'s top is hidden behind the <header> on some pages such as 404 => add margin-top: 80px or something
 - Old WP posts
@@ -26,8 +23,6 @@
   - 5--craft.md - make the Content items into links <> autolink headings
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
-   - don't show the author info at / (based on frontmatter's `author: name`)
-   - don't show author info the end of each post
    - desktop: show top pages, tag cloud, ...
 
 ---
