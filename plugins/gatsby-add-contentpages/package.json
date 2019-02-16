@@ -1,0 +1,9 @@
+{
+  "name": "gatsby-add-contentpages",
+  "version": "1.0.0",
+  "description": "Wrap Remark and Json nodes with a ContentPage adapter node",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Jakub Holý (https://blog.jakubholy.net)",
+  "license": "ISC"
+}

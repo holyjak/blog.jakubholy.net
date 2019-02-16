@@ -30,6 +30,54 @@ const queries = [
   }
 ];
 
+const gatsbyTransformerRemarkPluginConfig = {
+  resolve: `gatsby-transformer-remark`,
+  options: {
+    excerpt_separator: `<!--more-->`,
+    plugins: [
+      "gatsby-remark-autolink-headers",
+      `gatsby-plugin-sharp`,
+      {
+        resolve: `gatsby-remark-images`,
+        options: {
+          maxWidth: 800,
+          backgroundColor: "transparent"
+        }
+      },
+      {
+        resolve: `gatsby-remark-responsive-iframe`,
+        options: {
+          wrapperStyle: `margin-bottom: 2em`
+        }
+      },
+      `gatsby-remark-prismjs`,
+      `gatsby-remark-embed-gist`,
+      `gatsby-remark-copy-linked-files`,
+      `gatsby-remark-smartypants`,
+      {
+        resolve: "gatsby-remark-emojis",
+        options: {
+          // Deactivate the plugin globally (default: true)
+          active: true,
+          // Add a custom css class
+          class: "emoji-icon",
+          // Select the size (available size: 16, 24, 32, 64)
+          size: 64,
+          // Add custom styles
+          styles: {
+            display: "inline",
+            margin: "0",
+            "margin-top": "1px",
+            position: "relative",
+            top: "5px",
+            width: "25px"
+          }
+        }
+      }
+    ]
+  }
+};
+
 module.exports = {
   // pathPrefix: config.pathPrefix,
   siteMetadata: {
@@ -102,53 +150,14 @@ module.exports = {
       }
     },
     `gatsby-transformer-json`,
+    gatsbyTransformerRemarkPluginConfig,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-add-contentpages`, // local
       options: {
-        excerpt_separator: `<!-- more -->`,
-        plugins: [
-          "gatsby-remark-autolink-headers",
-          `gatsby-plugin-sharp`,
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 800,
-              backgroundColor: "transparent"
-            }
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 2em`
-            }
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-embed-gist`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-          {
-            resolve: "gatsby-remark-emojis",
-            options: {
-              // Deactivate the plugin globally (default: true)
-              active: true,
-              // Add a custom css class
-              class: "emoji-icon",
-              // Select the size (available size: 16, 24, 32, 64)
-              size: 64,
-              // Add custom styles
-              styles: {
-                display: "inline",
-                margin: "0",
-                "margin-top": "1px",
-                position: "relative",
-                top: "5px",
-                width: "25px"
-              }
-            }
-          }
-        ]
+        plugins: [gatsbyTransformerRemarkPluginConfig]
       }
     },
+    `gatsby-plugin-manifest`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
