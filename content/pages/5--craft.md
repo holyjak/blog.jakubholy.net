@@ -5,7 +5,7 @@ title: "Craft"
 THIS IS ONLY A DRAFT
 </div>
 
-**Content: Craft | Why lean? | Code quality**
+**Content: Craft | [Why lean?](#why-lean) | [Code quality](#code-quality)**
 
 About the craft of software development and why it matters.
 

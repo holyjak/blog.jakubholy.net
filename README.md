@@ -2,17 +2,14 @@
 
 ## TODO
 
-1. Performance, errors due to service worker, going back to / taking lot of time, ...
 2. Show pages inside/below the Hero banner at /
 4. Optimize images for client screen size; use .webp if supported ... (the sharp plugin can do that, webp is off by default; only for local images though)
 5. Check for broken links
 6. Link to holyjak.tumblr.com
-7. Fix images using http: instead of https:
 
 ---
 
 - ? for WP posts, fetch gists ahead of getsby build
-- Download jroller imgs such as http://jroller.com/holy/resource/seamTutorial1/Screenshot-NewSeamProject1.png
 - The <main>'s top is hidden behind the <header> on some pages such as 404 => add margin-top: 80px or something
 - Old WP posts
   - Merge / remove some categories such as J2EE, DB2
@@ -20,7 +17,6 @@
 - Old WP pages
   - replace indented with fenced code blocks, add lang
   - 👎 /pages/-heroes/: the image should be on right and the text flow next to it, ie 2 columns
-  - 5--craft.md - make the Content items into links <> autolink headings
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
    - desktop: show top pages, tag cloud, ...
