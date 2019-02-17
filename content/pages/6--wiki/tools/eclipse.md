@@ -7,12 +7,12 @@ Check also my [blogs in the eclipse category](/category/eclipse/).
 
 # My favorite Eclipse magic
 
-(Shortcuts under Mac - under Linux they're likely the same only having Ctrl instead of ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif))
-(| indicates position of the cursor; ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif) is Command, ![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif) is Shift, ![Option or Alt key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif) is Alt, ^ is Control)
+(Shortcuts under Mac - under Linux they're likely the same only having Ctrl instead of ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif))
+(| indicates position of the cursor; ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif) is Command, ![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif) is Shift, ![Option or Alt key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif) is Alt, ^ is Control)
 
-  - **Open Type** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)T) - quickly find any class on the classpath
-  - **Open Resource** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)R) - quickly find any file in the project
-  - **Quick Outline** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)O) - opens a pop-up similar to the Outline view but filterable with support for the \* wildcard - useful for jumping quickly to a method/member (much better than search)
+  - **Open Type** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)T) - quickly find any class on the classpath
+  - **Open Resource** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)R) - quickly find any file in the project
+  - **Quick Outline** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)O) - opens a pop-up similar to the Outline view but filterable with support for the \* wildcard - useful for jumping quickly to a method/member (much better than search)
   - **Smart Complete**(^Space) - complete just about anything (variables, methods, types, ...) including predefined Code Templates and more
       - Class-level completion (press ^Space anywhere outside of a method for all proposals or type first few letters of what you want first)
           - Override/implement method: start typing the name of the method, e.g. "toS" for toString() - or just press ^Space and select the proposition you want
@@ -21,25 +21,25 @@ Check also my [blogs in the eclipse category](/category/eclipse/).
       - Create for/foreach loop to loop over Iterable/Collection/array - type "for" and ^Space
       - Surround with try-catch or another block statement (do/while/for loop, try-catch, synchronized, if, runnable) - select at least two lines and ^Space, go to the end of the proposition list (via up arrow in the list)
       - Print to sysout/syserr: select 1 line and ^Space, go to the last propositions
-  - **Quick Fix** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1) - proposes things you are likely to do; experiment with how the proposals differ based on where exactly your cursor is and what is or is not selected
-      - Create new field initialized in a constructor: declare the constructor's parameter (leaving cusrsor just behind the name), press ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1 and select Assign parameter to new field.
-      - Introduce local variable: select a statement and ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1
-      - Complete definition of a new local variable - type: type e.g. "a = new String();|" and ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1, select "Create local variable 'a'" (notice also the other options - field and parameter).
+  - **Quick Fix** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1) - proposes things you are likely to do; experiment with how the proposals differ based on where exactly your cursor is and what is or is not selected
+      - Create new field initialized in a constructor: declare the constructor's parameter (leaving cusrsor just behind the name), press ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1 and select Assign parameter to new field.
+      - Introduce local variable: select a statement and ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1
+      - Complete definition of a new local variable - type: type e.g. "a = new String();|" and ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)1, select "Create local variable 'a'" (notice also the other options - field and parameter).
       - Convert local variable to field (cursor behind variable's name), also Inline local variable
       - Many other - just experiment
   - **Open Call Hierarchy** - right-click, select it
-  - **Organize Imports** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)O)
+  - **Organize Imports** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)O)
   - Minor
-      - **Convert to static import** - ![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)M on a static method/constant ([not yet available via quick-fix](https://bugs.eclipse.org/bugs/show_bug.cgi?id=197850) :-()
-      - **Next editor** (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)F6) - to cycle between open files.
+      - **Convert to static import** - ![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)M on a static method/constant ([not yet available via quick-fix](https://bugs.eclipse.org/bugs/show_bug.cgi?id=197850) :-()
+      - **Next editor** (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)F6) - to cycle between open files.
   - Completion - swtich between insert (default) and override - hold Ctrl (see Java - Editor - Content Assist - Insertion)
 
 Other noteworthy things:
 
   - When you search for class name (Open Type, completions), Eclipse is clever enough to deal with abbreviated forms like IA, IAE, IllArgEx etc. when searching for IllegalArgumentException.
-  - Quick Access (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)3) - search in open windows, options, views, commands, ...
+  - Quick Access (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)3) - search in open windows, options, views, commands, ...
   - Word completion (useful e.g. in JavaDoc): Alt+/  (this and previous tips are [from K. D. Sherwood](http://blog.webfoot.com/2007/08/13/semi-robobait-way-cool-eclipse-keyboard-shortcuts/))
-  - Copy/Move Line (![Command key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Option or Alt key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)/![Option or Alt key icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif)![Shift icon](http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif) or down)
+  - Copy/Move Line (![Command key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_command.gif)![Option or Alt key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif)/![Option or Alt key icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_option.gif)![Shift icon](https://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1343/ks_shift.gif) or down)
 
 Johannes Brodwall: [Some eye-openers that people enjoy learning](http://johannesbrodwall.com/2010/02/18/using-eclipse-better/) (copy/move line and other valuable things - check it out\!).
 

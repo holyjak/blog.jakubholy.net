@@ -30,7 +30,7 @@ My early experiences in commercial development brought me on the quest for _prod
 
 I learned that however technical our profession is, the essential skill necessary for success in IT is a non-technical one - communication. This is best illustrated by the following picture from blogcmmi.com, which I like a lot (though it omits the equal importance of intra-team and personal communication):
 
-![software development: expectations vs reality](http://lh5.ggpht.com/_btcPMCQkYvg/TAjNsPzoeJI/AAAAAAAABX4/9vQ-O__nWN4/s800/requirements-communication.jpg "")
+![software development: expectations vs reality](https://lh5.ggpht.com/_btcPMCQkYvg/TAjNsPzoeJI/AAAAAAAABX4/9vQ-O__nWN4/s800/requirements-communication.jpg "")
 
 As mentioned above, [Frustration-Driven Development – Towards DevOps, Lean, Clojure]("http://theholyjava.wordpress.com/2014/03/17/frustration-driven-development-towards-devops-lean-clojure/") summarizes well what & why I am trying to do.
 
