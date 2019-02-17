@@ -129,9 +129,6 @@ class Layout extends React.Component {
                     p {
                       margin: 0;
                     }
-                    strong {
-                      font-weight: 400;
-                    }
                     a {
                       text-decoration: none;
                       color: #666;
