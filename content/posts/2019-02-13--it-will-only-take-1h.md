@@ -28,6 +28,8 @@ A little cleanup and - two days later, and some 10 hours over the estimate - we 
 
 (Sadly, this wasn't really the end of the story. A while later I discovered that one of the middleware services was returning `transfer-encoding: chunked`, which resulted in forever pending request in Chrome, `curl` at least gave me a cryptic error. 1-2 hours later I fixed the headers and all was well again...)
 
+(_Update_: It actually took yet two days more. The original solution did not support binary content so I just rewrote everything using low-level, reliable constructs. Now I hope it really is the end....)
+
 ## Obstacles and speed-ups
 
 This is certainly a nice war story to share and tell one's future grandchildren, but what is more interesting and relevant is looking at this in general and analysing the issues causing delay and the factors and tools that make the process slower or, by contrast, help us go faster.
