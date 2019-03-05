@@ -24,18 +24,20 @@ What is happiness anyway?
 
 Happiness encompasses fleeting positive experiences and emotions as well as a long-term feeling of satisfaction and meaning. It doesn't mean to always be "high," there will always be ups and downs and deviations from one's base level of happiness.
 
+Happiness at work can be defined as feeling an overall sense of enjoyment at work; being able to gracefully handle setbacks; connecting amicably with colleagues, coworkers, clients, and customers; and knowing that your work matters to yourself, your organization, and beyond.
+
 PERK: The key components of happiness at work
 ---------------------------------------------
 
 There are many ways to look at the factors that support employee happiness and one of them is PERK: Purpose, Engagement, Resilience, Kindness.
 
-**Purpose**: means knowing that your work matters to you, your organization and the world. <> making valuable contributions; connecting what we do to what we believe in and care about
+**Purpose**: means knowing that your work matters to you, your organization, and the world. It includes feeling that we make valuable contributions and actively connecting what we do to what we believe in and care about, finding ways to apply and strengthen our values.
 
-**Engagement**: vigor towards, dedication to, and absorption in work activities.
+**Engagement**: is about enjoying one's work, about being involved in defining it, feeling curiosity, getting deeply immersed in a task, feeling effective and getting things done.
 
 **Resilience**: Being able to handle adversity with grace, to face challenges and recover from setbacks, be accountable for failures and resolve conflict at work, to bounce back from difficulties in a healthy and constructive way.
 
-**Kindness**: A broader orientation towards forming strong, supportive, social connections at work that scientists call pro-social, that help us interact in trusting, inclusive, and cooperative ways with people at work. One of the most promising ways to improve the quality of our interactions with other people at work, and in turn our happiness at work: kindness. At work that means conveying respect and appreciation, interest in working together, and a willingness to support one another and constructively work through differences. It includes civility, trust, empathy, compassion, gratitude, reconciling conflicts.
+**Kindness**: A broader orientation towards forming strong, supportive, social connections at work that scientists call pro-social, that help us interact in trusting, inclusive, and cooperative ways with people at work. It is one of the most promising ways to improve the quality of our interactions with other people at work, and in turn our happiness at work. At work that means conveying respect and appreciation, interest in working together, and a willingness to support one another and constructively work through differences. It includes civility, trust, empathy, compassion, gratitude, reconciling conflicts.
 
 **TODO**
 
@@ -44,6 +46,8 @@ There are many ways to look at the factors that support employee happiness and o
 
 What can I do to foster my and colleagues' happiness?
 -----------------------------------------------------
+
+ There are multiple ways to strengthen each pillar of PERK on personal, social, and structural levels at work—through _individual exercises and activities_, the development of key _social skills_, shifts in _leadership style_, _organization-wide initiatives_, or changes to _company policy_. Some of the individual activities follow.
 
 **Prioritize happiness** There are many things you can do, whether leader or regular employee, but the first step is to realize that happiness at work is important for you, your colleagues, and the company and make the conscious decision to foster it. We have always too much to do so it is important to decide to prioritize happiness and make the time to be extra kind when a colleague is asking for help, to make few seconds or minutes for being mindful, etc. Create opportunities for positive emotions to arise and savor them - celebrate achievements, take a lunch with a colleague you enjoy, ....
 
@@ -57,6 +61,7 @@ What can I do to foster my and colleagues' happiness?
 
 Aside of practicing as any other employee (though the behavior they model is even more important as it has greater impact on their subordinates), there are some additional things they can do:
 
+- Purpose: If you are in a position of influence, you can promote purpose by making core values explicit at the workplace, and implementing policies that align people’s day-to-day experiences with core values. See the [example of the outdoor company Patagonia](https://bthechange.com/patagonias-yvon-chouinard-on-mindful-consumption-e262044aaa0d?gi=9aebce25ae70) and its core values of conservation and family.
 - embrace high-performance conditions - Purpose, Mastery, Autonomy
 - look into Positive Leadership - read the case study [Positive leadership in action: Applications of POS by Jim Mallozzi, CEO, Prudential Real Estate and Relocation](TODO)
 
