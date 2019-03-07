@@ -217,3 +217,9 @@ infrastructure.writeData(output);
 We have seen two different solutions in two different types of languages. Each approach could be implemented in each of the languages but a language encourages and makes it easier to write a particular way of solving the problem.
 
 In particular we have looked at the separation of logic and side-effects (retrieving data, updating data, sending messages). Clojure nudges you to have nearly all of your code as pure functions and keep the (side-)effects at the boundaries of the system, at a few and clearly marked places, separated from the rest. We have also looked at a few ways how to deal with supplying data that might not needed and is expensive to retrieve.
+
+## More from this series
+
+1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](/design-in-java-vs-fp/)
+2. [Clojure vs Java: The benefit of Few Data Structures, Many Functions over Many Unique Classes](/clojure-vs-java-few-datastructures-over-many-objects/)
+3. [Clojure vs Java: Troubleshooting an application in production](/clojure-vs-java-troubleshooting-prod-app/)

@@ -162,3 +162,9 @@ A Java developer has to learn a new "data access API" for each class and do a lo
 The Clojure approach seems to be much more productive.
 
 But it goes beyond developer productivity. The fact that all Clojure libraries use the same few generic data structures makes it possible to write equally generic utility libraries for working with data such as [Specter](https://github.com/nathanmarz/specter) or [Balagan](https://github.com/clojurewerkz/balagan) that you can use with Ring requests, [Hiccup](https://github.com/weavejester/hiccup) HTML representation, and anything else.
+
+## More from this series
+
+1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](/design-in-java-vs-fp/)
+2. [Clojure vs Java: The benefit of Few Data Structures, Many Functions over Many Unique Classes](/clojure-vs-java-few-datastructures-over-many-objects/)
+3. [Clojure vs Java: Troubleshooting an application in production](/clojure-vs-java-troubleshooting-prod-app/)
