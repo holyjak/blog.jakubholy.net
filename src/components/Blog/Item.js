@@ -58,7 +58,7 @@ const Item = props => {
         li {
           border: 1px solid transparent;
           border-radius: ${theme.size.radius.default};
-          margin: ${`calc(${theme.space.default} * 2) 0 calc(${theme.space.default} * 3)`};
+          margin: ${`calc(${theme.space.default} * 0)`};
           padding: ${theme.space.inset.s};
           position: relative;
           transition: all ${theme.time.duration.default};
@@ -140,8 +140,8 @@ const Item = props => {
 
         @from-width tablet {
           li {
-            margin: ${`calc(${theme.space.default} * 3) 0 calc(${theme.space.default} * 4)`};
-            padding: ${theme.space.default};
+            margin: ${`calc(${theme.space.default}) 0 calc(${theme.space.default})`};
+            padding: ${`calc(${theme.space.default} * 0)`};
 
             &::after {
               bottom: ${`calc(${theme.space.default} * -2)`};
@@ -168,8 +168,8 @@ const Item = props => {
         }
         @from-width desktop {
           li {
-            margin: ${`calc(${theme.space.default} * 4) 0 calc(${theme.space.default} * 5)`};
-            padding: 0 0 ${`calc(${theme.space.default} * 2)`};
+            margin: ${`calc(${theme.space.default}) 0 calc(${theme.space.default})`};
+            padding: 0 0 ${`calc(${theme.space.default} * 0)`};
 
             &::after {
               bottom: ${`calc(${theme.space.default} * -1.5)`};
