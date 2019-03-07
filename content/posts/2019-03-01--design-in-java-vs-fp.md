@@ -6,6 +6,8 @@ tags: [clojure, java, design, clojure-vs-java]
 
 As a Clojure developer thrown into an "enterprise" Java/Spring/Groovy application, I have a unique opportunity to experience and think about the differences between functional (FP) and object-oriented programming (OOP) and approach to design. Today I want to compare how the solution would differ for a small subsystem responsible for checking for and progressing the process of fixing data discrepancies. The main question we will explore will be where do we deal with external effects, i.e. I/O.
 
+<!--more-->
+
 (_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/design-in-java-vs-fp)._)
 
 I see OOP as a graph of mutable and possibly side-effectful objects, while FP as a compositions of primarily pure, side-effect free functions. FP tends to push I/O and other (side-)effects to the edges of the system.

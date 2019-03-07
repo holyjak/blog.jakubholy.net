@@ -13,6 +13,8 @@ In Clojure we use again and again the same data structures and have many functio
 
 Notice that I speak about data and data-carrying classes, not about "business logic," which would be implemented by methods on the said objects in Java and by (preferably pure) functions in a namespace in Clojure.
 
+(_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/clojure-vs-java-few-datastructures-over-many-objects)._)
+
 ## The problem
 
 I have been writing a proxy, receiving [`javax.servlet.http.HttpServletRequest`](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html) and forwarding it via [Apache HttpClient](https://hc.apache.org/httpcomponents-client-ga/)'s [`org.apache.http.client.methods.HttpUriRequest`](http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/methods/HttpUriRequest.html) and then doing the opposite conversion from [`org.apache.http.HttpResponse`](https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/HttpResponse.html) to [`javax.servlet.http.HttpServletResponse`](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html), particularly in respect to (a subset of) the headers.

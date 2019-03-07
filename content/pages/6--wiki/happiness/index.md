@@ -55,7 +55,13 @@ What can I do to foster my and colleagues' happiness?
 
 **Mindfulness** Mindfulness includes being aware of your body, your surroundings, and of the content of your mind without (crucially!) being consumed by it. Eventually you become able to see your thoughts and emotions more clearly and to decide whether - and how - to act on them, enabling more conscious and likely constructive reactions. Moments of "being here and now" also provide much needed breaks for your brain, creating a buffer between you and work stress. Build small pockets of mindfulness into your day. When sitting down on the toilet, instead of pulling out your phone, be aware of your body and breath. Whenever you come back to your desk, sit down, close or divert down your eyes, and be aware. I love to do this also before I start to eat but find what works for you. You might adopt a formal mindfulness program, for example via an app such as [Waking Up](TODO) (my favorite) or [Headspace](TODO) with their 5-10 min daily meditations. Get inspired by [Adobe's Project Breathe](TODO) with its daily 15 min group meditation. Eventually you want to be increasing the level of presence and awareness in whatever you do.
 
-**Fun, humor, levity** Laughing decreases stress and, when Laughing together, strengthens social ties. Find ways to incorporate it into your activities and interactions. Be playful.
+### Engagement
+
+**Fun, levity, playfulness** Laughing decreases stress and, when laughing together, strengthens social ties. Find ways to incorporate it into your activities and interactions. Be playful.
+
+**Autonomy & growth** Give people more ownership over their day-to-day schedule, tasks, and professional development, and build in opportunities to learn and grow. Allow them to [craft their job](http://positiveorgs.bus.umich.edu/wp-content/uploads/Crafting-a-Job_Revisioning-Employees.pdf).
+
+**Flow** Make space for the immersive, lose-track-of-time experience of flow at work.
 
 ### For leaders
 

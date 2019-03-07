@@ -8,6 +8,8 @@ I have just gone through the painful experience of troubleshooting a remote Java
 
 <!--more-->
 
+(_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/clojure-vs-java-troubleshooting-prod-app)._)
+
 ## The problem
 
 I have written a new controller that modifies slightly the incoming requests and sends it further to another service, returning its result. It worked just fine locally but failed with 400 Bad Request in our test environment in the cloud. Thus I needed to get more insight into what was happening in the application to find out what the crucial difference between local and remote was.
