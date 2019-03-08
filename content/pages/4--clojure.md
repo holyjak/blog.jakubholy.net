@@ -88,6 +88,8 @@ Community, advice, fora
       - [Cognicast](http://blog.cognitect.com/cognicast/) by Cognitect, the company behind Clojure - interviews with interesting people
       - [defn](https://defn.audio/) - "A loud, irreverent podcast discussing the delights of Clojure, ClojureScript with leaders and folks of the Community"
 
+### Editors and IDEs
+
 Beginner-friendly tools
 
   - Beginner-friendly all-in-one IDE: [Nightcode](https://sekao.net/nightcode/) and (simpler, web-based) [Lightmod](https://sekao.net/lightmod/)
@@ -96,6 +98,8 @@ Beginner-friendly tools
       - [Parinfer](https://shaunlebron.github.io/parinfer/) - provides for efficient and simple structural editing of Clojure/Lisp code using just Tab (compared to the older Paredit with its numerous key-bindings). A must-have for efficient and productive experience with any Lisp.
   - Building and running code
       - [Ultra](https://github.com/venantius/ultra) - a Leiningen (the primary Clojure build tool) plugin for an absolutely kick-ass development environment (i.e. REPL) - better stack-traces (via [Pretty](https://github.com/AvisoNovate/pretty)), human-friendly test output, colors, syntax-highlighting.
+
+The most popular tools for developing in Clojure(Script) are [Emacs with Cider](https://docs.cider.mx) and [IntelliJ with Cursive](https://cursive-ide.com/). But people also use [VS Code with Calva](https://marketplace.visualstudio.com/items?itemName=cospaia.clojure4vscode) (and [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)) and [Atom](https://atom.io/) with [Chlorine](https://atom.io/packages/chlorine)
 
 # Style and best practices
 
