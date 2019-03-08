@@ -15,6 +15,8 @@ These are just "cultures" and you are free to create many different designs, ali
 
 Let's look at the problem at hand and what would be the more "natural" way of solving it in Java/OOP and Clojure/FP.
 
+_NOTE: I use Java and Groovy interchangeably because they are fundamentally the same; what I say about the one applies also ± to the other._
+
 ### The problem
 
 The problem to solve is the validation and correction of the billing cycle length of our customer organizations. The process is as follows:

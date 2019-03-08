@@ -15,6 +15,8 @@ Notice that I speak about data and data-carrying classes, not about "business lo
 
 (_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/clojure-vs-java-few-datastructures-over-many-objects)._)
 
+_NOTE: I use Java and Groovy interchangeably because they are fundamentally the same; what I say about the one applies also ± to the other._
+
 ## The problem
 
 I have been writing a proxy, receiving [`javax.servlet.http.HttpServletRequest`](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletRequest.html) and forwarding it via [Apache HttpClient](https://hc.apache.org/httpcomponents-client-ga/)'s [`org.apache.http.client.methods.HttpUriRequest`](http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/client/methods/HttpUriRequest.html) and then doing the opposite conversion from [`org.apache.http.HttpResponse`](https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/HttpResponse.html) to [`javax.servlet.http.HttpServletResponse`](https://javaee.github.io/javaee-spec/javadocs/javax/servlet/http/HttpServletResponse.html), particularly in respect to (a subset of) the headers.
@@ -71,9 +73,13 @@ static void copyResponseHeaders(HttpResponse source, HttpServletResponse target)
 }
 ```
 
+Ideally I would want to be able to do something like `target.request.headers = omitKeys(undesirable, source.request.headers)`. But it is not possible, I have to map from one set of types to another. The main troublemakers here are the servlet requests with its split into `getHeaderNames` and `getHeaders` - instead of returning e.g. `Map<String, String[]>` - and the `RequestBuilder` that has `addHeader` but no way to add all headers at once (unless we wrap them first in its domain classes, namely `Header`).
+
+(Arguably, I could find a much better example that would make the point really clear. Here we still work mostly - but not always - with primitive/generic types such as Enumeration, String, array instead of nested custom type hierarchies.)
+
 ## The Clojure solution
 
-In Clojure, request is just a map and headers are likely a map of lists. Even if the two libraries (server, client) do not agree on key names or data structures, there is no "API" to learn - you just use the same old, known functions to transform from one data structure to another, something you do in each and every Clojure project, web, data, or any other domain.
+In Clojure, request is just a map and headers are likely a map of lists. Even if the two libraries (server, client) do not agree on key names or data structures, there is no "API" to learn - you just use the same old, known functions to transform from one data structure to another, something you do in each and every Clojure project, web, data, or any other domain. The only thing that changes is the names of the keys in maps.
 
 *BEWARE: If you don't know Clojure then some of the examples might be difficult to read, with functions like `assoc` and `reduce-kv` (key-value) and occasional 1-letter names. Remember that a Clojure programmer uses the same 100 functions over and over again and is pretty familiar with them. Clojure takes the conscious choice - contrary to some other languages - to optimize for the experienced developer. Which is fine with me.*
 
@@ -163,7 +169,7 @@ A Java developer has to learn a new "data access API" for each class and do a lo
 
 The Clojure approach seems to be much more productive.
 
-But it goes beyond developer productivity. The fact that all Clojure libraries use the same few generic data structures makes it possible to write equally generic utility libraries for working with data such as [Specter](https://github.com/nathanmarz/specter) or [Balagan](https://github.com/clojurewerkz/balagan) that you can use with Ring requests, [Hiccup](https://github.com/weavejester/hiccup) HTML representation, and anything else.
+But it goes beyond developer productivity. The fact that all Clojure libraries use the same few generic data structures makes it possible to write equally generic utility libraries for working with data such as [Specter](https://github.com/nathanmarz/specter) or [Balagan](https://github.com/clojurewerkz/balagan) that you can use with Ring requests, [Hiccup](https://github.com/weavejester/hiccup) HTML representation, "json" data coming from a backend service, and anything else.
 
 ## More from this series
 

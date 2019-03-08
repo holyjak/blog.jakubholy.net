@@ -10,6 +10,8 @@ I have just gone through the painful experience of troubleshooting a remote Java
 
 (_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/clojure-vs-java-troubleshooting-prod-app)._)
 
+_NOTE: I use Java and Groovy interchangeably because they are fundamentally the same; what I say about the one applies also ± to the other._
+
 ## The problem
 
 I have written a new controller that modifies slightly the incoming requests and sends it further to another service, returning its result. It worked just fine locally but failed with 400 Bad Request in our test environment in the cloud. Thus I needed to get more insight into what was happening in the application to find out what the crucial difference between local and remote was.
@@ -49,6 +51,16 @@ So how would I proceeded if this was a Clojure application?
 I would create an atom (a "global variable") and modify the request handler function to store the incoming and outgoing requests there. Then I would trigger the failing request from the browser and go back to the REPL to look at the requests. I would fix the code - both locally and in the running app - and, directly from the REPL, run the request through the function(s) again. Rinse and repeat until fixed. (Remembering to commit and deploy your changes at the end :-)).
 
 As you can see, the feedback loop here is about instantaneous.
+
+### Objection: Changing code in remote/prod app is a terrible risk
+
+Yes, it is. With power comes responsibility. If you have rogue developers on your team that do whatever comes into their mind, I would strongly discourage you from allowing them to access prod REPL. On the other hand:
+
+> [..] the most interesting story I've heard about a REPL in prod was the following - Debugging a program running on a $100M piece of hardware that is 100 million miles away is an interesting experience. Having a read-eval-print loop running on the spacecraft proved invaluable in finding and fixing the problem. [Lisping at JPL](http://www.flownet.com/gat/jpl-lisp.html)
+
+You are not NASA but neither are you a programmer kindergarten, I suppose. Make your call.
+
+(See also [Clojureverse: REPLS on production deployments](https://clojureverse.org/t/repls-on-production-deployments/3476) and [Jay Fields: Clojure production web REPL](http://blog.jayfields.com/2012/06/clojure-production-web-repl.html).)
 
 ## Conclusion
 
