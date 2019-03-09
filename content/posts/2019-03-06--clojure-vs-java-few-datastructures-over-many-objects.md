@@ -161,6 +161,56 @@ Clj-http follows the Ring specification and thus supports the same format, thoug
 
 So this is case \#1 above.
 
+## Java vs. Clojure
+
+The point I am trying to make is that Clojure is more effective at addressing two problems: data _selection_ and _transformation_ thanks to using generic data structures and functions over them.
+
+### Selection
+
+In Clojure it is trivial to create a map by selecting a subset of another one (`assoc` associates a key with a value, `select-keys` returns a map):
+
+```clojure
+(assoc
+  request
+  :headers
+  (select-keys
+    (:headers other-request)
+    [:pragma ...]))
+```
+
+With a typical Java data class (remember DTOs?) you need to one by one get and set individual properties. Even if we use Groovy conveniences:
+
+```groovy
+new Person(
+  firstName: employee.firstName,
+  lastName: employee.lastName,
+  ...)
+```
+
+The point here isn't really the amount of typing but the fact that while in Clojure we can use existing functions (and combine them into new, reusable functions) to do the job, in Java you have to write (more) custom, single-use code. (Or use mapper libraries, annotations and other black magic :-).)
+
+### Transformation
+
+As we have seen above, copying headers from one request to another is trivial in Clojure. In typical Java, the headers would be represented by their own type - likely a `Header` - and thus, even if they had the same shape in both libraries, they still would be different types and we would need translate from one to the other:
+
+```groovy
+// fake code :-)
+def toClientHdr(servlet.Header hdr) {
+  return new httpclient.Header(
+    name: hdr.name,
+    values: hdr.values)
+}
+clientRequest.headers =
+  servletRequest.headers
+    .map(toClientHdr)
+```
+
+In Clojure the `toClientHdr` is unnecessary because we have just maps, no types to map from/to. Our premise here was that the "shape" of the data was the same at both ends but even if it wasn't, it would be much easier to transform from the one to the other as data transformation is one of primary strengths of FP in general and Clojure in particular. There are many useful functions for data selection and transformation in the core library, designed to be combined in numerous powerful ways.
+
+### What about validation, encapsulation, ...?
+
+Even if you agree that using a few generic data structures with powerful functions is more effective than wrapping data in types, you might be worried about the other benefits of classes such as encapsulation and data validation. That is beyond the scope of this article but be sure that FP/Clojure has solutions for these needs though they are obviously different from the OOP ones.
+
 ## Conclusion
 
 Clojure uses the same few data structures (map, set, list, vector) everywhere and has many functions that operate on these (many such as `map` on all, some such as `select-keys` only on some). You eventually become very proficient with these functions and the ways to combine them to achieve whatever you want.
