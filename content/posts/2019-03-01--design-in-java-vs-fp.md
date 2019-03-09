@@ -222,6 +222,8 @@ We have seen two different solutions in two different types of languages. Each a
 
 In particular we have looked at the separation of logic and side-effects (retrieving data, updating data, sending messages). Clojure nudges you to have nearly all of your code as pure functions and keep the (side-)effects at the boundaries of the system, at a few and clearly marked places, separated from the rest. We have also looked at a few ways how to deal with supplying data that might not needed and is expensive to retrieve.
 
+_Disclaimer:_ I do not intend to participate in a flame war or bash Java. My intention is to demonstrate, on concrete examples, the strengths of Clojure _I_ value. Your values and needs might differ and thus Java might be the perfect solution for _you_. I don't mind that :-).
+
 ## More from this series
 
 1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](/design-in-java-vs-fp/)

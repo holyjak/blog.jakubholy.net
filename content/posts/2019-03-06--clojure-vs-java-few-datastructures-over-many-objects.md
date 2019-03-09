@@ -221,6 +221,8 @@ The Clojure approach seems to be much more productive.
 
 But it goes beyond developer productivity. The fact that all Clojure libraries use the same few generic data structures makes it possible to write equally generic utility libraries for working with data such as [Specter](https://github.com/nathanmarz/specter) or [Balagan](https://github.com/clojurewerkz/balagan) that you can use with Ring requests, [Hiccup](https://github.com/weavejester/hiccup) HTML representation, "json" data coming from a backend service, and anything else.
 
+_Disclaimer:_ I do not intend to participate in a flame war or bash Java. My intention is to demonstrate, on concrete examples, the strengths of Clojure _I_ value. Your values and needs might differ and thus Java might be the perfect solution for _you_. I don't mind that :-).
+
 ## More from this series
 
 1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](/design-in-java-vs-fp/)

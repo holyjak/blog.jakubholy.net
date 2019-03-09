@@ -66,6 +66,8 @@ You are not NASA but neither are you a programmer kindergarten, I suppose. Make 
 
 For me, effective development is all about quick feedback loops. With Clojure REPL I can both troubleshoot a problem and explore how to fix it at the same time, with instantaneous feedback - whether the application is local or remote. Java, even with a debugger, requires long cycles resulting in frustration and inefficiency.
 
+_Disclaimer:_ I do not intend to participate in a flame war or bash Java. My intention is to demonstrate, on concrete examples, the strengths of Clojure _I_ value. Your values and needs might differ and thus Java might be the perfect solution for _you_. I don't mind that :-).
+
 ## Resources
 
 * [Cambium - The Power of Clojure: Debugging][Cambium] by Ian Truslove (2018) - in depth guide on REPL-based debugging in Clojure, both with and without extra tools, with great links
