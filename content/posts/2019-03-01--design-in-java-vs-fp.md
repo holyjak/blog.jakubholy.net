@@ -10,7 +10,7 @@ As a Clojure developer thrown into an "enterprise" Java/Spring/Groovy applicatio
 
 (_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/design-in-java-vs-fp)._)
 
-I see OOP as a graph of mutable and possibly side-effectful objects, while FP as a compositions of primarily pure, side-effect free functions. FP tends to push I/O and other (side-)effects to the edges of the system.
+I see OOP as a graph of mutable and possibly side-effectful objects, while FP as a compositions of primarily pure, side-effect free functions. FP tends to push I/O and other (side-)effects to the edges of the system (e.g. close to where it interacts with the external world - a request handler, ...).
 These are just "cultures" and you are free to create many different designs, aligned with them or not. Many even in the OOP world have noticed that spreading mutation and effects all around makes maintenance difficult. Still, the culture of the programming language leads you to think in certain ways and more likely to come up with some designs than others.
 
 Let's look at the problem at hand and what would be the more "natural" way of solving it in Java/OOP and Clojure/FP.
@@ -22,7 +22,7 @@ _NOTE: I use Java and Groovy interchangeably because they are fundamentally the 
 The problem to solve is the validation and correction of the billing cycle length of our customer organizations. The process is as follows:
 
 1. Verify that all invoice centers within the organization have the same billing cycle length and use that as the organization cycle length; if any invoice centre differs, set the org cycle to "UNKNOWN"
-2. If the cycle length has just changed from a valid value to UNKNOWN then notify the Customer Service to fix it and record that we have started fixing this org together with its previous, valid cycle length
+2. If the cycle length has just changed from a valid value (e.g. MONTH or QUARTER) to UNKNOWN then notify the Customer Service to fix it and record that we have started fixing the cycle for this organization together with its previous, valid cycle length
 3. If the current cycle length is UNKNOWN but we have already started fixing it, do nothing (or send a remainder to C.S. if it has been too long)
 4. If the cycle length has just changed from UNKNOWN to a valid value (as a result of C.S. fixing the maverick cost centre) then record that it is fixed and proceed normally (but see 5.)
 5. If the cycle length has changed to a valid value different from the previous valid value then notify C.S. that they need to check whether any cycle-level limits need to be adjusted and record that we need to await the result of the manual check
@@ -71,7 +71,7 @@ This is the big picture it fits into:
 
 ### The Clojure solution
 
-We could do the same as in Java but it feels wrong to have a function producing plenty of side effects (and no result), not mentioning how difficult is it to test. An interesting question thus arises: **How to separate pure business logic and the execution of effects, or how to make the core function pure** (i.e. just taking arguments and producing a result)? The result part is simple, we can take an inspiration from the frontend frameworks [re-frame](https://github.com/Day8/re-frame#it-is-a-6-domino-cascade) or [Redux](https://redux.js.org/) and just return a map of the desired effects, such as `{:email {:to .., :body ..}, :db {:insert {...}}}` that are later executed by registered _handlers_. But what about the additional data the function _might_ need from the database? For that I can now think of three solutions and there are surely more:
+We could do the same as in Java but it feels wrong to have a function producing plenty of side effects (and no result), not mentioning how difficult it is to test. An interesting question thus arises: **How to separate pure business logic and the execution of effects, or how to make the core function pure** (i.e. just taking arguments and producing a result)? The result part is simple, we can take an inspiration from the frontend frameworks [re-frame](https://github.com/Day8/re-frame#it-is-a-6-domino-cascade) or [Redux](https://redux.js.org/) and just return a map of the desired effects, such as `{:email {:to .., :body ..}, :db {:insert {...}}}` that are later executed by registered _handlers_. But what about the additional data the function _might_ need from the database? For that I can now think of three solutions and there are surely more:
 
 1. If the data is small, just fetch it eagerly all into the memory before invoking the pure function.
 2. Similarly yet differently, provide the function with a lazy datastructure that only fetches the data when it is actually accessed (e.g. via [`delay`](https://conj.io/store/v0/org.clojure/clojure/latest/clj/clojure.core/delay/)). Thus the effect happens in the function but is transparent to it, it doesn't know or care whether the data already was there or not or how it was produced.
@@ -222,7 +222,7 @@ We have seen two different solutions in two different types of languages. Each a
 
 In particular we have looked at the separation of logic and side-effects (retrieving data, updating data, sending messages). Clojure nudges you to have nearly all of your code as pure functions and keep the (side-)effects at the boundaries of the system, at a few and clearly marked places, separated from the rest. We have also looked at a few ways how to deal with supplying data that might not needed and is expensive to retrieve.
 
-_Disclaimer:_ I do not intend to participate in a flame war or bash Java. My intention is to demonstrate, on concrete examples, the strengths of Clojure _I_ value. Your values and needs might differ and thus Java might be the perfect solution for _you_. I don't mind that :-).
+_Disclaimer:_ I do not intend to participate in a flame war or bash Java. My intention is to demonstrate, on concrete examples, the strengths of Clojure I value. Your values and needs might differ and thus Java might be the perfect solution for _you_. I don't mind that :-).
 
 ## More from this series
 
