@@ -81,6 +81,6 @@ _Disclaimer:_ I do not intend to participate in a flame war or bash Java. My int
 
 ## More from this series
 
-1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](/design-in-java-vs-fp/)
-2. [Clojure vs Java: The benefit of Few Data Structures, Many Functions over Many Unique Classes](/clojure-vs-java-few-datastructures-over-many-objects/)
-3. [Clojure vs Java: Troubleshooting an application in production](/clojure-vs-java-troubleshooting-prod-app/)
+1. [Solution design in Java/OOP vs. Clojure/FP - I/O anywhere or at the boundaries? - experience](design-in-java-vs-fp/)
+2. [Clojure vs Java: The benefit of Few Data Structures, Many Functions over Many Unique Classes](clojure-vs-java-few-datastructures-over-many-objects/)
+3. [Clojure vs Java: Troubleshooting an application in production](clojure-vs-java-troubleshooting-prod-app/)
