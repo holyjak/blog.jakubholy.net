@@ -206,7 +206,9 @@ class Menu extends React.Component {
               }
 
               :global(.homepage):not(.fixed) & {
-                bottom: -100px; // TODO Show-on-index => top: 0 or st.
+                top: 200px /*See Hero.js*/;
+                position: absolute;
+                bottom: auto;
               }
             }
           }
