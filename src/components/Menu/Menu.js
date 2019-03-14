@@ -25,11 +25,11 @@ class Menu extends React.Component {
     }));
 
     this.items = [
-      { to: "/", label: "", icon: FaHome },
+      { to: "/", label: "", icon: FaHome, className: "goHome" },
       { to: "/category/", label: "Categories", icon: FaTag },
-      { to: "/search/", label: "", icon: FaSearch },
       ...pages,
-      { to: "/contact/", label: "", icon: FaEnvelope }
+      { to: "/contact/", label: "", icon: FaEnvelope },
+      { to: "/search/", label: "", icon: FaSearch }
     ];
 
     this.renderedItems = []; // will contain references to rendered DOM elements of menu
@@ -162,6 +162,11 @@ class Menu extends React.Component {
         </nav>
 
         {/* --- STYLES --- */}
+        <style jsx global>{`
+          .homepage .goHome {
+            display: none;
+          }
+        `}</style>
         <style jsx>{`
           .menu {
             align-items: center;

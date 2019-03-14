@@ -3,7 +3,6 @@
 ## TODO
 
 1. Mark posts with `best` tag, show them on the "Best" page
-2. Show pages inside/below the Hero banner at /
 4. Optimize images for client screen size; use .webp if supported ... (the sharp plugin can do that, webp is off by default; only for local images though)
 5. Check for broken links
 6. Link to holyjak.tumblr.com
