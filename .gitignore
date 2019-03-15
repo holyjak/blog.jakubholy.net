@@ -69,4 +69,3 @@ yarn-error.log
 # other
 report/
 .envrc-secrets
-static/images/
