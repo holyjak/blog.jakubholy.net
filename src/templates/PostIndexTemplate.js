@@ -108,15 +108,15 @@ export const query = graphql`
             title
             category
             author
-#            cover { # FIXME re-enable when remark plugins re-added
-#              children {
-#                ... on ImageSharp {
-#                  fluid(maxWidth: 800, maxHeight: 360) {
-#                    ...GatsbyImageSharpFluid_withWebp
-#                  }
-#                }
-#              }
-#           }
+            cover {
+              children {
+                ... on ImageSharp {
+                  fluid(maxWidth: 800, maxHeight: 360) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -4,6 +4,8 @@
 
 1. Mark posts with `best` tag, show them on the "Best" page
 4. Optimize images for client screen size; use .webp if supported ... (the sharp plugin can do that, webp is off by default; only for local images though)
+   - use https://web.dev/fast/use-lazysizes-to-lazyload-images (is there a Gatsby thing?) <> change img tags
+   - see https://web.dev/fast/serve-responsive-images <> change img tags in old posts
 5. Check for broken links
 6. Link to holyjak.tumblr.com
 7. On mobile, quotes have too much wasted space (padding?) on the sides - see e.g. /clojure-vs-java-few-datastructures-over-many-objects/

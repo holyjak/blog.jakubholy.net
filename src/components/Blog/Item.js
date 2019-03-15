@@ -17,11 +17,12 @@ const Item = props => {
       frontmatter: {
         title,
         category,
-        author,
-        cover: { children: [{ fluid }] } = { children: [{}] }
+        cover //: { children: [{ fluid }] } = { children: [{}] }
       }
     }
   } = props;
+  // cover is sometimes null so the default would not kick in:
+  const { children: [{ fluid }] = [{}] } = cover ? cover : {};
 
   return (
     <React.Fragment>

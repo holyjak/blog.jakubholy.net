@@ -119,7 +119,7 @@ module.exports = async function onCreateNode(
   ) {
     const { title, published, postType, slug, status, tags, categories, content, excerpt } = node;
     // OR: const content = await loadNodeContent(node);
-    const publishedDateOnly = published.replace(/(\d{4}-\d\d-\d\d).+/, "$1")
+    const publishedDateOnly = published.replace(/(\d{4}-\d\d-\d\d).+/, "$1");
     const fields = { slug };
     const draft = status !== "publish";
     const { html, stylesheets } = await fixWordpressFormatting(content);

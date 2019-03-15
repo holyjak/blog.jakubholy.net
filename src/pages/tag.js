@@ -99,15 +99,15 @@ export const query = graphql`
             category
             tags
             author
-#            cover { # FIXME - re-enable after re-adding remakr plugins
-#              children {
-#                ... on ImageSharp {
-#                  fluid(maxWidth: 800, maxHeight: 360) {
-#                    ...GatsbyImageSharpFluid_withWebp
-#                  }
-#                }
-#              }
-#            }
+            cover {
+              children {
+                ... on ImageSharp {
+                  fluid(maxWidth: 800, maxHeight: 360) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
           }
         }
       }
