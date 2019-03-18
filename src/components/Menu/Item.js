@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
 const Item = props => {
-  const { theme, item: { label, to, icon: Icon, className = "" } = {}, onClick } = props;
+  const { theme, item: { label, ariaLabel, to, icon: Icon, className = "" } = {}, onClick } = props;
 
   return (
     <React.Fragment>
@@ -13,6 +13,7 @@ const Item = props => {
           className={"hiddenItem" in props ? "inHiddenItem" : ""}
           onClick={onClick}
           data-slug={to}
+          aria-label={ariaLabel}
         >
           {Icon && <Icon />} {label}
         </Link>

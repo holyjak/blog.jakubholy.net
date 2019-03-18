@@ -25,11 +25,11 @@ class Menu extends React.Component {
     }));
 
     this.items = [
-      { to: "/", label: "", icon: FaHome, className: "goHome" },
+      { to: "/", label: "", ariaLabel: "home", icon: FaHome, className: "goHome" },
       { to: "/category/", label: "Categories", icon: FaTag },
       ...pages,
-      { to: "/contact/", label: "", icon: FaEnvelope },
-      { to: "/search/", label: "", icon: FaSearch }
+      { to: "/contact/", label: "", ariaLabel: "contact", icon: FaEnvelope },
+      { to: "/search/", label: "", ariaLabel: "search", icon: FaSearch }
     ];
 
     this.renderedItems = []; // will contain references to rendered DOM elements of menu
