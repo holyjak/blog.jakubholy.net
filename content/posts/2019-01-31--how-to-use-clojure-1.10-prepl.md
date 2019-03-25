@@ -6,6 +6,8 @@ tags: ["clojure"]
 
 Clojure 1.10 includes a new, program-friendly REPL or prepl (pronounced as "preppy," not p-repl). However there is still very little documentation about it, though it is reportedly in making (it is alpha, after all). Here I want to demonstrate how to start it and how to connect to it in a primitive way (I hope to improve the user experience of the client eventually).
 
+_Update 22/3_: Check out O. Caldwell's [Clojure socket prepl cookbook](https://oli.me.uk/2019-03-22-clojure-socket-prepl-cookbook/).
+
 <!--more-->
 
 ### Start the server
