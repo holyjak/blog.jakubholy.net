@@ -28,6 +28,7 @@ Abbreviations: HoF = higher-order function
 | Resource pooling       | Inject the configured pool via IoC                      | See IoC above                                                                                        |
 | Request decoration     | Servlet Filters                                         | Ring middleware                                                                                      |
 | Testing                | Mocks FTW!                                              | Call pure functions as-is. Set a namespace singleton/pass context attribute for the Imperative Shell |
+| Data transfer          | POJOs, DTOs + mapping code                              | Maps, sets, sequences + minimal/no data selection/transformation code                                |
 
 ## Clojure primer (optional)
 
@@ -217,6 +218,16 @@ You wan't to have e.g. a data source with a connection pool and use it in all DB
 ### Java Servlet filters
 
 Use Ring's middleware, simple higher-order functions working on the request and response maps and wrapping the request handler / other middlewares. Once again a higher-order function is the solution :-)
+
+## Examples of production Clojure (web)apps
+
+See the awesome [ClojureVerse thread 'Example “enterprise” Clojure (web) app?'](https://clojureverse.org/t/example-enterprise-clojure-web-app/4034/5), mentioning e.g.
+
+* [NASAs Common Metadata Repository](https://github.com/nasa/Common-Metadata-Repository) - a large collection of (web) applications, very readable, and there’s lots to see
+* [Clojurecademy Web Application](https://github.com/clojurecademy/clojurecademy)
+* [metabase](https://clojureverse.org/t/example-enterprise-clojure-web-app/4034/5) - The simplest, fastest way to get business intelligence and analytics to everyone in your company
+
+Also [Datomic/mbrainz-importer](https://github.com/Datomic/mbrainz-importer) - ETL pipeline in Clojure leveraging core.async, transducers, specs, separation into small, pure functions
 
 ## Conclusion
 
