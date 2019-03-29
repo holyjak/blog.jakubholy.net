@@ -9,6 +9,11 @@ const Article = props => {
       <article className="article">{children}</article>
 
       {/* --- STYLES --- */}
+      <style global>{`
+        aside {
+          margin-bottom: 1.5em;
+        }
+      `}</style>
       <style jsx>{`
         .article {
           padding: ${theme.space.inset.default};

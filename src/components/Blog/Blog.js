@@ -4,27 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa/";
 import { Link } from "gatsby";
 
 import Item from "./Item";
-
-const TumblrFeed = props => (
-  <React.Fragment>
-    <li key="tumblr">
-      <aside>
-        <h1>Recommended links feed</h1>
-        At <a href="https://holyjak.tumblr.com/">holyjak.tumblr.com</a> you get a feed of the most
-        interesting articles, libraries, and other links I have found lately.
-      </aside>
-    </li>
-    <style jsx>{`
-      li {
-        border: 1px solid transparent;
-        background-color: #dddbda;
-        padding: 10px;
-        box-shadow: 3px 3px 3px 3px #969492;
-        margin-top: 2em;
-      }
-    `}</style>
-  </React.Fragment>
-);
+import TumblrFeed from "../TumblrFeed";
 
 const Blog = props => {
   const { posts, theme, pagination } = props;
