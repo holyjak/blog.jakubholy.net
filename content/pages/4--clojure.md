@@ -3,15 +3,14 @@ title: "Clojure"
 ---
 Clojure-related resources and notes.
 
-
 # Why Clojure(Script)?
 
 > Clojure(Script) is simpler yet more expressive (than Java(Script))
 > *- paraphrase of David Nolan in [ClojureScript Next](http://swannodette.github.io/2015/07/29/clojurescript-17/)*
 
-Clojure (and thus ClojureScript) is one of the **best designed** programming languages, it is really well thought-through and great care is taken to ensure that the pieces do each a different thing yet fit perfectly together. It has been designed after years of painful experiences with production systems in Java, C++, Common Lisp and others to avoid the main sources of complexity and maintenance headaches. (For details see the [Clojure Rationale](https://clojure.org/about/rationale) and talks by Rich Hickey such as [Effective Programs - 10 Years of Clojure](https://www.youtube.com/watch?v=2V1FtfBDsLU).)
+Clojure (and thus ClojureScript) is one of the **best designed** programming languages, it is really well thought-through and great care is taken to ensure that the pieces do each a different thing yet fit perfectly together. It has been designed after years of painful experiences with production systems in Java, C++, Common Lisp and others to avoid the main sources of complexity and maintenance headaches. (For details see the [Clojure Rationale](https://clojure.org/about/rationale) and talks by Rich Hickey such as [Effective Programs - 10 Years of Clojure](https://www.youtube.com/watch?v=2V1FtfBDsLU).) It is also **pragmatic**, focused on getting stuff done, and it enables **productive development** thanks to tight feedback loops and powerful constructs. Its strength is data processing and thus it shines most in web services and applications, data analysis and processing pipelines, and similar.
 
-Clojure enables **interactive programming** - you can connect a REPL to your application and develop it and interact with it from code while it is running. You cannot imagine the power and the insanely short feedback loop until you experience it. See the short screencast [Interactive programming Flappy Bird in ClojureScript](https://www.youtube.com/watch?v=KZjFVdU8VLI) for an idea.
+Clojure enables **interactive programming** - you can connect a REPL to your application and develop it and interact with it from code _while it is running_. You cannot imagine the power and the insanely short feedback loop until you experience it. See the short screencast [Interactive programming Flappy Bird in ClojureScript](https://www.youtube.com/watch?v=KZjFVdU8VLI) for an idea. Other languages also have REPL but Clojure was designed for evolving running applications in the REPL while managing state through these changes.
 
 It has performant **immutable data structures** that make many concurrency-related defects impossible.
 
@@ -19,12 +18,11 @@ It has a powerful **library of data transformation** functions that can be effec
 
 When necessary, you can use **macros** to remove duplication and fit the language to your problem.
 
-No matter whether you use Clojure core or a library, they use raw Clojure data - that you can access and transform through the core functions you know and love. No more learning a custom API for every library\! (Though you still need to learn and understand its data.)
+No matter whether you use Clojure core or a library, they use the ±4 generic Clojure data structures - that you can access and transform through the core functions you know and love. No more learning a custom API for every library\! (Though you still need to learn and understand its data.)
 
 It has also **[core.async](http://clojure.com/blog/2013/06/28/clojure-core-async-channels.html)** for asynchronous/reactive programming,  **[clojure.spec](https://clojure.org/about/spec)** to document, verify, use and test your data, and much more.
 
 Clojure has also an active and friendly community. You always get help in the official Slack organization, one of the mailing lists, and other places.
-
 
 ##### Nate Wildermuth: ClojureScript and the Blub Paradox
 
@@ -51,16 +49,17 @@ You can be very productive with Clojure, much more than e.g. in Java thanks to i
 
 So to really experience the productivity and pleasure of Clojure(Script), you need:
 
-1.  A tool to enable effective, productive (structural) editing of Clojure code, such as [Parinfer](https://shaunlebron.github.io/parinfer/)
+0. Learn and fully embrace [REPL-driven development](https://clojure.org/guides/repl/introduction) (and debugging). Don't underestimate this, it is a fundamental shift of how you develop. Most people struggle with this mind shift for a while.
+1.  A tool to enable effective, productive (structural) editing of Clojure code, such as [Parinfer](https://shaunlebron.github.io/parinfer/) (integrated in all popular Clojure editors)
 2.  A good editor with an integrated REPL so that you can evaluate your code and interact with your running application in a frictionless way. Cursive (paid for commercial use) and Emacs (powerful but very steep and long learning curve) are the most popular, but there are also special ones for beginners such as [Nightcode](https://sekao.net/nightcode/) and (simpler, web-based) [Lightmod](https://sekao.net/lightmod/). (Many editors have some Clojure support but the quality and depth and thus user experience vary a lot.)
 3.  ClojureScript: hot code reloading (which [Figwheel](https://github.com/bhauman/lein-figwheel) does perfectly)
 4.  Experience debugging errors - sadly you have to learn that though tools such as Ultra/Pretty (see below) and [Expound](https://github.com/bhb/expound) for Spec do help.
-5.  Not to hesitate to ask for help and advice at the Clojurians Slack community :-)
+5. Not to hesitate to ask for help and advice at the Clojurians Slack community :-)
+6. Understand Clojure philosophy and the Clojure way to approach and solve problems. Don't try to apply what you learned in OOP/..., that would hurt. Understand the core principles and their benefits and downsides.
 
 ### Resources for beginners
 
 Official sources
-
 
   - [Clojure.org](https://clojure.org/) and its [References](https://clojure.org/reference/reader) and [Guides](https://clojure.org/guides/getting_started).
     - The [Programming at the REPL](https://clojure.org/guides/repl/introduction) guide
@@ -100,6 +99,36 @@ Beginner-friendly tools
       - [Ultra](https://github.com/venantius/ultra) - a Leiningen (the primary Clojure build tool) plugin for an absolutely kick-ass development environment (i.e. REPL) - better stack-traces (via [Pretty](https://github.com/AvisoNovate/pretty)), human-friendly test output, colors, syntax-highlighting.
 
 The most popular tools for developing in Clojure(Script) are [Emacs with Cider](https://docs.cider.mx) and [IntelliJ with Cursive](https://cursive-ide.com/). But people also use [VS Code with Calva](https://marketplace.visualstudio.com/items?itemName=cospaia.clojure4vscode) (and [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)) and [Atom](https://atom.io/) with [Chlorine](https://atom.io/packages/chlorine)
+
+# REPL-driven development
+
+See the [official REPL development guide](https://clojure.org/guides/repl/introduction) and Eric Normand's [Repl-Driven Development in Clojure](https://purelyfunctional.tv/courses/repl-driven-development-in-clojure/) video course.
+
+### Avoiding inconsistent state
+
+While changing things, you can end up with old state/vars still being available though they are not in the code anymore. So you can f.ex. call a function that doesn't exist anymore. Restarting REPL to clear the environment isn't a good solution because it takes time. Alternatives:
+
+#### A. Unloading of changed namespaces
+
+See [Reloading Woes](https://lambdaisland.com/blog/2018-02-09-reloading-woes) (2/2018). You can use clojure.tools.namespace, namely its `unload` to completely forget everything about a namespace - though this will also reset all your state, if any, despite `defonce`.
+
+#### B. Careful coding practices and tests
+
+You can employ a few tricks (such as preceding each `(defmulti multi-fn ..)` with `(def multi-fn nil)`) and detect stale code / wrong order by continually running your code outside of the REPL, f.ex. by creating an (initially) empty test for each namespace and have a runner run it - thus loading your code - upon each change. Sean [Corfield described this approach in 4/2019](https://clojureverse.org/t/what-are-the-alternatives-to-using-remove-ns-to-clean-up-definitions/4121/19):
+
+> FWIW, I’ve never needed any sort of “refresh all” in my workflow. I have a REPL running with all the dependencies of our monorepo across a dozen or so subprojects, and it runs for days and days and days. I probably restart it once a week at most…
+>
+> [...]
+>
+> Yes, we use Component very heavily. No, we don’t use its reset function.
+>
+> No, I don’t run into problems with multimethods: you can use (def multi-fn nil) to remove a multimethod definition so it can be predictably redefined (putting that above your defmulti should be enough).
+>
+> No, I don’t run into problems with ordering in namespaces. I suspect that’s a combination of 8+ years of Clojure experience, being careful to check for first use of functions when I do move things around, and never typing directly into the REPL (I always eval code from a source file, so I use “Rich Comment Forms” for non-production/exploratory code in my source files).
+>
+> Also, we have a stub test namespace for every single source file so when we run clj -A:test:runner we get a failure if there’s an ordering problem – and we run our automated tests a lot, locally! We have a script that generates a stub test namespace for any source file that doesn’t already have one: it requires the source namespace and refers all symbols as a baseline for “can this source file be loaded” successfully.
+>
+> Perhaps another aspect of my workflow that helps with all this: whenever I change any code at all, I always eval the top-level form that it’s in – so the REPL always has the up-to-date version of my code. That’s just habit, but it’s also part of a good REPL-Driven Development workflow: make small changes and always test every change in the REPL as you go. That means that instead of making a slew of changes across multiple namespaces and hoping you got it all correct, you work from the bottom up, testing each changed file as you go.
 
 # Style and best practices
 
