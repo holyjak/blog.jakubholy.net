@@ -98,7 +98,12 @@ module.exports = (args, pluginOptions) => {
           }
           const markdownNode = getNode(contentPageNode.parent);
           // TODO excerptWpPost(html???, { moreOnly: true });
-          return excerpt.resolve(markdownNode, myArgs).then(v => v || "");
+          return excerpt.resolve(markdownNode, myArgs)
+            .then(v => v || "")
+            .catch(e => {
+              console.error("excerpt failed on ", markdownNode, e);
+              return "";
+            });
         }
       }
     };
