@@ -94,11 +94,11 @@ module.exports = (args, pluginOptions) => {
         },
         resolve(contentPageNode, myArgs) {
           if (contentPageNode.parentType === "Json") {
-            return excerptWpPost(contentPageNode.internal.content);
+            return excerptWpPost(contentPageNode.internal.content) || "";
           }
           const markdownNode = getNode(contentPageNode.parent);
           // TODO excerptWpPost(html???, { moreOnly: true });
-          return excerpt.resolve(markdownNode, myArgs);
+          return excerpt.resolve(markdownNode, myArgs).then(v => v || "");
         }
       }
     };
