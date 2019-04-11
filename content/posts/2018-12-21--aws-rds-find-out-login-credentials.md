@@ -9,6 +9,8 @@ you entered during DB creation and which you can change via the Console.
 
 To find out the master user name:
 
+<!--more-->
+
 ```shell
 aws rds describe-db-instances --output table --query 'DBInstances[*].DBInstanceIdentifier'
 ```
