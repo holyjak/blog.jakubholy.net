@@ -16,7 +16,7 @@ _Update 22/3_: Check out O. Caldwell's [Clojure socket prepl cookbook](https://o
 
 To start the prepl server from the command line (I normally need only the first one):
 
-```sh
+```bash
 clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}" \
     -J-Dclojure.server.node="{:port 5556 :accept cljs.server.node/prepl}" \
     -J-Dclojure.server.browser="{:port 5557 :accept cljs.server.browser/prepl}"
@@ -24,7 +24,7 @@ clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}" \
 
 Or from Clojure REPL:
 
-```clj
+```clojure
 (require '[clojure.core.server :as server])
 (server/start-server {:accept 'clojure.core.server/io-prepl
                         :address "127.0.0.1"
@@ -34,7 +34,7 @@ Or from Clojure REPL:
 
 ### Connect with the client
 
-```clj
+```clojure
 ;; shell$ clj
 user=> (require '[clojure.core.server :as server])
 user=> (server/remote-prepl "127.0.0.1" 5555 *in* println)
