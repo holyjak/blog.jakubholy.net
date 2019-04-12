@@ -6,6 +6,8 @@ tags: ["productivity", "experience"]
 
 "It will only take about an hour," I said to her. Two days later, a pull request awaits review. Where has all that time gone? What are the sources of delay in software development and how can we make it faster?
 
+<!--more-->
+
 (_Published originally at the [Telia Engineering blog](http://engineering.telia.no/blog/it-will-only-take-1h)_)
 
 ## Our story
