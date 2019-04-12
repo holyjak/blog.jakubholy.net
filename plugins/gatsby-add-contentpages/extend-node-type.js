@@ -101,7 +101,19 @@ module.exports = (args, pluginOptions) => {
           return excerpt.resolve(markdownNode, myArgs)
             .then(v => v || "")
             .catch(e => {
-              console.error("excerpt failed on ", markdownNode, e);
+              if (
+                e instanceof TypeError &&
+                e.message === "Cannot read property 'rest' of undefined"
+              ) {
+                // Likely PrismJS highlighting error due to unknown language, see e.g.
+                // https://github.com/PrismJS/prism/issues/1129
+                throw new Error(
+                  `Unknown Prismjs language name used in code in ${
+                    markdownNode.fileAbsolutePath
+                  } @ ${e.stack}`
+                );
+              }
+              console.error("excerpt failed with err", e, "on", markdownNode);
               return "";
             });
         }
