@@ -46,6 +46,9 @@ const Item = props => {
             )}
           </p>
           <section dangerouslySetInnerHTML={{ __html: excerpt }} />
+          <p className="readMore">
+            <u>(Click here to read the rest...)</u>
+          </p>
         </Link>
       </li>
 
@@ -137,6 +140,10 @@ const Item = props => {
           line-height: 1.5;
           padding: 0 ${theme.space.s};
           text-remove-gap: both;
+        }
+        p.readMore {
+          margin-top: 1em;
+          padding: 0;
         }
 
         @from-width tablet {
