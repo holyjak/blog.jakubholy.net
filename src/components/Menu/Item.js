@@ -30,6 +30,7 @@ const Item = props => {
 
           :global(a) {
             padding: ${theme.space.inset.s};
+            padding-left: 0;
             display: flex;
             align-items: center;
           }
