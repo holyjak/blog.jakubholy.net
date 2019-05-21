@@ -25,6 +25,18 @@ function descriptionWpPost(content, len = 300) {
   );
 }
 
+function escapeHtmlInDescription(s) {
+  // See https://github.com/janl/mustache.js/blob/v3.0.1/mustache.js#L84
+  return s.replace("<br>", " ").replace(
+    /[&"<>']/g,
+    c =>
+      ({
+        "<": "&lt;",
+        ">": "&gt;"
+      }[c])
+  );
+}
+
 module.exports = (args, pluginOptions) => {
   const { type, getNode } = args;
   if (type.name !== `ContentPage`) {
@@ -78,7 +90,8 @@ module.exports = (args, pluginOptions) => {
           }
           const markdownNode = getNode(contentPageNode.parent);
           return excerpt
-            .resolve(markdownNode, { pruneLength: 300 })
+            .resolve(markdownNode, { pruneLength: 300, type: ExcerptFormats.PLAIN })
+            .then(escapeHtmlInDescription)
             .then(e => e.replace(/\r?\n/g, " "));
         }
       },
