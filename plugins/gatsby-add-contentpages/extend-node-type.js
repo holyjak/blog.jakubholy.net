@@ -28,7 +28,7 @@ function descriptionWpPost(content, len = 300) {
 function escapeHtmlInDescription(s) {
   // See https://github.com/janl/mustache.js/blob/v3.0.1/mustache.js#L84
   return s.replace("<br>", " ").replace(
-    /[&"<>']/g,
+    /[<>]/g,
     c =>
       ({
         "<": "&lt;",
