@@ -139,6 +139,11 @@ You can employ a few tricks (such as preceding each `(defmulti multi-fn ..)` wit
 >
 > Perhaps another aspect of my workflow that helps with all this: whenever I change any code at all, I always eval the top-level form that it’s in – so the REPL always has the up-to-date version of my code. That’s just habit, but it’s also part of a good REPL-Driven Development workflow: make small changes and always test every change in the REPL as you go. That means that instead of making a slew of changes across multiple namespaces and hoping you got it all correct, you work from the bottom up, testing each changed file as you go.
 
+There are also a few built-in tools you can use to clean up some state:
+
+* [`ns-unmap`](https://clojuredocs.org/clojure.core/ns-unmap) - "Removes the mappings for the symbol from the namespace."
+* [`remove-ns`](https://clojuredocs.org/clojure.core/remove-ns) - "Removes the namespace named by the symbol. Use with caution." A "nuclear" option that I use sometimes. You might be unable to require it again with the same alias unless you `remove-ns` (and reload) also the current, requiring ns.
+
 # Style and best practices
 
 ### Core
