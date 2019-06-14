@@ -9,7 +9,7 @@ Content:
  * [For beginners](#for-beginners)
  * [REPL-driven development](#repl-driven-development)
  * [Style and best practices](#style-and-best-practices)
- * [Resources](#resources)
+ * [Resources](#resources) - learning, libs, etc.
  * [ClojureScript](#clojurescript)
 
 # Why Clojure(Script)?
@@ -158,9 +158,14 @@ There are also a few built-in tools you can use to clean up some state:
   - [Open Source Clojure Tasks and Projects](http://www.longstorm.org/weekly/cito/1/) - a weekly newsletter of suitable, learning-friendly tasks
   - [A list of Clojure projects which have tags that indicate novice Clojurists could contribute to them](https://github.com/marcuscreo/clojure-learning-resources) by Marcus Blankenship
 
+### Lib catalog
+
+  - [clojure-toolbox.com](http://www.clojure-toolbox.com/)
+  - [clojurewerkz.org](http://clojurewerkz.org/) - a collection of high-quality projects by ClojureWerkz
+
 ### Libs
 
-Convenience libraries - the missing "features" of clojure.core etc.
+#### Convenience libraries - the missing "features" of clojure.core etc.
 
   - [ztellman / potemkin](https://github.com/ztellman/potemkin/) - "*a collection of facades and workarounds for things that are more difficult than they should be*" - f.ex. *import-vars* so that we can expose a single namespace with everything to users while having the code split in multiple files, *def-map-type* so that we only need to implement the 4 essential functions, *def-derived-map* - as a view on another object, f.ex. JavaBean, *definterface+* - same syntax as defprotocol but creating an interface with its memory/performance benefits =\> easy to switch, *fast-memoize* and more
   - [cloojure/tupelo](https://github.com/cloojure/tupelo) (and [cloojure/tupelo-datomic](https://github.com/cloojure/tupelo-datomic)) - convenience features "missing" from clojure.core - e.g. the awesome (spy\[x\[x\]\]) for logging the expression \[+type\] going through a threading macro or a fn, ...)
@@ -170,9 +175,29 @@ Convenience libraries - the missing "features" of clojure.core etc.
   - [flatland/useful](https://github.com/flatland/useful)
   - [nathanmarz/specter](https://github.com/nathanmarz/specter) - querying and manipulation of complex, nested data structures made easy
 
-Web
+#### Web
 
   - [Sente - Clojure(Script) + core.async + WebSockets/Ajax](https://github.com/ptaoussanis/sente) - a tiny 600 LoC library for websockets (with fall-back to long-polling) communication between ClojureScript frontend and clojure backend, using EDN, support for request-reply and multiple user windows/tabs ([comparison with Chord](https://groups.google.com/forum/m/#!msg/clojure/5J4L8pbGwGU/O1RSsiKE_JUJ) (no non-WS fallback or req/resp))
+
+#### Other libs
+
+##### Testing
+
+  - [juxt iota](https://github.com/juxt/iota) - simplify running multiple checks on a (complex) data structure
+  - [specmonstah](https://github.com/reifyhealth/specmonstah) - use the power of clojure.spec to set up unit test fixtures, generating and manipulating deeply-nested, hierarchical graphs of business data
+
+##### Data
+
+  - [Typed Clojure](http://typedclojure.org/)
+  - [Prismatic Schema](https://github.com/Prismatic/schema)
+  - [structural-typing](https://github.com/marick/structural-typing/wiki) - runtime data checks similar to Schema, inspired by Elm. '*Tailored to "flow-style" programming, where complex structures flow through a series of functions, each of which makes a smallish change.*' Highlights: (1) Extra keys are to be preserved but not otherwise meddled with. (2) We want to check more then types (e.g. is a num in a range?)
+  - [Balagan, Clojure (Script) data transformation and querying library](https://github.com/clojurewerkz/balagan/blob/master/README.md) ClojureWerkz - this is something I’ve been looking for in quite a while. Ex.:
+
+        (b/select {:a {:b {:c 1}} ..} [:a :* :c] (fn [val path] ...))
+  - [DataScript](https://github.com/tonsky/datascript) - Immutable database and [Datalog](https://en.wikipedia.org/wiki/Datalog) query engine for Clojure, ClojureScript and JS
+  - [Specter](https://github.com/nathanmarz/specter) (Clj(s))- queries and transformations on complex/nested data structures made extremely concise and elegant
+  - [Use Datomic’s Datalog to query data structures](https://gist.github.com/stuarthalloway/2645453)
+  - [tupelo.forest](https://github.com/cloojure/tupelo/) - searching & manipulating tree-like data structures ([examples](https://github.com/cloojure/tupelo/blob/master/test/clj/tst/tupelo/forest_examples.clj))
 
 ### Development in general
 
@@ -192,26 +217,12 @@ ClojureScript
   - [weasel](https://github.com/tomjakubowski/weasel) - WebSocket-connected REPL environment for ClojureScript - especially useful if the standard REPL doesn't work because the page does not allow for iframes and/or does not use http://
   - [clj-devtools](https://github.com/binaryage/cljs-devtools/blob/master/readme.md) - Better presentation of ClojureScript values in Chrome DevTools
 
-Testing
-
-  - [juxt iota](https://github.com/juxt/iota) - simplify running multiple checks on a (complex) data structure
-
-Data
-
-  - [Typed Clojure](http://typedclojure.org/)
-  - [Prismatic Schema](https://github.com/Prismatic/schema)
-  - [structural-typing](https://github.com/marick/structural-typing/wiki) - runtime data checks similar to Schema, inspired by Elm. '*Tailored to "flow-style" programming, where complex structures flow through a series of functions, each of which makes a smallish change.*' Highlights: (1) Extra keys are to be preserved but not otherwise meddled with. (2) We want to check more then types (e.g. is a num in a range?)
-  - [Balagan, Clojure (Script) data transformation and querying library](https://github.com/clojurewerkz/balagan/blob/master/README.md) ClojureWerkz - this is something I’ve been looking for in quite a while. Ex.:
-
-        (b/select {:a {:b {:c 1}} ..} [:a :* :c] (fn [val path] ...))
-  - [DataScript](https://github.com/tonsky/datascript) - Immutable database and [Datalog](https://en.wikipedia.org/wiki/Datalog) query engine for Clojure, ClojureScript and JS
-  - [Specter](https://github.com/nathanmarz/specter) (Clj(s))- queries and transformations on complex/nested data structures made extremely concise and elegant
-  - [Use Datomic’s Datalog to query data structures](https://gist.github.com/stuarthalloway/2645453)
-
-Utilities
+Debugging and troubleshooting
 
   - [clojure/tools.trace](https://github.com/clojure/tools.trace) - trace calls, f.ex. run *(trace-ns my.ns)* to print call with params and return value of each function
   - [Schmetterling - Debug running clojure processes](https://github.com/marick/structural-typing) from the browser\! - upon an exception, the process will pause and S. will show the stack, which you can navigate and see locals and run code in the context of any stack frame; you can also trigger it from your code. It can be used nicely also in pre/post-conditions.
+  - [miracle.save](https://github.com/Saikyun/miracle.save) - automatically save arguments and return values of selected functions / all in a ns.
+  - [scope-capture](https://github.com/vvvvalvalval/scope-capture) - help you save and restore the local environment of a piece of code with minimal effort. (Wrap an expression in `spy` to save, fns to restore into `def`s or a `let`; `brk`-point to pause the execution.)
 
 Lein
 
@@ -219,11 +230,6 @@ Lein
   - [lein-try](https://github.com/rkneufeld/lein-try) - start a REPL with various dependencies without needing a project. Great for exploring new libraries\!
   - [Eastwood](https://github.com/jonase/eastwood) - a lint tool for Clojure.
   - [lein-shorthand](https://github.com/palletops/lein-shorthand) - a plugin to make useful functions (such as pprint, source) accessible in any namespace by copying them into a new namespace . so you can invoke (./pprint ...).
-
-### Lib catalog
-
-  - [clojure-toolbox.com](http://www.clojure-toolbox.com/)
-  - [clojurewerkz.org](http://clojurewerkz.org/)
 
 ### From Clojure to Java
 
