@@ -4,13 +4,13 @@ title: About
 
 **Subpages: [No CV](/about/nocv/) | [My competency matrix](/about/my-competency-matrix/) | [How I learn](/about/how-i-learn/) | [Contact](/contact/)**
 
-<img style="margin:5px; float: left;" src="https://lh5.googleusercontent.com/-MWInauot6bc/Tlp7fibsn7I/AAAAAAAACK0/p9hAB-x7XJo/s800/foto-jakub-at-iterate.jpg" alt="Me in 2011" />I'm a full stack Clojure(Script) developer coming originally from the JVM/JS land, coding professionally since 2005. Currently I am working with [Telia Norway](https://www.telia.no/), in Oslo, Norway. Until 2015 I was a member of the great [Iterate AS]("https://www.iterate.no/") family and for a couple of years before that I had also the pleasure to work with IBM Austria and [IBA CZ]("http://www.ibacz.eu/-English-"). During the years I've worked on large and long-term international projects as well as small local ones and both on new and maintenance projects in various positions.
+<img style="margin:5px; float: left;" src="https://lh5.googleusercontent.com/-MWInauot6bc/Tlp7fibsn7I/AAAAAAAACK0/p9hAB-x7XJo/s800/foto-jakub-at-iterate.jpg" alt="Me in 2011" />I'm a full stack Clojure(Script) developer coming originally from the JVM/JS land, coding professionally since 2005. During the years I have worked on projects large and small, long and short, local and international - and I have been scarred by too much legacy code. I care deeply about productivity (and thus Clojure and DevOps) and quality and enjoy sharing my discoveries on my blog. I come from the Czech Republic but live currently in Norway.
 
 I enjoy working with people, sharing knowledge, being creative and exploring new stuff. I don't like tedious, repetitive work (though it really is sometimes necessary) and am thus a big fan of automation and tools that can take it over. Having maintained a lot of old code, I really appreciate high-quality, well-written code and good and automated unit tests. I am especially interested in developer productivity, DevOps, testing, and performance.
 
 I'm also very fond of the lean thinking and agile principles, especially feedback-based development, focus on creating true value ASAP, and respect for people. I am fascinated by post-taylorist organizations that value autonomy and human needs over command & control, such as Zappos. The longer I work in IT, the more I see software development as a human, not a technical problem.
 
-A while ago I fell in love with Clojure[Script] and functional programming and the productivity it offers. I've summarized crucial aspects of my approach to development in [Frustration-Driven Development – Towards DevOps, Lean, Clojure]("http://theholyjava.wordpress.com/2014/03/17/frustration-driven-development-towards-devops-lean-clojure/").
+A while ago I fell in love with Clojure[Script] and functional programming and the productivity it offers. I've summarized crucial aspects of my approach to development in [Frustration-Driven Development – Towards DevOps, Lean, Clojure]("/2014/03/17/frustration-driven-development-towards-devops-lean-clojure/").
 
 You can learn more at my [LinkedIn profile]("http://cz.linkedin.com/in/jakubholydotnet").
 
