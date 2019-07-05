@@ -9,7 +9,7 @@ const Article = props => {
       <article className="article">{children}</article>
 
       {/* --- STYLES --- */}
-      <style global>{`
+      <style global="true">{`
         aside {
           margin-bottom: 1.5em;
         }
