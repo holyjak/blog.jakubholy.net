@@ -3,10 +3,11 @@ title: "Clojure"
 ---
 Clojure-related resources and notes.
 
+New to Clojure? Check [Clojure for beginners](/clojure-for-beginners) first!
+
 Content:
 
  * [Why Clojure(Script)?](#why-clojurescript)
- * [For beginners](#for-beginners)
  * [REPL-driven development](#repl-driven-development)
  * [Style and best practices](#style-and-best-practices)
  * [Resources](#resources) - learning, libs, etc.
@@ -45,69 +46,6 @@ Clojure has also an active and friendly community. You always get help in the of
 > ClojureScript, like JavaScript, doesn't come with pattern matching. This would be a problem, except that ClojureScript comes with something better: macros.
 >
 > Some languages run close to the "metal" — \[…\]. Other languages take the opposite approach, running close to the "human metal" — our minds. The closer that a language can express (or in the case of macros, be modified to express) human thoughts, the closer we get to a program that we can understand natively. We no longer need to change our thoughts to fit the language. Instead, we change our language to fit the thoughts.
-
-# For beginners
-
-### Note: How to become truly productive in Clojure
-
-You can be very productive with Clojure, much more than e.g. in Java thanks to its interactive development, simplicity, and powerful tools such as macros. However there are some preconditions, as Eric Normand writes in [PurelyFunctional.tv Newsletter 266](https://purelyfunctional.tv/issues/purelyfunctional-tv-newsletter-266-beginner-experience/):
-
-> When you don't have the stuff above (paren\[these\] management, integrated REPL, hot code reloading, and experience debugging the errors), the \[development\] cycle can be much slower than the descendants of punchcard languages.
-
-(Fortunately the community is working on providing better beginner user experience, better tools, and better error reporting to alleviate these.)
-
-So to really experience the productivity and pleasure of Clojure(Script), you need:
-
-0. Learn and fully embrace [REPL-driven development](https://clojure.org/guides/repl/introduction) (and debugging). Don't underestimate this, it is a fundamental shift of how you develop. Most people struggle with this mind shift for a while.
-1.  A tool to enable effective, productive (structural) editing of Clojure code, such as [Parinfer](https://shaunlebron.github.io/parinfer/) (integrated in all popular Clojure editors)
-2.  A good editor with an integrated REPL so that you can evaluate your code and interact with your running application in a frictionless way. Cursive (paid for commercial use) and Emacs (powerful but very steep and long learning curve) are the most popular, but there are also special ones for beginners such as [Nightcode](https://sekao.net/nightcode/) and (simpler, web-based) [Lightmod](https://sekao.net/lightmod/). (Many editors have some Clojure support but the quality and depth and thus user experience vary a lot.)
-3.  ClojureScript: hot code reloading (which [Figwheel](https://github.com/bhauman/lein-figwheel) does perfectly)
-4.  Experience debugging errors - sadly you have to learn that though tools such as Ultra/Pretty (see below) and [Expound](https://github.com/bhb/expound) for Spec do help. [Pyro](https://github.com/venantius/pyro) also looks great.
-5. Not to hesitate to ask for help and advice at the Clojurians Slack community :-)
-6. Understand Clojure philosophy and the Clojure way to approach and solve problems. Don't try to apply what you learned in OOP/..., that would hurt. Understand the core principles and their benefits and downsides.
-
-### Resources for beginners
-
-Official sources
-
-  - [Clojure.org](https://clojure.org/) and its [References](https://clojure.org/reference/reader) and [Guides](https://clojure.org/guides/getting_started).
-    - The [Programming at the REPL](https://clojure.org/guides/repl/introduction) guide
-  - [ClojureScript.org](https://clojurescript.org/) and its [References](https://clojurescript.org/reference/documentation) and [Guides](https://clojurescript.org/guides/quick-start).
-
-Help & learning
-
-  - [Clojure Cheatsheet](http://jafingerhut.github.io/cheatsheet/grimoire/cheatsheet-tiptip-cdocs-summary.html) and [ClojureScript Cheatsheet](http://cljs.info/cheatsheet/)
-  - [ClojureDocs](https://clojuredocs.org/) - function documentation with examples
-  - [Grimoire](https://www.conj.io/) - another, newer function documentation site with examples
-  - [4clojure](http://www.4clojure.com/) - learn Clojure by solving small task and comparing your solution with others
-  - [Maria: learn Clojure with Shapes](https://www.maria.cloud/intro) - a cool, beginner-friendly ClojureScript notebook-style editor with a built-in introduction to Clojure(Script) using graphical programming
-  - On-line books
-      - [Clojure for the Brave and True](https://www.braveclojure.com/)
-
-Community, advice, fora
-
-  - [Clojurians](http://clojurians.net/) - the official Slack organization with channels for Clojure, ClojureScript, and most popular libraries and topics. Leading developers and authors often answer questions.
-  - [Clojure](https://groups.google.com/forum/#!forum/clojure) and [ClojureScript Google Groups](https://groups.google.com/forum/#!forum/clojurescript) - for advice, announcements, keeping informed
-  - [Clojureverse](https://clojureverse.org/) - friendly discussion fora
-  - Newsletters to keep updated about the latest development, useful libraries, etc.
-      - [The REPL](https://therepl.net/) by Daniel Compton ([older issues](https://us7.campaign-archive.com/home/?u=fef380870c4a5633a21f55d8e&id=b5272e542b))
-      - [PurelyFunctional.tv Newsletter](https://purelyfunctional.tv/newsletter/) by Eric Normand ([older issues](https://purelyfunctional.tv/newsletter-archives/))
-  - Podcasts
-      - [Cognicast](http://blog.cognitect.com/cognicast/) by Cognitect, the company behind Clojure - interviews with interesting people
-      - [defn](https://defn.audio/) - "A loud, irreverent podcast discussing the delights of Clojure, ClojureScript with leaders and folks of the Community"
-
-### Editors and IDEs
-
-Beginner-friendly tools
-
-  - Beginner-friendly all-in-one IDE: [Nightcode](https://sekao.net/nightcode/) and (simpler, web-based) [Lightmod](https://sekao.net/lightmod/)
-  - [Luminus](http://www.luminusweb.net/) - web "framework," i.e. a curated and integrated set of libraries for web (backend and frontend) development in Clojure(Script) (developer tools, logging, security etc). So that you don't need to assemble your own.
-  - Editing code
-      - [Parinfer](https://shaunlebron.github.io/parinfer/) - provides for efficient and simple structural editing of Clojure/Lisp code using just Tab (compared to the older Paredit with its numerous key-bindings). A must-have for efficient and productive experience with any Lisp.
-  - Building and running code
-      - [Ultra](https://github.com/venantius/ultra) - a Leiningen (the primary Clojure build tool) plugin for an absolutely kick-ass development environment (i.e. REPL) - better stack-traces (via [Pretty](https://github.com/AvisoNovate/pretty)), human-friendly test output, colors, syntax-highlighting.
-
-The most popular tools for developing in Clojure(Script) are [Emacs with Cider](https://docs.cider.mx) and [IntelliJ with Cursive](https://cursive-ide.com/). But people also use [VS Code with Calva](https://marketplace.visualstudio.com/items?itemName=cospaia.clojure4vscode) (and [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)) and [Atom](https://atom.io/) with [Chlorine](https://atom.io/packages/chlorine)
 
 # REPL-driven development
 
