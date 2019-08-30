@@ -90,6 +90,10 @@ There are also a few built-in tools you can use to clean up some state:
 
 # Resources
 
+### Community
+
+ - [Clojurists Together](https://www.clojuriststogether.org/) - help to fund key projects via C.T. grants or by [directly supporting selected projects](https://www.clojuriststogether.org/beyond/).
+
 ### Learning
 
   - [Tetris in ClojureScript](http://shaunlebron.github.io/t3tr0s-slides/) ([GitHub](https://github.com/shaunlebron/t3tr0s-slides); 2014+) - reportedly a great, interactive intro to the langs
@@ -112,6 +116,9 @@ There are also a few built-in tools you can use to clean up some state:
   - [weavejester/medley](https://github.com/weavejester/medley) - *A lightweight library of useful Clojure(Script) functions (a tighter focus than useful and plumbing, and limits itself to a small set of general-purpose functions.)*
   - [flatland/useful](https://github.com/flatland/useful)
   - [nathanmarz/specter](https://github.com/nathanmarz/specter) - querying and manipulation of complex, nested data structures made easy
+  - parallelism:
+    - [claypoole](https://github.com/TheClimateCorporation/claypoole) - variants of `future/pmap/for` backed by _configurable_ threadpool(s) (Clojure uses a fixed-size threadpool shared by all, `core.async` is an overkill, reducers are not configurable)
+    - [tesser](https://github.com/aphyr/tesser) - "_Clojure reducers, but for parallel execution: locally and on distributed systems [hadoop]._" Also has parallelized math/statistical aggregations.
 
 #### Web
 
