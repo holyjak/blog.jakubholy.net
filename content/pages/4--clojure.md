@@ -144,6 +144,10 @@ There are also a few built-in tools you can use to clean up some state:
   - [Use Datomic’s Datalog to query data structures](https://gist.github.com/stuarthalloway/2645453)
   - [tupelo.forest](https://github.com/cloojure/tupelo/) - searching & manipulating tree-like data structures ([examples](https://github.com/cloojure/tupelo/blob/master/test/clj/tst/tupelo/forest_examples.clj))
 
+Interop
+
+ - [bean-dip](https://github.com/uwcpdx/bean-dip) - Bidirectional translation between Clojure maps and Java beans that's declarative and reflection-free (contrary to clojure.core/bean, java.data, gavagi - see the README for a comparison)
+
 ### Development in general
 
 Essential
