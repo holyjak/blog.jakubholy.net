@@ -12,7 +12,7 @@ Common mistakes made by Clojure beginners and style recommendations.
 
 ### Naming
 
-1. Use snake-case-names, not camelCase or something else.
+1. Use kebab-case-names, not camelCase or something else (unless you have some interop reasons)
 2. End predicates with `?`, i.e. ~`isAlien`~ -> `alien?`
 3. Don't add unnecessary prefixes to function names, such as `get-` (this comes likely from the Java Bean standard and has no place here) or `compute-` (most functions compute something!). Use `digits` for fn that turns a number into a sequence of digits, `armstrong-num` for  fn that computes the [Armstrong Number](https://en.wikipedia.org/wiki/Narcissistic_number), and `armstrong?` for fn that tells you whether a number is an Armstrong number.
 
@@ -41,7 +41,7 @@ See [Stuart’s Opinionated Style Guide for Clojure Namespace Declarations](http
 
 ##### Use `let` instead of `def` for local state
 
-`def` & friends should only ever be used as a top level form (barring few exceptions such as `comment` and troubleshooting during REPL-driven development). Even if you use them inside a function, they still create globally visible Vars. Use `let` for local state inside a function.
+`def`, `defn` etc. should only ever be used as a top level form (barring few exceptions such as `comment` and troubleshooting during REPL-driven development). Even if you use them inside a function, they still create globally visible Vars. Use `let` for local state inside a function.
 
 ## Functions
 
