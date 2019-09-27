@@ -35,7 +35,12 @@ const gatsbyTransformerRemarkPluginConfig = {
   options: {
     excerpt_separator: `<!--more-->`,
     plugins: [
-      "gatsby-remark-autolink-headers",
+      {
+        resolve: `gatsby-remark-autolink-headers`,
+        options: {
+          offsetY: `50` // see theme.header.height.default in theme.yaml
+        }
+      },
       `gatsby-plugin-sharp`,
       {
         resolve: `gatsby-remark-images`,
