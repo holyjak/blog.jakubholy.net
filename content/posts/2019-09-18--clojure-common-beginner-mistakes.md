@@ -14,7 +14,7 @@ Common mistakes made by Clojure beginners and style recommendations.
 
 1. Use kebab-case-names, not camelCase or something else (unless you have some interop reasons)
 2. End predicates with `?`, i.e. ~`isAlien`~ -> `alien?`
-3. Don't add unnecessary prefixes to function names, such as `get-` (this comes likely from the Java Bean standard and has no place here) or `compute-` (most functions compute something!). Use `digits` for fn that turns a number into a sequence of digits, `armstrong-num` for  fn that computes the [Armstrong Number](https://en.wikipedia.org/wiki/Narcissistic_number), and `armstrong?` for fn that tells you whether a number is an Armstrong number.
+3. Don't add unnecessary prefixes to function names, such as `get-` (this comes likely from the Java Bean standard and has no place here) or `compute-` (most functions compute something!). Use `digits` for fn that turns a number into a sequence of digits, `armstrong-num` for  fn that computes the [Armstrong Number](https://en.wikipedia.org/wiki/Narcissistic_number), and `armstrong?` for fn that tells you whether a number is an Armstrong number. See also Stuart Sierra's great [How to Name Clojure Functions](https://stuartsierra.com/2016/01/09/how-to-name-clojure-functions).
 
 ### From the unofficial Clojure style guide
 
