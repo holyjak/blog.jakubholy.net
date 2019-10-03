@@ -6,18 +6,20 @@ tags: [clojure, testing, experience]
 
 Having the computer generate tests for you, trying tens of devious inputs you would never have thought of, is awesome. There is however far less experience with and knowledge of generative (a.k.a property-based) testing so I would like to share what we have learned and what worked for us when testing an important data transformation pipeline. We mostly leveraged our existing [Clojure Spec](https://clojure.org/guides/spec) data specifications to generate the tests, while regularly reaching down to [clojure.test.check](https://clojure.org/guides/test_check_beginner) to create custom generators and for low-level control.
 
+<!--more-->
+
 (If you are new to generative testing, the ["Learn more" section of How generating test data saved us from angry customers and legal trouble](/how-generating-test-data-saved-us#learn-more) points to a few great texts and talks. You should also check out the [Instrumentation and Testing in the Spec guide](https://clojure.org/guides/spec#_instrumentation_and_testing).)
 
 (For the time-deprived: [read the summary](#summary) first :-).)
 
 ## Introducing the problem
 
-The code we needed to test processes company invoices for mobile phone usage and generates a summary and paid-by-user x paid-by-company for each phone number.
+The code we needed to test processes company invoices for mobile phone usage and generates a summary and paid-by-user vs. paid-by-company for each phone number.
 
 For the interested, the core of the computation is below (feel free to skip it).
 
 ```clojure
-(ds/defn compute-org-usage* :- ::kd/subscrs+profile-usages
+(ds/defn compute-org-usage :- ::kd/subscrs+profile-usages
   "Turn company invoices into a summary of each subscriber's usage in defined categories"
   [logger
    org :- :compute-org-usage/org
@@ -61,10 +63,9 @@ For example `apply-profile-compute-totals` is responsible for summing up person'
 * The correct profile has been applied
 * Sum of input usage charges = sum of output charges across all categories = the total computed for that user
 
-The last property simplifies the input and output data (by adding them up and by not caring about individual categories while doing so) and then verifies that an important invariant holds (in this case, the amount of money coming in and out is the same). This is something we have used a lot as writing checks at a lower level would essentially require replicating the business logic in the test. But it doesn't guarantee that the charges have been properly assigned to their respective categories and the correct relationship between charges, limits, and how much should be paid by the user vs. the company. Therefore we have also example-based tests for selected cases that check all the amounts (usage-over-limit, usage both including and excluding VAT, total-usage) in every category (this is, by the way, are most extensive example-based test; you don't need to understand anything beyond the fact that we check very concrete cases and individual data):
+The last property simplifies the input and output data (by adding them up and by not caring about individual categories while doing so) and then verifies that an important invariant holds (in this case, the amount of money coming in and out is the same). This is something we have used a lot as writing checks at a lower level would essentially require replicating the business logic in the test. But it doesn't guarantee that the charges have been properly assigned to their respective categories and the correct relationship between charges, limits, and how much should be paid by the user vs. the company. Therefore we have also example-based tests for selected cases that check all the amounts (usage-over-limit, usage both including and excluding VAT, total-usage) in every category, as you can see below (you don't need to understand anything beyond the fact that we check very concrete cases and individual data; BTW this is the most extensive example-based test in our codebase):
 
-* Basic profile where deductible-min is 0 and all limits are 0 (i.e. user company pays nothing)
-* Basic profile where usage over limit < deductible-minimum-inc-vat and thus nothing should be deducted
+* Basic profile where deductible-min is 0 and all limits are 0 (i.e. the company pays nothing)
 * Basic profile where all limits are "unlimited" and thus usage-over-limit should be 0
 * Basic profile with deactivated leasing and thus the leasing category shouldn't be there
 * Usage over limit is only charged if greater than the deductible-minimum
@@ -150,7 +151,7 @@ to derive one input from the other). Example:
       (fn same-charge-sum-and-totals-relevant-cats? [in] ...)}
 ```
 
-because it makes both failures and the indent of the predicate easier to understand.
+because it makes both failures and the intent of the predicate easier to understand.
 
 If a predicate function fails, the inputs are included in the error message as `:args` and `:ret` under `(-> check-result first :clojure.spec.test.check/ret :shrunk :result-data :clojure.test.check.properties/error :data :clojure.spec.test.alpha/val)`. Alternatively, just use `def` inside the failing predicate function to capture the inputs.
 
@@ -190,8 +191,8 @@ Here is our setup code and `check` enhanced with failure capturing and presentat
 
 ```clojure
 ;; Ensure we don't print too large data in the REPL
-(alter-var-root #'*print-level* (constantly 8))   ; max dept in a nested data structure, replaces 4th level items with `#`
-(alter-var-root #'*print-length* (constantly 10)) ; max # elements in a collection
+(alter-var-root #'*print-level* (constantly 8))
+(alter-var-root #'*print-length* (constantly 10))
 
 (defn check "Use in deftest with (is (true? (check ...)))"
   [sym opts]
@@ -238,9 +239,12 @@ Similarly, you can limit the size of the generated data, primarily the length of
 
 ### Troubleshooting and tuning performance
 
-Another reason for slowness is that generating test data that is valid may take time - and fail. The way this works is that there are base generators and ways to combine them and - most importantly here - ways to limit them. For example you want a string - but one that has 5 - 10 characters and contains only consonants. Test.check will generate a number of completely random strings and filter out those that do not satisfy these conditions (via its `such-that`). In this case it is likely to fail to generate any/many valid strings. You are better of providing a custom generator that only generates valid data (e.g. select randomly from the set of consonants -> take randomly 5-10).
+Another reason for slowness is that generating test data that is valid may take time - and fail. The way this works is that there are base generators and ways to combine them and - most importantly here - ways to limit them. For example you want a string - but one that has 5 - 10 characters and contains only consonants. Test.check will generate a number of completely random strings and filter out those that do not satisfy these conditions (via its `such-that`). In this case it is likely to fail to generate any/many valid strings. Here is an example of such a failure:
 
-So the solution is to provide a custom generator. However the problem - in my experience - is finding the spec that is causing the problem. Even if test-check fails to generate valid data, the error (as of now) does not contain any details useful in pinpointing the problematic spec (I have opened an issue about this). And if it doesn't fail, you just see that _something_ is slow. Even a small, innocent-looking change to a spec may occasionally result in a noticeable slowdown. I wish I had a good troubleshooting recipe but I don't. What worked for me to some extent is the classical divide-and-conquer approach: ask `sg/sample` to generate many samples (remember - the more _different_ samples, the harder it has to work and the more likely is it to run into unsatisfiable `such-that` constraints) and, when I get a failure, repeat the process on the sub-specs of the failed spec (i.e. individual keys of an `s/keys` spec....) to see which one is causing it. I wish generators were linked to the specs and there was a way to enable time tracking that would give you a list of the slowest generators (per invocation / in total)....
+> ExceptionInfo: Couldn't satisfy such-that predicate after 100 tries. {:pred #object[clojure.spec.alpha$gensub$fn__1876 0x3a0dfc51 "clojure.spec.alpha$gensub$fn__1876@3a0dfc51"], :gen #clojure.test.check.generators.Generator{:gen #object[clojure.test.check.generators$gen_fmap$fn__14242 0x2ef1f55e "clojure.test.check.generators$gen_fmap$fn__14242@2ef1f55e"]}, :max-tries 100}
+> (As you can see, it is quite useless, as it does not point to the failed spec.)
+
+You are better off providing a custom generator that only generates valid data (e.g. select randomly from the set of consonants -> take randomly 5-10). However the problem - in my experience - is finding the spec that is causing the problem. Even if test-check fails to generate valid data, the error (as of now) does not contain any details useful in pinpointing the problematic spec (see [CLJ-2097](https://clojure.atlassian.net/browse/CLJ-2097) and [a workaround](https://gist.github.com/holyjak/8cadc0d939c8e637ef6bf75b070d28b4)). And if it doesn't fail, you just see that _something_ is slow. Even a small, innocent-looking change to a spec may occasionally result in a noticeable slowdown. I wish I had a good troubleshooting recipe but I don't. What worked for me to some extent is the classical divide-and-conquer approach: ask `sg/sample` to generate many samples (remember - the more _different_ samples, the harder it has to work and the more likely is it to run into unsatisfiable `such-that` constraints) and, when I get a failure, repeat the process on the sub-specs of the failed spec (i.e. individual keys of an `s/keys` spec....) to see which one is causing it. I wish generators were linked to the specs and there was a way to enable time tracking that would give you a list of the slowest generators (per invocation / in total)....
 
 ### Enable spec checking also for functions used by the function under test
 
@@ -253,11 +257,11 @@ So the solution is to provide a custom generator. However the problem - in my ex
 
 #### Consider using respeced to check also the `:ret` specs
 
-Contrary to `st/check`, `st/instrument` will only check that functions inputs match the specs, it will not check the outputs. If you want that, use (respeced)[https://github.com/borkdude/respeced].
+Contrary to `st/check`, `st/instrument` will only check that functions inputs match the specs, it will not check the outputs. If you want that, use [respeced](https://github.com/borkdude/respeced).
 
 ## Summary
 
-Generative testing is very useful and powerful but you need to know how to keep its performance under control and how to interpret failures. Some of the things it helped us discover were holes in our spec (forgetting about the possibility of a `nil` input, ...), that computations with doubles are not exact and we should use `decimal` instead, many small and bigger bugs. The things we struggled most with was pinpointing the source a failure, speed, coming up with good, simple, yet valuable "properties" to check. These are our lessons learned:
+Generative testing is very useful and powerful but you need to know how to keep its performance under control and how to interpret failures. Some of the things it helped us discover were holes in our spec (forgetting about the possibility of a `nil` input, ...), that computations with doubles are not exact and we should use `decimal` instead, many small and bigger bugs. The things we struggled most with were pinpointing the source a failure, speed, coming up with good, simple, yet valuable "properties" to check. These are our lessons learned:
 
 * Combine example-based and generative tests
 * Combine different "unit" sizes

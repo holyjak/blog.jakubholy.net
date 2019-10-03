@@ -93,7 +93,14 @@ individual arguments in the flood of the text. Ex.:
 
 ##### Overusing "private"
 
-If you come from Java, you are used to making everything private. In Clojure we  use `defn-` and `^private` sometimes but much less than in Java. Clojure targets trustworthy developers and allows them to shoot themselves into their foot if they really want to. Think about who do you want to protect from what with the privacy setting and whether it is necessary - especially if the function is essentially generic data transformation function. It is common to keep  functions that are implementation details subject to change at any time and without notice into a separate `*.impl.*` namespace to mark them clearly as such and keep them public.
+If you come from Java, you are used to making everything private. In Clojure we  use `defn-` and `^private` sometimes but much less than in Java. Clojure targets trustworthy developers and allows them to shoot themselves into their foot if they really want to. Think about who do you want to protect from what with the privacy setting and whether it is necessary - especially if the function is essentially generic data transformation function. It is common to keep  functions that are implementation details subject to change at any time and without notice into a separate `*.impl.*`/`,internal.*` namespace to mark them clearly as such and keep them public.
+
+From [Clojure Applied - The Pragmatic Programmer](http://media.pragprog.com/titles/vmclojeco/components.pdf):
+
+> Public vs. Private Functions
+> Clojure is biased toward making data and functions available by default. However, most namespaces have functions that are used as helpers or never intended to be part of the public usage. When you’re defining the functions in a namespace, consider how a consumer will perceive those functions and is expected to use it. Some tools and conventions are private vars, documentation strings, and the namespace structure itself.
+> [..]
+> You may find any or all of these techniques useful in indicating to users of your own code where to start
 
 ## Additional resources
 
