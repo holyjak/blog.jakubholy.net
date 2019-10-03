@@ -8,7 +8,7 @@ Having the computer generate tests for you, trying tens of devious inputs you wo
 
 <!--more-->
 
-(If you are new to generative testing, the ["Learn more" section of How generating test data saved us from angry customers and legal trouble](/how-generating-test-data-saved-us#learn-more) points to a few great texts and talks. You should also check out the [Instrumentation and Testing in the Spec guide](https://clojure.org/guides/spec#_instrumentation_and_testing).)
+(If you are new to generative testing, the ["Learn more" section of How generating test data saved us from angry customers and legal trouble](/how-generating-test-data-saved-us#learn-more) points to a few great texts and talks. You should also check out the [Instrumentation and Testing in the Spec guide](https://clojure.org/guides/spec#_instrumentation_and_testing). Eric Normand's in-depth course [Property-Based Testing with test.check](https://purelyfunctional.tv/courses/property-based-testing-with-test-check/) could also be interesting.)
 
 (For the time-deprived: [read the summary](#summary) first :-).)
 
