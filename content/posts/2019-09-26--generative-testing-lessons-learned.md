@@ -182,9 +182,10 @@ Here are some useful subsets of the captured Spec error:
 (-> @last-error :failure ex-data :clojure.spec.alpha/problems first (select-keys [:path :val :pred]))
 ;; (sometimes) the fn whose spec failed
 (-> @last-error :failure ex-data :clojure.spec.alpha/fn)
-;; (sometimes) the args of the fn whose spec failed
-(-> @last-error :failure ex-data :clojure.spec.alpha/args pprint)
-;; also: :clojure.spec.alpha/value - the failed value
+;; (sometimes) the args of the fn whose spec failed:
+(-> @last-error :failure ex-data :clojure.spec.test.alpha/args)
+;; the failed value (for :fn spec this is a map with :args, :ret):
+(-> @last-error :failure ex-data :clojure.spec.alpha/value)
 ```
 
 Here is our setup code and `check` enhanced with failure capturing and presentation:
