@@ -6,6 +6,8 @@ tags: [clojure, java, design, clojure-vs-java]
 
 As a Clojure developer thrown into an "enterprise" Java/Spring/Groovy application, I have a unique opportunity to experience and think about the differences between functional (FP) and object-oriented programming (OOP) and approach to design. Today I want to compare how the solution would differ for a small subsystem responsible for checking for and progressing the process of fixing data discrepancies. The main question we will explore will be where do we deal with external effects, i.e. I/O.
 
+(_We are going to explore here an application of the Functional Core, Imperative Shell architecture. You can learn more about it in the [Related resources](#related-resources-about-design-in-clojure) section._)
+
 <!--more-->
 
 (_Published originally at the [Telia Engineering blog](https://engineering.telia.no/blog/design-in-java-vs-fp)._)
@@ -77,6 +79,8 @@ We could do the same as in Java but it feels wrong to have a function producing 
 2. Similarly yet differently, provide the function with a lazy datastructure that only fetches the data when it is actually accessed (e.g. via [`delay`](https://conj.io/store/v0/org.clojure/clojure/latest/clj/clojure.core/delay/)). Thus the effect happens in the function but is transparent to it, it doesn't know or care whether the data already was there or not or how it was produced.
 3. Follow more of Redux/re-frame, making the process multi-pass: when the function is invoked and lacks some data, it will produce an effect asking for it (for example `{:db/find {:table "xyz" :id 123}}`); the "framework" will process it and re-invoke it when the data becomes available.
 4. (Thanks, Erik!) Split the logic into multiple steps based on the extra inputs needed, retrieving the data and applying the step logic (or not) based on the outcome of the previous step(s).
+
+What we are doing here is the Functional Core, Imperative Shell architecture. Read on to learn more about it.
 
 #### The core decision function
 
