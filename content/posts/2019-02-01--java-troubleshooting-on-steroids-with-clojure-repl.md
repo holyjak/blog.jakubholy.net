@@ -10,7 +10,7 @@ We have a Java/Groovy Spring Boot webapp, mainly running a bunch of batch jobs f
 
 First an example. Imagine that the logs tell you that a job failed to fetch `/subscribers` information for 30 of our business customers (we are a mobile operator, among other things) due to 404 Not Found. What do you do? Simple; first, get into the REPL:
 
-```shell
+```bash
 $ kubectl-shell-into-jobs-app.sh # runs kubectl exec ...
 /var/app# ./repl-in.sh # runs env LOADER_MAIN=nrepl.main .. java -cp jobs-app.jar  ..
 ```
@@ -185,7 +185,7 @@ If we used the Clojure Socket REPL or nREPL with the tty transport, we could sim
 
 But since we run nREPL with its default transport, we need to use the nREPL Client. It is a little tricky but possibly to invoke its function from the Spring Boot application jar:
 
-```shell
+```bash
 env LOADER_MAIN=nrepl.main LOADER_ARGS="--connect --host 127.0.0.1 --port 55555" \
   rlwrap java -cp myapp.jar org.springframework.boot.loader.PropertiesLauncher
 ```
