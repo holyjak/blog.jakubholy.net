@@ -4,7 +4,7 @@ category: "SW development"
 tags: [clojure, testing]
 ---
 
-The big struggle when entering a new code base is distinguishing the essential business logic from the incidental aspect of how it is implemented. Both are just code - but which parts must be there and the way they are and which can be changed? If you don't know then you fear to change anything. And that is exactly what happened when we took over the application MB. What to do? How to save the code from becoming an incomprehensible mess of legacy code, and dying?! We found an answer:  [clj-concordion](clj-conc). (Read: Functional Core, Imperative Shell and Specification by Example.) 
+The big struggle when entering a new code base is distinguishing the essential business logic from the incidental aspect of how it is implemented. Both are just code - but which parts must be there and the way they are and which can be changed? If you don't know then you fear to change anything. And that is exactly what happened when we took over the application MB. What to do? How to save the code from becoming an incomprehensible mess of legacy code, and dying?! We found an answer:  [clj-concordion][clj-conc]. (Read: Functional Core, Imperative Shell and Specification by Example.) 
 
 <!--more-->
 
