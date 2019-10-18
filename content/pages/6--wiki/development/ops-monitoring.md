@@ -101,7 +101,7 @@ According to [this HN discussion](https://news.ycombinator.com/item?id=12453192)
 
   - [Cyanite](http://cyanite.io/) - it speaks the various Graphite protocols and feeds data into Cassandra, which takes care of the HA concerns. (JH: Though I believe that operating Cassandra isn't trivial). A commenter: "Currently, we are running several nodes of Riemann/Cyanite/Cassandra. It works very well, integration is pretty straight forward."
   - ScyllaDB for Cassandra
-  - [Prometheus](https://prometheus.io/) - last time I checked it looked promising but wasn't mature enough; that has certainly changed since then
+  - Prometheus
   - ...
 
 #### Anomaly detection and alerting
@@ -110,6 +110,9 @@ According to [this HN discussion](https://news.ycombinator.com/item?id=12453192)
 
 ### Links to other tools of interest
 
+  - [Prometheus](https://prometheus.io/) - Cloud Native project, a popular monitoring solution
+    - [Thanos](https://github.com/thanos-io/thanos) - Cloud Native sandbox project providing "a highly available metric system with unlimited storage capacity" on top of Prometheus instances
+    - [Cortex](https://github.com/cortexproject/cortex) - fills in the gaps of Prometheus to provide a full Prometheus-as-a-Service platform - adds multi-tenancy, authentication and authorization, long-term storage (using DynamoDB / S3 / Cassandra / Bigtable / ...).
   - [Bosun](http://bosun.org/) "*is an open-source, MIT licensed, monitoring and alerting system by Stack Exchange. It has an expressive domain specific language for evaluating alerts and creating detailed notifications. It also lets you test your alerts against history for a faster development experience.*" (in Go)
   - [Hyperic HQ](http://www.springsource.com/landing/hyperic-open-source-download), open-source & enterprise ed., see [my intro](theholyjava.wordpress.com/2011/10/17/monitoring-java-webapp-with-hyperic-hq-send-email-when-too-many-errors-in-logs/)
   - [Zenoss](http://community.zenoss.org/index.jspa), open-source & enterprise ed.
