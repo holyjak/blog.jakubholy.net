@@ -83,14 +83,14 @@ Build it quickly
 
 
 
-Having received so much from the open source community (Linux, Firefox, OpenOffice and counless others), I feel obligated to give something back. Most of own my latest projects live at [my GitHub account](https://github.com/jakubholynet).
+Having received so much from the open source community (Linux, Firefox, OpenOffice and countless others), I feel obligated to give something back. Most of own my latest projects live at [my GitHub account](https://github.com/holyjak).
 
 
 ### Current projects
 
 
 
-[See my GitHub repositories.](https://github.com/jakubholynet?tab=repositories)
+[See my GitHub repositories.](https://github.com/holyjak?tab=repositories)
 
 
 ### Old (less active) projects
@@ -123,8 +123,8 @@ Standalone projects that could be a part of JEE Holy Utils:
 
 <div>
 
-  - [perfstats-lib](https://github.com/jakubholynet/perfstats-lib) - a light-weight, minimalistic, low-overhead library for collecting and publishing performance statistics in production systems
-  - **[static-jsfexpression-validator](https://github.com/jakubholynet/static-jsfexpression-validator)** - build-time validation of EL expressions in JSF pages, check the (older) [JSF EL validator introduction](/2011/06/22/validating-jsf-el-expressions-in-jsf-pages-with-static-jsfexpression-validator/)
+  - [perfstats-lib](https://github.com/holyjak/perfstats-lib) - a light-weight, minimalistic, low-overhead library for collecting and publishing performance statistics in production systems
+  - **[static-jsfexpression-validator](https://github.com/holyjak/static-jsfexpression-validator)** - build-time validation of EL expressions in JSF pages, check the (older) [JSF EL validator introduction](/2011/06/22/validating-jsf-el-expressions-in-jsf-pages-with-static-jsfexpression-validator/)
 
 </div>
 

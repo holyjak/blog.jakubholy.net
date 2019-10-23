@@ -11,7 +11,7 @@ Personal log of mid-term tasks.
 Done (oldest first):
 
 1.  ~~Publish new version of [DbUnit Express](https://sourceforge.net/apps/mediawiki/jeeutils/index.php?title=DbUnit_Express)~~
-2.  ~~Bring [JSF EL Validator](https://github.com/jakubholynet/static-jsfexpression-validator) to a "final" state and release v.1.0 (Deadline: 31/12 2012)~~
+2.  ~~Bring [JSF EL Validator](https://github.com/holyjak/static-jsfexpression-validator) to a "final" state and release v.1.0 (Deadline: 31/12 2012)~~
 3.  ~~Finish writing notes for [Implementing Lean Software Development: From Concept to Cash](https://www.amazon.com/exec/obidos/ASIN/0321437381/poppendieckco-20) (Deadline:6/1 2012, old: 7/12 2011)~~
 4.  ~~Finish writing notes for [Agile Project Management with Scrum](https://www.amazon.com/Agile-Project-Management-Microsoft-Professional/dp/073561993X)~~
 5.  ~~Read [Flawless Consulting](https://www.amazon.com/Flawless-Consulting-Guide-Getting-Expertise/dp/0470620749) (Deadline: 31/2 2012, old: 1/1 2012; done: 11/1)~~
