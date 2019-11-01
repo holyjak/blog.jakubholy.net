@@ -156,7 +156,7 @@ Essential
   - Stuart Sierra's [My Clojure Workflow, Reloaded](http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded) (6/2013) and the derived [reloaded lein template](https://github.com/stuartsierra/reloaded) and the [component library](https://github.com/stuartsierra/component) (and the lein template [reloadable-app](https://github.com/mowat27/reloadable-app) to build projects using component)
   - B. Batsov’s [Clojure Style Guide](https://github.com/bbatsov/clojure-style-guide#readme) (based on JoC etc.) at GitHub
   - Add dependencies dynamically to a running JVM - [pomegranate](https://github.com/cemerick/pomegranate) and its *add-dependencies* (and [Alembic](https://github.com/pallet/alembic) that wraps it and tries to avoid conflicts between project's and its dependencies - but not maintained since 2016)
-  - [Cambium - The Power of Clojure: Debugging][Cambium] by Ian Truslove (2018) - in depth guide on REPL-based debugging in Clojure, both with and without extra tools, with great links
+  - [Cambium - The Power of Clojure: Debugging](https://cambium.consulting/articles/2018/2/8/the-power-of-clojure-debugging) by Ian Truslove (2018) - in depth guide on REPL-based debugging in Clojure, both with and without extra tools, with great links
 
 ClojureScript
 
