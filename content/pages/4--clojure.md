@@ -11,6 +11,7 @@ Content:
  * [REPL-driven development](#repl-driven-development)
  * [Style and best practices](#style-and-best-practices)
  * [Resources](#resources) - learning, libs, etc.
+ * [Various](#various)
  * [ClojureScript](#clojurescript)
 
 # Why Clojure(Script)?
@@ -88,6 +89,28 @@ There are also a few built-in tools you can use to clean up some state:
 
   - [Threading do's and don'ts](https://stuartsierra.com/2018/07/06/threading-with-style): use -\> and -\>\> only for navigation or transformation; prefer to keep the same type (but the last transf.) - break if necessary; avoid anonymous functions to change order type - likely doing too much already (if really necessary, use as-\> which is intended to be used exactly & only inside -\>).
 
+# Various
+
+## Calling Clojure from Java
+
+See this great [discussion of Java -> Clojure](https://groups.google.com/d/msg/clojure/aejqMwraPk8/v8IkDTxvAgAJ) interop(erability) (don't get confused by the title of it being in the opposite direction). From Alex Miller:
+
+> You have several options:
+>
+> 1) Use the Clojure Java API to invoke the Clojure runtime - here you're leveraging the Clojure runtime's Java impl core to call into Clojure ([Stu's example](https://github.com/stuarthalloway/clojure-from-java))
+> 2) Use protocols, records, and/or genclass to actually produce Java classes
+> 3) Define your interface as a set of Java interfaces. Implement this interface in Clojure. You will need a small amount of glue code to provide the API impl (some kind of a factory to give you the impl of the Java interface - either written in Java or using #1). ([example code](https://github.com/puredanger/clojure-from-java))
+>
+> #1 is straightforward but tedious - it's really only worthwhile if you have a small amount of this code and hide the use of it.
+> #2 has significant downsides - needing to compile everything, all methods are just > going to take/return Java Objects, no javadoc on apis,  etc.
+> #3 has advantages in all those areas. You write your Java interface where you can best write it ... in Java (with Javadoc, and Java interfaces, and all the niceties Java users want). IDEs can autocomplete on the Java interfaces. You don't have to AOT - factories can reify or load protocol instances as needed as they return objects. You can even reload internal vars with a connected REPL without restarting the app.
+
+Side-note on AOT:
+
+> [Didier:] When you go with Option #2, you do not have to AOT everything, but AOT is transitive. So as you AOT the gen class, all code it requires and all code they in turn require will also be AOT. [..]
+> [Alex Miller:] With AOT, you generally shouldn't ever exclude part of the AOT'ed code. Most problems with AOT'ed code stem from having AOT'ed code call into non-AOT'ed code, so anything "downstream" should also be AOT'ed.
+> [Sean Corfiled:] The approach I’ve taken around :gen-class has been to ensure that the namespace offering the Java class via :gen-class has no static dependencies at all – instead it requires/resolves any other namespaces/symbols it needs at run time. That way AOT creates the .class you need but doesn’t spread to anything else. This is even easier in Clojure 1.10 with the addition of `requiring-resolve`.
+
 # Resources
 
 ### Community
@@ -147,6 +170,7 @@ There are also a few built-in tools you can use to clean up some state:
 Interop
 
  - [bean-dip](https://github.com/uwcpdx/bean-dip) - Bidirectional translation between Clojure maps and Java beans that's declarative and reflection-free (contrary to clojure.core/bean, java.data, gavagi - see the README for a comparison)
+ - [deeto](https://github.com/henrik42/deeto) - A Java dynamic proxy factory for interface-typed data transfer objects
 
 ### Development in general
 
