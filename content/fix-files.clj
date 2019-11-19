@@ -2,10 +2,6 @@
 ;(def dry-run? true)
 (def dry-run? false)
 
-(defn re-quote [s]
-  (let [spec (set ".?*+^$[]\\(){}|")]
-    (apply str (map #(if (spec %) (str \\ %) %) s))))
-
 (defn escape-title [f line]
     (if-let [[_ start title] (re-matches #"(\s*\{?:title) \"(.*(?<!\\)\".*)\"" line)]
       (do
