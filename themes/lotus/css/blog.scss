@@ -84,22 +84,25 @@ img {
   @media (max-width: $mobile-breakpoint) {
     padding-bottom: $default-gutter / 2;
   }
+  @media (min-width: $tablet-breakpoint) {
+    width: 8rem;
+  }
 
   #logo {
-    padding: $default-gutter;
+    padding: 10px 0 0 0; //$default-gutter;
     width: 100%;
     color: $white;
 
     .icon {
       box-shadow: 0px 0px 14px 2px rgba(255, 255, 255, 0.05);
       display: block;
-      padding: 15px;
+      padding: 10px;
       background: rgba(0, 0, 0, 0.2);
-      height: 100px;
-      width: 100px;
-      margin: 0 auto 10px;
+      height: 70px;
+      width: 70px;
+      margin: 0 10px 10px;
 
-      border-radius: 80px;
+      border-radius: 50px;
     }
 
     .text {
@@ -122,6 +125,47 @@ img {
 
     a {
       text-decoration: none;
+    }
+
+    #logo-content {
+      display: flex;
+      flex-direction: column;
+      @media (min-width: $tablet-breakpoint) {
+        display: initial;
+      }
+    }
+
+    #sidebar-logo-row {
+      display: flex;
+      align-items: center;
+      @media (min-width: $tablet-breakpoint) {
+        flex-direction: column;
+      }
+    }
+
+    #sidebar-author-block {
+      .text {
+        text-align: left;
+        text-transform: lowercase;
+        margin-bottom: 0.35em;
+      }
+      #sidebar-author.text {
+          font-size: 1.35em;
+          font-weight: 500;
+      }
+      #sidebar-subtitle.text {
+          font-size: 0.8em;
+          font-weight: normal;
+          font-family: Arial; // narrower
+      }
+    }
+
+    #sidebar-title {
+      margin-bottom: 0.35em;
+
+      @media (min-width: $tablet-breakpoint) {
+        margin-top: 0.35em;
+      }
     }
   }
 }

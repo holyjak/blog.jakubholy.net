@@ -19,10 +19,15 @@
     <body>
         <aside id="sidebar">
             <div id="logo">
-                <a title="{{title}}" href="{{index-uri}}">
-                    <img class="icon" src="{{blog-prefix}}/img/white-lotus.svg">
-                    <div class="text desktop-and-tablet-only">{{title}}</div>
-                    <div class="text mobile-only">{{title}}</div>
+                <a id="logo-content" title="{{title}}" href="{{index-uri}}">
+                    <div id="sidebar-logo-row">
+                      <img class="icon" src="{{blog-prefix}}/img/avatar.jpg">
+                      <div id="sidebar-author-block">
+                        <div id="sidebar-author" class="text">{{author}}</div>
+                        <div id="sidebar-subtitle" class="text">{{subtitle}}</div>
+                      </div>
+                    </div>
+                    <div id="sidebar-title" class="text">{{title}}</div>
                 </a>
             </div>
 
@@ -47,13 +52,13 @@
                     </ul>
                 </nav>
 
-                <nav id="socialmedia">
+                <!--nav id="socialmedia">
                     <ul>
-                        <li><a title="LinkedIn" href="https://www.linkedin.com/in/matthewdavidson1" rel="external"><svg class="icon icon-linkedin"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-linkedin"></use></svg></a></li>
-                        <li><a title="GitHub" href="https://github.com/KingMob" rel="external"><svg class="icon icon-github-circled"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-github-circled"></use></svg></a></li>
+                        <li><a title="LinkedIn" href="https://www.linkedin.com/in/jakubholydotnet" rel="external"><svg class="icon icon-linkedin"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-linkedin"></use></svg></a></li>
+                        <li><a title="GitHub" href="https://github.com/holyjak" rel="external"><svg class="icon icon-github-circled"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-github-circled"></use></svg></a></li>
                         <li><a title="RSS Feed" href="{{rss-uri}}"><svg class="icon icon-rss-squared"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-rss-squared"></use></svg></a></li>
                     </ul>
-                </nav>
+                </nav-->
             </nav>
         </aside>
 
