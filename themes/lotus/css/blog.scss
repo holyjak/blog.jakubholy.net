@@ -85,7 +85,7 @@ img {
     padding-bottom: $default-gutter / 2;
   }
   @media (min-width: $tablet-breakpoint) {
-    width: 8rem;
+    width: 10rem;
   }
 
   #logo {
@@ -148,6 +148,10 @@ img {
         text-align: left;
         text-transform: lowercase;
         margin-bottom: 0.35em;
+
+        @media (min-width: $tablet-breakpoint) {
+          text-align: center;
+        }
       }
       #sidebar-author.text {
           font-size: 1.35em;

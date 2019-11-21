@@ -5,6 +5,7 @@ $if(tags)$
 $endif$
  :category "$category$"
  :toc true
+$-- :navbar? false :page-index nil
 }
 
 $-- $if(titleblock)$

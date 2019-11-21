@@ -32,7 +32,7 @@
 (defn fix-file-content!
   ([f] (fix-file-content! f false))
   ([f draft?]
-   {:pre [(and f (.getPath f))]}
+   (assert (and f (.getPath f)) "Not a file?!")
    (let [transf (comp
                  (if draft?
                    (once #(str/replace-first % ":draft? false" ":draft? true")

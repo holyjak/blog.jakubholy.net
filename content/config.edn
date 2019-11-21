@@ -1,6 +1,7 @@
 {:site-title           "Holy on Dev"
  :author               "Jakub Holý"
- :description          "Building the right thing, building it right, fast"
+ :description          "Blog about effective software development"
+ :subtitle             "Building the right thing, building it right, fast"
  :site-url             "https://blog.jakubholy.net"
  :post-root            "posts"
  :page-root            "pages"
@@ -18,7 +19,7 @@
  :sass-src             []
  :sass-path            "sass"
  :compass-path         "compass"
- :theme                "blue"
+ :theme                "lotus"
  :resources            ["img"]
  :keep-files           [".git"]
  :disqus?              false
