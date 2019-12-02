@@ -8,6 +8,8 @@ tags: ["clojure ", "DevOps"]
 
 We have a Java/Groovy Spring Boot webapp, mainly running a bunch of batch jobs fetching, transforming and combining data. It is challenging to troubleshoot production issues because some production APIs are only accessible from the production servers and it is difficult and possibly dangerous to run the application in full production setup locally. Fortunately, we can now connect a [REPL](https://clojure.org/guides/repl/introduction) to the running application, get hold of its Spring beans, and interact with it (invoking remote calls, checking the returned data, ...), which is a real life-saver and something I want to demonstrate and describe here.
 
+_Aside_: What is REPL? A [REPL - or Read-Eval-Print-Loop - is an "interactive terminal"](https://clojure.org/guides/repl/introduction) into your live application, where you can inspect data, call functions, and (re)define code - in the context of the running application. It enables interactive development (and troubleshooting). The REPL puts all the power of our development tools and programming language at our fingertips and the immediate feedback we get from it enables us to iterate quickly toward the solution or answer we are looking for.
+
 First an example. Imagine that the logs tell you that a job failed to fetch `/subscribers` information for 30 of our business customers (we are a mobile operator, among other things) due to 404 Not Found. What do you do? Simple; first, get into the REPL:
 
 ```bash
@@ -191,6 +193,14 @@ env LOADER_MAIN=nrepl.main LOADER_ARGS="--connect --host 127.0.0.1 --port 55555"
 ```
 
 (`rlwrap` is optional and can be omitted from the command line; however it makes editing in the REPL much nicer.)
+
+## Aside: Security
+
+It might seem scary to enable REPL access to a production application. Whether it is something for you or not depends on multiple levels - the trust and skill level in your team and the domain you work with.
+
+If you are security-conscious, you can mandate and enforce that any live coding is done by a pair of developers (our experience is that having two pairs of eyes also really helps to get things right) and you can log and review REPL sessions. (I don't need to mention that you secure access to the REPL port by all means, do I?)
+
+If you are afraid that a change/fix will be executed in production but not the version-controlled source code, you can automatically restart or even re-deploy the application after a finished REPL session.
 
 ## Conclusion
 
