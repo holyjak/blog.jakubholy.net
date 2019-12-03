@@ -3,6 +3,6 @@ function RawInline(el)
 end
 function RawBlock(el)
   if el.format == 'html' and el.text:match("<!--") then
-    return pandoc.RawBlock('asciidoc', '\n++++' .. el.text .. '++++\n')
+    return pandoc.RawBlock('asciidoc', '\n+++' .. el.text .. '+++\n\n')
   end
 end
