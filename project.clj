@@ -8,7 +8,7 @@
                            [compojure "1.6.1"]
                            [ring-server "0.5.0"]
                            [cryogen-asciidoc "0.1.4"]
-                           [cryogen-core "0.2.2-SNAPSHOT"]]
+                           [cryogen-core "0.2.1"]]
             ;:repositories [["local" "file:///Users/holyjak/.m2"]]
             :plugins [[lein-ring "0.12.5"]]
             :main cryogen.core
