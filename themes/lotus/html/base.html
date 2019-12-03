@@ -18,6 +18,10 @@
         {% style "css/normalize.css" %}
         {% style "css/blog.css" %}
         {% style "css/lotus-highlightjs.min.css" %}
+
+      {% for js in page.extra-js %}
+      <script src="{{js.src}}" async="{{js.async?}}"></script>
+      {% endfor %}
     </head>
     <body>
         <aside id="sidebar">

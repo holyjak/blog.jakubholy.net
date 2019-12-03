@@ -10,6 +10,16 @@
 
 (comment
 
+  (slurp "content/asc/pages/search.asc")
+
+  (require '[cryogen-core.compiler :as c])
+  (let [config (cryogen-core.config/resolve-config)
+        markup (first (cryogen-core.markup/markups))
+        page (cryogen-core.compiler/parse-page (clojure.java.io/file "content/asc/pages/search.asc") config markup)]
+    (selmer.parser/render-file (str "/html/" (:layout page)) (assoc page :page page)))
+
+
+
   ;; Override read-page-meta with troubleshooting
   (do
     (require '[cryogen-core.compiler])
