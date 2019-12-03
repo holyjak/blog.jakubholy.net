@@ -1,20 +1,27 @@
 TODO Gatsby -> Cryogen
 ======================
 
-1. Styling, Menu
-   * 👇show tags next to date
-   * 👇date in yyyy-mm-dd inst.of words
-   * move svg icons to the separate file
-2. Add /contacts/, /search/ pages
-2. Import old pages - see current cleanup code, gist embedding
 3. Fix raw blocks skipped: aside, `<!--more-->`
-4. Check everything
+2. Add /contacts/, /search/ pages
 5. Fix ToC
 6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; About -> Me
+2. Import old pages - see current cleanup code, gist embedding
+4. Check everything
+7. **WIP** SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
+8. GA
+9. Styling, Menu
+   * 👇show tags next to date
+   * 👇date in yyyy-mm-dd inst.of words
+   * 👇move svg icons to the separate file
+10. Rm old gatsby files
 
+----
+* Tags page - re-add "word cloud" with counts; include categories, when supported
 * Support for categories
-* GA
-* Recommended links feed -> Tumblr (remember icon; add to menu?)
+* Block "Recommended links feed" -> Tumblr (remember icon; add to menu?)
+* Add twitter:card from Seo.js
+* Modify custom font to have a good system fallback
+* Check perf with web.dev
 
 Notes
 -----
