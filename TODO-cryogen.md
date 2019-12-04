@@ -4,11 +4,13 @@ TODO Gatsby -> Cryogen
 ✅ 3. Fix raw blocks skipped: aside, `<!--more-->`
 ✅ 2. Add /contacts/, /search/ pages
 ✅ 5. Fix ToC
-6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; About -> Me
+✅ 6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; 
+✅ 8. GA
+
+1. Rename page About -> Me
 2. Import old pages - see current cleanup code, gist embedding
 4. Check everything
 7. **WIP** SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
-8. GA
 9. Styling, Menu
    * 👇show tags next to date
    * 👇date in yyyy-mm-dd inst.of words
