@@ -6,6 +6,7 @@ TODO Gatsby -> Cryogen
 ✅ 5. Fix ToC
 ✅ 6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; 
 ✅ 8. GA
+✅ 10. Rm old gatsby files
 
 1. Rename page About -> Me
 2. Import old pages - see current cleanup code, gist embedding
@@ -14,8 +15,7 @@ TODO Gatsby -> Cryogen
 9. Styling, Menu
    * 👇show tags next to date
    * 👇date in yyyy-mm-dd inst.of words
-   * 👇move svg icons to the separate file
-10. Rm old gatsby files
+   * ✅ move svg icons to the separate file
 
 ----
 * Tags page - re-add "word cloud" with counts; include categories, when supported
