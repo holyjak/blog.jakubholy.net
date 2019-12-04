@@ -29,23 +29,46 @@
     :page
     :post))
 
+(def f (io/file "content/asc/pages/1--best.asc")) ; FIXME rm
+
+(defn metadata+content-lines [f lines]
+  (let [[metadata-start [last-md & content]]
+        (split-with
+         #(not (re-matches #"^}\s*$" %))
+         lines)
+
+        md
+        (->> (concat metadata-start [last-md])
+             (map (partial escape-title f))
+             (apply str)
+             (edn/read-string))]
+    [md content]))
+
+(defn update-metadata [md {:keys [draft? layout page-index]}]
+  (cond-> md
+          draft? (assoc :draft? true)
+          layout (assoc :layout layout)
+          page-index (assoc :page-index page-index
+                            :navbar?    true)))
+
+(defn fill-metadata [f opts lines]
+  (let [[md content-lines] (metadata+content-lines f lines)
+        md-str (prn-str (update-metadata md opts))]
+    (cons md-str content-lines)))
+
 (defn fix-file-content!
   ([f] (fix-file-content! f false))
   ([f draft?]
    (assert (and f (.getPath f)) "Not a file?!")
-   (let [transf (comp
-                 (if draft?
-                   (once #(str/replace-first % ":draft? false" ":draft? true")
-                         #(println " in" (.getName f) ":draft? -> true"))
-                   identity)
-                 (once (partial escape-title f))
-                 (once #(str/replace-first % ":layout :TODO" (str ":layout " (ftype f)))))
+   (let [opts {:draft? draft?
+               :layout (ftype f)
+               :page-index nil}
          f' (io/file (.getParentFile f) (str (.getName f) ".tmp"))]
      (with-open [rdr (io/reader f)
                  wrt (io/writer (.getPath f'))]
-       (run!
-        #(.write wrt (str (transf %) "\n"))
-        (line-seq rdr)))
+       (->> (line-seq rdr)
+            (fill-metadata f opts)
+            (run! #(.write wrt (str % "\n")))))
      (when-not dry-run?
        (or (.renameTo f' f) (throw (Exception. (str "Rename failed: " f')))))
      f)))
@@ -66,7 +89,13 @@
         (rename!)))))
 
 (defn fix-page! [f]
-  (fix-file-content! f))
+  (let [[_ page-index slug] (re-matches #"^(\d+)--(.*)" (.getName f))
+        renamer (if page-index
+                  (fn [_] slug)
+                  identity)]
+    (-> f
+        (fix-file-content!)
+        (rename-with! renamer))))
 
 (defn fix-post! [f]
   (let [draft? (not (re-find #"^\d{4}-\d{2}-\d{2}--?" (.getName f)))
