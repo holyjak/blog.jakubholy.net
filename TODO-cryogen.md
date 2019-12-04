@@ -1,9 +1,9 @@
 TODO Gatsby -> Cryogen
 ======================
 
-3. Fix raw blocks skipped: aside, `<!--more-->`
-2. Add /contacts/, /search/ pages
-5. Fix ToC
+✅ 3. Fix raw blocks skipped: aside, `<!--more-->`
+✅ 2. Add /contacts/, /search/ pages
+✅ 5. Fix ToC
 6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; About -> Me
 2. Import old pages - see current cleanup code, gist embedding
 4. Check everything
