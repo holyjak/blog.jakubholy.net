@@ -16,6 +16,7 @@ TODO Gatsby -> Cryogen
    * 👇date in yyyy-mm-dd inst.of words
    * ✅ move svg icons to the separate file
 1. Rename page About -> Me
+1. Fix highlighting for groovy - see MapDB post
 
 ----
 * Tags page - re-add "word cloud" with counts; include categories, when supported
