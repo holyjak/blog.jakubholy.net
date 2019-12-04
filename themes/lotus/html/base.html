@@ -19,13 +19,13 @@
         <meta name="keywords" content="">
         {% endblock %}
 
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72.png">
         <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oxygen:300,400,700|Inconsolata" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Oxygen:300,400,700|Inconsolata&display=swap&subset=latin-ext" rel="stylesheet">
         {% style "css/normalize.css" %}
         {% style "css/blog.css" %}
         {% style "css/lotus-highlightjs.min.css" %}
@@ -39,7 +39,7 @@
             <div id="logo">
                 <a id="logo-content" title="{{title}}" href="{{index-uri}}">
                     <div id="sidebar-logo-row">
-                      <img class="icon" src="{{blog-prefix}}/img/avatar.jpg">
+                      <img class="icon" src="{{blog-prefix}}/img/avatar.jpg" alt="author image">
                       <div id="sidebar-author-block">
                         <div id="sidebar-author" class="text">{{author}}</div>
                         <div id="sidebar-subtitle" class="text">{{subtitle}}</div>
@@ -84,7 +84,7 @@
                       <li><a title="RSS" href="{{rss-uri}}"><div class="menu-item-text">
                         <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-rss"></use></svg>
                         RSS</div></a></li>
-                      <li><a href="https://holyjak.tumblr.com/" title="Recommended links feed"><div class="menu-item-text">
+                      <li><a href="https://holyjak.tumblr.com/" title="Recommended links feed" aria-label="Recommended links feed"><div class="menu-item-text">
                         <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-tumblr"></use></svg>
                         <span class="large-screen">Tumblr</span>
                       </div></a></li>

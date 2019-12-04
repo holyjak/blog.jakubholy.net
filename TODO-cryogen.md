@@ -8,7 +8,6 @@ TODO Gatsby -> Cryogen
 ✅ 8. GA
 ✅ 10. Rm old gatsby files
 
-1. Rename page About -> Me
 2. Import old pages - see current cleanup code, gist embedding
 4. Check everything
 7. **WIP** SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
@@ -16,6 +15,7 @@ TODO Gatsby -> Cryogen
    * 👇show tags next to date
    * 👇date in yyyy-mm-dd inst.of words
    * ✅ move svg icons to the separate file
+1. Rename page About -> Me
 
 ----
 * Tags page - re-add "word cloud" with counts; include categories, when supported
@@ -23,7 +23,7 @@ TODO Gatsby -> Cryogen
 * Block "Recommended links feed" -> Tumblr (remember icon; add to menu?)
 * Add twitter:card from Seo.js
 * Modify custom font to have a good system fallback
-* Check perf with web.dev
+* Check perf with web.dev (Perf 85%, Access. 65%, SEO 89%, was: all 98-100%)
 
 Notes
 -----
