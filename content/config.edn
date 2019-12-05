@@ -20,7 +20,7 @@
  :sass-path            "sass"
  :compass-path         "compass"
  :theme                "lotus"
- :resources            ["img"]
+ :resources            ["img" "images"]
  :keep-files           [".git"]
  :disqus?              false
  :disqus-shortname     ""

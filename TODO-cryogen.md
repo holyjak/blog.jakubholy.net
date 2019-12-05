@@ -7,8 +7,8 @@ TODO Gatsby -> Cryogen
 ✅ 6. Remember to re-add `:navbar? true :page-index 1` to menu pages (or make fix-files do it) ; 
 ✅ 8. GA
 ✅ 10. Rm old gatsby files
+✅ 2. Import old pages - see current cleanup code, gist embedding
 
-2. Import old pages - see current cleanup code, gist embedding
 4. Check everything
 7. **WIP** SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
 9. Styling, Menu
@@ -16,8 +16,7 @@ TODO Gatsby -> Cryogen
    * 👇date in yyyy-mm-dd inst.of words
    * ✅ move svg icons to the separate file
 1. Rename page About -> Me
-1. Fix highlighting for groovy - see MapDB post
-
+1. Fix highlighting for groovy - see MapDB post - missing from the highlight.pack.js, see https://highlightjs.org/download/
 ----
 * Tags page - re-add "word cloud" with counts; include categories, when supported
 * Support for categories
@@ -25,6 +24,9 @@ TODO Gatsby -> Cryogen
 * Add twitter:card from Seo.js
 * Modify custom font to have a good system fallback
 * Check perf with web.dev (Perf 85%, Access. 65%, SEO 89%, was: all 98-100%)
+  * Future perf improvements:
+    * Async load of lotus-highlightjs.min.css - 210 ms, 0.73 KB 
+    * Somehow optimize load of blog.css - 150 ms, 3.38 KB, normalize.css - 260 ms, 2.62 KB
 
 Notes
 -----

@@ -28,6 +28,9 @@
       {% for js in page.extra-js %}
       <script src="{{js.src}}" async="{{js.async?}}"></script>
       {% endfor %}
+      {% for css-url in post.extra-css %}
+      <link href="{{css-url}}" rel="stylesheet">
+      {% endfor %}
     </head>
     <body>
         <aside id="sidebar">
