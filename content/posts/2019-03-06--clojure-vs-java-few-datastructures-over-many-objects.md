@@ -81,6 +81,8 @@ Ideally I would want to be able to do something like `target.request.headers = o
 
 In Clojure, request is just a map and headers are likely a map of lists. Even if the two libraries (server, client) do not agree on key names or data structures, there is no "API" to learn - you just use the same old, known functions to transform from one data structure to another, something you do in each and every Clojure project, web, data, or any other domain. The only thing that changes is the names of the keys in maps.
 
+Aside: Rich Hickey [rants about HttpServletRequest and Death by Specificity](https://youtu.be/aSEQfqNYNAc), explaining eloquently the difference between class-based and data-based approach, in this fun and insightful extract from his talk Clojure Made Simple.
+
 *BEWARE: If you don't know Clojure then some of the examples might be difficult to read, with functions like `assoc` and `reduce-kv` (key-value) and occasional 1-letter names. Remember that a Clojure programmer uses the same 100 functions over and over again and is pretty familiar with them. Clojure takes the conscious choice - contrary to some other languages - to optimize for the experienced developer. Which is fine with me.*
 
 ### Case 1: Same keys
