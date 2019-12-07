@@ -57,7 +57,8 @@
   ([f] (fix-file-content! f nil))
   ([f {:keys [page-index draft?]}]
    (assert (and f (.getPath f)) "Not a file?!")
-   (let [opts (cond-> {} ;:layout (ftype f)
+   (let [opts (cond-> {}
+                      ;;:layout (ftype f)
                       page-index (assoc :page-index page-index, :navbar true)
                       draft? (assoc :draft? true))
          f' (io/file (.getParentFile f) (str (.getName f) ".tmp"))]
@@ -76,25 +77,46 @@
         f' (io/file (.getParentFile f) n')
         rename! (if dry-run?
                     (constantly f)
-                    #(do (or (.renameTo f f')
-                             (throw (Exception. "renameTo failed")))
-                         f'))]
+                    #(do
+                       (assert (.exists f) (str "The source file does not exist! " (.getAbsolutePath f)))
+                       (or (.renameTo f f')
+                           (throw (Exception. (str "renameTo failed for " f " -> " f'))))
+                       f'))]
     (if (= n n')
       f
       (do
         (println "Rename" (.getPath f) "->" n')
         (rename!)))))
 
+(defn move! [f path]
+  (println "Move" (.getPath f) "->" path)
+  (let [f' (io/file path)
+        p' (.toPath f')
+        target-dir (.toFile (.getParent p'))]
+    (when-not dry-run?
+      (when-not (.exists target-dir)
+        (shell/sh "mkdir" "-p" (.getPath target-dir)))
+      (shell/sh "mv" "-f" (.getPath f) (.getPath f')))
+    #_(java.nio.file.Files/createDirectories
+       (.getParent p')
+       (into-array java.nio.file.attribute.FileAttribute []))
+    #_(java.nio.file.Files/move
+       (.toPath f)
+       p'
+       (into-array java.nio.file.CopyOption
+                   [java.nio.file.StandardCopyOption/REPLACE_EXISTING]))
+    f'))
+
 (defn fix-page! [f]
-  ;; FIXME Remove index also from parent dir, e.g. for pages/2--about/nocv.asc
   ;; FIXME Rename About to Me - both directory and :title in index.asc
-  (let [[_ page-index slug] (re-matches #"^(\d+)--(.*)" (.getName f))
-        renamer (if page-index
-                  (fn [_] slug)
-                  identity)]
-    (-> f
-        (fix-file-content! {:page-index page-index})
-        (rename-with! renamer))))
+  (let [path (.getPath f)
+        [_ page-index] (re-matches #"(?:^|.*/)pages/(\d+)--(?:.*)" path)
+        add-to-nav?    (re-matches #"(?:^|.*/)pages/(?:\d+)--(([^/]+)|(.*/index(\.md)?\.asc))" (.getPath f))
+        new-path (when page-index
+                   (str/replace-first path (str page-index "--") ""))]
+    (println :path path :add-to-nav? add-to-nav?)
+    (cond-> (fix-file-content! f (when add-to-nav? {:page-index page-index}))
+            new-path (move! new-path))))
 
 (defn fix-post! [f]
   ;; FIXME Move date from file name into metadata so that we keep the old root URLs
@@ -123,6 +145,16 @@
 (println "DONE" (if dry-run? "[dry run, nothing changed]" ""))
 
 (comment
+
+
+ (fix-page! (io/file "./pages/2--about/nocv.md.asc"))
+ (fix-file! (io/file "./pages/2--about/nocv.md.asc"))
+
+ ; (re-matches #"^(\d+)--(.*)" (.getName f))
+ (->> (file-seq (io/file "pages"))
+      (filter #(re-matches #"(?:^|/)pages/(\d+)--(?:.*)" (.getPath %)))
+      (map #(.getPath %)))
+
  (ftype (io/file "pages/4--clojure.md.asc"))
  (.getCanonicalPath (io/file "."))
  (fix-file!

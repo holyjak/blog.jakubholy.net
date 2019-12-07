@@ -15,15 +15,8 @@ TODO Gatsby -> Cryogen
    * "How to use Clojure 1.10 pREPL to connect to a remote server (WIP)" twice
    * "http://localhost:3000/2019-09-27-fixing-json-oom-with-streaming-and-mapdb/" should use double \`\` in-word: `Device\`s`
    * Highlight.js - button to show / copy raw text?
-   * **!!! empty pages**:
-     * /2018/11/04/how-i-got-fired-and-learned-the-importance-of-communication-and-play-time/
-     * /2018/11/01/how-good-monitoring-saved-our-ass-again/
-     * /2018/10/05/troubleshooting-javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake_failure/
-     * /2018/03/14/why-we-love-aws-beanstalk-but-are-leaving-it-anyway/
-     * /2018/03/14/pains-with-terraform-perhaps-use-sceptre-next-time/
-     * etc
-   * **!!! missing pages from the menu**
 1. Extend Cryogen to drop date from file names / custom `slug`? so that new posts keep the same, date-less URLs.
+1. Drop index from `2--about/`, see FIXME in the code
 2. Check everything
 3. Highligh.js for: bash, clojure, groovy, java, markdown - see https://highlightjs.org/download/
 9. Styling, Menu
