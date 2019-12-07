@@ -18,10 +18,6 @@
     (DateTimeFormatter/ofPattern "yyyy-MM-dd")
     UTC))
 
-(def posts-path "wp-data/out/posts.json")
-
-(defonce posts (json/read-str (slurp posts-path) :key-fn keyword))
-
 (def tags-mapping
   {#{"jaxws" "REST" "webservice"}
    "api"
@@ -99,57 +95,73 @@
 
 (defn inline-gists [content]
   (let [css-set (atom #{})]
-    (:content (str/replace
+    {:content (str/replace
                 content
                 gist-re
                 (fn [[_ url]]
                   (let [[html css] (fetch-gist+css! url)]
                     (swap! css-set conj css)
                     html)))
-      :extra-css @css-set)))
+       :extra-css @css-set}))
 
-(defn save-post [map-tags {:keys [tags slug content title categories status published] :as post}]
+(defn save-post [target-dir map-tags {:keys [tags slug content title categories status published] :as post}]
   (try
     (when (= status "publish") ; status: draft, private, publish
       (let [date (LocalDateTime/parse published post-date-format)
             ;;year (.getYear date)
             ;;date-prefix (.format post-filename-date-format date)
             tags' (map-tags tags)
-            file-path (str "content/asc/posts"
+            file-path (str target-dir
+                           ;"content/asc/posts"
                            (str/replace-first slug #"/$" "")
                            ".asc")
             {:keys [content extra-css]} (inline-gists content)
 
-            metadata (with-out-str
-                       (clojure.pprint/pprint
-                         {:title (str/replace title "''" "'")
-                          :date (.format post-filename-date-format date)
-                          :layout :post
-                          :tags tags'
-                          :tags-orig tags
-                          :categories categories
-                          :extra-css extra-css}))]
+            metadata (-> (with-out-str
+                           (clojure.pprint/pprint
+                             {:title (str/replace title "''" "'")
+                              :date (.format post-filename-date-format date)
+                              :layout :post
+                              :tags tags'
+                              :tags-orig tags
+                              :categories categories
+                              :extra-css extra-css}))
+                         (str/replace #"\}$" "\n}"))]
 
         (-> (clojure.java.io/file file-path)
             (.getParentFile)
             (.mkdirs))
+        (println "Saving" file-path)
         (spit file-path
               (str metadata
                    "\n++++\n"
                    content
                    "\n++++\n"))))
     (catch Exception e
-      (throw (ex-info (str "Failed to convert the post '" title "' due to " (ex-message e)) post)))))
+      (throw (ex-info
+               (str "Failed to convert the post '" title "' due to " (ex-message e))
+               post
+               e)))))
 
-(defn migrate-posts [posts]
+(defn migrate-posts [target-dir posts]
   (let [map-tags (tag-mapper posts)]
-    (run! (partial save-post map-tags) posts)))
+    (dorun (pmap (partial target-dir save-post map-tags) posts))))
+
+(def posts-path "wp-data/out/posts.json")
+
+(defonce posts (json/read-str (slurp posts-path) :key-fn keyword))
+
+(defn -main []
+  (time (migrate-posts "content/tmp-migration/old/wp/posts" posts))) ; 14s seq, 8s pmap
 
 (comment
 
   (inline-gists (slurp "content/asc/posts//2018/11/26/java-understanding-the-different-network-https-exceptions.asc"))
 
-  (time (migrate-posts posts))
+
+  ; cd wp-data/out/asc
+  ; rsync -vrR . ../../../content/asc/posts
+
 
   (set! *print-length* 10)
   (set! *print-length* nil)

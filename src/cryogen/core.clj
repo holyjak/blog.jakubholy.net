@@ -5,7 +5,9 @@
 
 (defn -main []
   (load-plugins)
-  (compile-assets-timed)
+  (compile-assets-timed
+    ;; TODO Drop date from path if no date inside (ie not old ones), post, flat path
+    {:map-article identity})
   (System/exit 0))
 
 (comment

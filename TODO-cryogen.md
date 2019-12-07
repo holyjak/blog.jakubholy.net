@@ -11,6 +11,18 @@ TODO Gatsby -> Cryogen
 ✅ 7. SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
 
 
+0. Fixes
+   * "How to use Clojure 1.10 pREPL to connect to a remote server (WIP)" twice
+   * "http://localhost:3000/2019-09-27-fixing-json-oom-with-streaming-and-mapdb/" should use double \`\` in-word: `Device\`s`
+   * Highlight.js - button to show / copy raw text?
+   * **!!! empty pages**:
+     * /2018/11/04/how-i-got-fired-and-learned-the-importance-of-communication-and-play-time/
+     * /2018/11/01/how-good-monitoring-saved-our-ass-again/
+     * /2018/10/05/troubleshooting-javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake_failure/
+     * /2018/03/14/why-we-love-aws-beanstalk-but-are-leaving-it-anyway/
+     * /2018/03/14/pains-with-terraform-perhaps-use-sceptre-next-time/
+     * etc
+   * **!!! missing pages from the menu**
 1. Extend Cryogen to drop date from file names / custom `slug`? so that new posts keep the same, date-less URLs.
 2. Check everything
 3. Highligh.js for: bash, clojure, groovy, java, markdown - see https://highlightjs.org/download/
@@ -20,8 +32,8 @@ TODO Gatsby -> Cryogen
    * ✅ move svg icons to the separate file
 1. Rename page About -> Me
 1. Disqus integration
+1. Better Tags page - show cloud and articles - re-add "word cloud" with counts; include categories, when supported
 ----
-* Tags page - re-add "word cloud" with counts; include categories, when supported
 * Support for categories ?
 * Block "Recommended links feed" -> Tumblr (remember icon; add to menu?)
 * Add twitter:card from Seo.js
@@ -31,6 +43,7 @@ TODO Gatsby -> Cryogen
     * Somehow optimize load of blog.css - 150 ms, 3.38 KB, normalize.css - 260 ms, 2.62 KB
 * Aside with tumblr feed - `curl -H "Accept: application/json" 'https://holyjak.tumblr.com/api/read/json'` => latest N type icon + title + description (substr)
 * SEO Improvemements - see old Seo.js (twitter card, ...)
+* Fix the post with `<aside>`
 
 Notes
 -----
