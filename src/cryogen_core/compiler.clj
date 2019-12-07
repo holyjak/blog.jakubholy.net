@@ -487,13 +487,15 @@
      (pprint overrides))
    (let [extend-params (or (:extend-params-fn overrides)
                            (fn [params _] params))
-         overrides' (dissoc overrides :extend-params-fn)
+         update-article (or (:update-article overrides) identity)
+         overrides' (dissoc overrides :extend-params-fn, :update-article)
          {:keys [^String site-url blog-prefix rss-name recent-posts keep-files ignored-files previews? author-root-uri theme]
           :as   config} (resolve-config overrides')
          posts         (->> (read-posts config)
                             (add-prev-next)
                             (map klipse/klipsify)
-                            (map (partial add-description config)))
+                            (map (partial add-description config))
+                            (map update-article))
          posts-by-tag (group-by-tags posts)
          posts        (tag-posts posts config)
          latest-posts (->> posts (take recent-posts) vec)
@@ -535,7 +537,7 @@
 
      (set-custom-resource-path! (cryogen-io/path "file:themes" theme))
      (cryogen-io/set-public-path! (:public-dest config))
-     
+
      (cryogen-io/wipe-public-folder keep-files)
      (println (blue "compiling sass"))
      (sass/compile-sass->css! config)

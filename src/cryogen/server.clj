@@ -1,5 +1,6 @@
 (ns cryogen.server
-  (:require [compojure.core :refer [GET defroutes]]
+  (:require [cryogen.compile]
+            [compojure.core :refer [GET defroutes]]
             [compojure.route :as route]
             [ring.util.response :refer [redirect file-response]]
             [ring.util.codec :refer [url-decode]]
@@ -11,10 +12,10 @@
 
 (defn init []
   (load-plugins)
-  (compile-assets-timed)
+  (cryogen.compile/compile-site)
   (let [ignored-files (-> (resolve-config) :ignored-files)]
-    (start-watcher! "content" ignored-files compile-assets-timed)
-    (start-watcher! "themes" ignored-files compile-assets-timed)))
+    (start-watcher! "content" ignored-files cryogen.compile/compile-site)
+    (start-watcher! "themes" ignored-files cryogen.compile/compile-site)))
 
 (defn wrap-subdirectories
   [handler]

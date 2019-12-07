@@ -1,16 +1,21 @@
 (ns cryogen.core
-  (:require [cryogen-core.compiler :refer [compile-assets-timed]]
+  (:require [cryogen.compile]
+            [cryogen-core.compiler :refer [compile-assets-timed]]
             [cryogen-core.plugins :refer [load-plugins]])
   (:import (java.io StringWriter)))
 
 (defn -main []
   (load-plugins)
-  (compile-assets-timed
-    ;; TODO Drop date from path if no date inside (ie not old ones), post, flat path
-    {:map-article identity})
+  (cryogen.compile/compile-site)
   (System/exit 0))
 
 (comment
+
+  (-> @*a first (dissoc :content))
+  (->> @*a
+       (filter #(= "clojure-common-beginner-mistakes" (:slug %))))
+
+
 
   (slurp "content/asc/pages/search.asc")
 

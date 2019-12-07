@@ -9,19 +9,6 @@
         (str start " \"" (str/replace title #"(?<!\\)\"" "\\\\\"") "\""))
       line))
 
-(defn once
-  ([f] (once f #()))
-  ([f cb]
-   (let [done? (atom false)]
-     (fn [x]
-       (if @done?
-         x
-         (let [x' (f x)]
-           (when (not= x' x)
-             (reset! done? true)
-             (cb))
-           x'))))))
-
 (defn ftype [f]
   (if (re-matches #"(^|.*/)pages($|/.*)" (.getParent f))
     :page
@@ -40,28 +27,35 @@
              (edn/read-string))]
     [md content]))
 
-(defn update-metadata [md {:keys [draft? layout page-index]}]
+(defn update-metadata [md {:keys [draft? layout page-index slug]}]
   (cond-> md
           draft? (assoc :draft? true)
           layout (assoc :layout layout)
+          slug   (assoc :slug slug)
           page-index (assoc :page-index (Integer/parseInt page-index)
                             :navbar?    true)))
 
+(defn pretty-print-map [m]
+  (str
+    "{"
+    (reduce
+     (fn [s [k v]] (str s
+                        (when-not (= "" s) " ")
+                        (pr-str k) " " (pr-str v) "\n"))
+     ""
+     m)
+    "}"))
+
 (defn fill-metadata [f opts lines]
   (let [[md content-lines] (metadata+content-lines f lines)
-        md-str (-> (prn-str (update-metadata md opts))
-                   (str/replace #"\}$" "\n}"))]
+        md-str (pretty-print-map (update-metadata md opts))]
     (cons md-str content-lines)))
 
 (defn fix-file-content!
   ([f] (fix-file-content! f nil))
-  ([f {:keys [page-index draft?]}]
+  ([f opts]
    (assert (and f (.getPath f)) "Not a file?!")
-   (let [opts (cond-> {}
-                      ;;:layout (ftype f)
-                      page-index (assoc :page-index page-index, :navbar true)
-                      draft? (assoc :draft? true))
-         f' (io/file (.getParentFile f) (str (.getName f) ".tmp"))]
+   (let [f' (io/file (.getParentFile f) (str (.getName f) ".tmp"))]
      (with-open [rdr (io/reader f)
                  wrt (io/writer (.getPath f'))]
        (->> (line-seq rdr)
@@ -94,17 +88,17 @@
         p' (.toPath f')
         target-dir (.toFile (.getParent p'))]
     (when-not dry-run?
-      (when-not (.exists target-dir)
-        (shell/sh "mkdir" "-p" (.getPath target-dir)))
-      (shell/sh "mv" "-f" (.getPath f) (.getPath f')))
-    #_(java.nio.file.Files/createDirectories
+      ; (when-not (.exists target-dir)
+      ;   (shell/sh "mkdir" "-p" (.getPath target-dir)))
+      ; (shell/sh "mv" "-f" (.getPath f) (.getPath f'))
+      (java.nio.file.Files/createDirectories
        (.getParent p')
        (into-array java.nio.file.attribute.FileAttribute []))
-    #_(java.nio.file.Files/move
+      (java.nio.file.Files/move
        (.toPath f)
        p'
        (into-array java.nio.file.CopyOption
-                   [java.nio.file.StandardCopyOption/REPLACE_EXISTING]))
+                   [java.nio.file.StandardCopyOption/REPLACE_EXISTING])))
     f'))
 
 (defn fix-page! [f]
@@ -114,18 +108,20 @@
         add-to-nav?    (re-matches #"(?:^|.*/)pages/(?:\d+)--(([^/]+)|(.*/index(\.md)?\.asc))" (.getPath f))
         new-path (when page-index
                    (str/replace-first path (str page-index "--") ""))]
-    (println :path path :add-to-nav? add-to-nav?)
     (cond-> (fix-file-content! f (when add-to-nav? {:page-index page-index}))
             new-path (move! new-path))))
 
 (defn fix-post! [f]
   ;; FIXME Move date from file name into metadata so that we keep the old root URLs
   (let [draft? (not (re-find #"^\d{4}-\d{2}-\d{2}--?" (.getName f)))
+        slug   (str/replace (.getName f) #"^\d{4}-\d{2}-\d{2}--?(.+?)(?:\.\w+)+$" "$1")
         renamer (if draft?
                   #(str "1111-11-11-" %)
                   #(str/replace-first % "--" "-"))]
     (-> f
-        (fix-file-content! {:draft? draft?})
+        (fix-file-content! {:draft? draft?
+                            ;; The old blog did not have dates in the URI
+                            :slug slug})
         (rename-with! renamer))))
 
 (defn fix-file! [f]
@@ -139,7 +135,7 @@
       (println "ERROR !!! for file" f ":" e))))
 
 (->> (file-seq (io/file "."))
-     (filter #(-> % .getName (str/ends-with? ".md.asc")))
+     (filter #(-> % .getName (str/ends-with? ".asc")))
      (run! fix-file!))
 
 (println "DONE" (if dry-run? "[dry run, nothing changed]" ""))

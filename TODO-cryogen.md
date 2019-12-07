@@ -9,16 +9,13 @@ TODO Gatsby -> Cryogen
 ✅ 10. Rm old gatsby files
 ✅ 2. Import old pages - see current cleanup code, gist embedding
 ✅ 7. SEO - description for previews. Add `prefix: "og: http://ogp.me/ns#"`, see Seo.js
-
+✅ 1. Extend Cryogen to drop date from file names / custom `slug`? so that new posts keep the same, date-less URLs.
+✅ 1. Drop index from `2--about/`, see FIXME in the code
+✅ 1. Highligh.js for: bash, clojure, groovy, java, markdown - see https://highlightjs.org/download/
 
 0. Fixes
-   * "How to use Clojure 1.10 pREPL to connect to a remote server (WIP)" twice
    * "http://localhost:3000/2019-09-27-fixing-json-oom-with-streaming-and-mapdb/" should use double \`\` in-word: `Device\`s`
-   * Highlight.js - button to show / copy raw text?
-1. Extend Cryogen to drop date from file names / custom `slug`? so that new posts keep the same, date-less URLs.
-1. Drop index from `2--about/`, see FIXME in the code
 2. Check everything
-3. Highligh.js for: bash, clojure, groovy, java, markdown - see https://highlightjs.org/download/
 9. Styling, Menu
    * 👇show tags next to date
    * 👇date in yyyy-mm-dd inst.of words
@@ -37,6 +34,7 @@ TODO Gatsby -> Cryogen
 * Aside with tumblr feed - `curl -H "Accept: application/json" 'https://holyjak.tumblr.com/api/read/json'` => latest N type icon + title + description (substr)
 * SEO Improvemements - see old Seo.js (twitter card, ...)
 * Fix the post with `<aside>`
+* Highlight.js - button to show / copy raw text?
 
 Notes
 -----
