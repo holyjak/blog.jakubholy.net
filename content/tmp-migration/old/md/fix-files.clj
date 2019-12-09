@@ -105,7 +105,8 @@
   ;; FIXME Rename About to Me - both directory and :title in index.asc
   (let [path (.getPath f)
         [_ page-index] (re-matches #"(?:^|.*/)pages/(\d+)--(?:.*)" path)
-        add-to-nav?    (re-matches #"(?:^|.*/)pages/(?:\d+)--(([^/]+)|(.*/index(\.md)?\.asc))" (.getPath f))
+        ;; Add to nav if an indexed page under pages/ or index[.md].asc in an indexed dir under pages/:
+        add-to-nav?    (re-matches #"(?:^|.*/)pages/(?:\d+)--[^/]+?((\.asc)|(/index(\.md)?\.asc))" (.getPath f))
         new-path (when page-index
                    (str/replace-first path (str page-index "--") ""))]
     (cond-> (fix-file-content! f (when add-to-nav? {:page-index page-index}))
