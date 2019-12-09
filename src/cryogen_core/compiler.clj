@@ -477,25 +477,34 @@
              :ignored-files (map #(re-pattern-from-ext (m/ext %)) (m/markups))}))))
 
 (defn compile-assets
-  "Generates all the html and copies over resources specified in the config"
+  "Generates all the html and copies over resources specified in the config.
+
+  Params:
+   - `config` - may contain overrides for `config.edn`; anything here will be
+                available to the page templates, except for these two special
+                parameters:
+     - `:extend-params-fn` - a function (`params`, `site-data`) -> `params` -
+                             use it to derive/add additional params for templates
+     - `:update-article-fn` - a function (`article`) -> `article` to update a
+                            parsed page/post"
   ([]
    (compile-assets {}))
-  ([overrides]
+  ([{:keys [extend-params-fn update-article-fn]
+     :or {extend-params-fn (fn [params _] params)
+          update-article-fn identity}
+     :as config}]
    (println (green "compiling assets..."))
-   (when-not (empty? overrides)
+   (when-not (empty? config)
      (println (yellow "overriding config.edn with:"))
-     (pprint overrides))
-   (let [extend-params (or (:extend-params-fn overrides)
-                           (fn [params _] params))
-         update-article (or (:update-article overrides) identity)
-         overrides' (dissoc overrides :extend-params-fn, :update-article)
+     (pprint config))
+   (let [overrides     (dissoc config :extend-params-fn, :update-article-fn)
          {:keys [^String site-url blog-prefix rss-name recent-posts keep-files ignored-files previews? author-root-uri theme]
-          :as   config} (resolve-config overrides')
+          :as   config} (resolve-config overrides)
          posts         (->> (read-posts config)
                             (add-prev-next)
                             (map klipse/klipsify)
                             (map (partial add-description config))
-                            (map update-article))
+                            (map update-article-fn))
          posts-by-tag (group-by-tags posts)
          posts        (tag-posts posts config)
          latest-posts (->> posts (take recent-posts) vec)
@@ -527,7 +536,7 @@
                         :tags-uri      (page-uri "tags.html" config)
                         :rss-uri       (cryogen-io/path "/" blog-prefix rss-name)
                         :site-url      (if (.endsWith site-url "/") (.substring site-url 0 (dec (count site-url))) site-url)})
-         params       (extend-params
+         params       (extend-params-fn
                         params0
                         {:posts posts
                          :pages pages
@@ -567,6 +576,7 @@
      (rss/make-filtered-channels config posts-by-tag))))
 
 (defn compile-assets-timed
+  "See the docstring for [[compile-assets]]"
   ([] (compile-assets-timed nil))
   ([config]
    (time
