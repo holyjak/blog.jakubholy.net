@@ -196,6 +196,7 @@ Debugging and troubleshooting
   - [Schmetterling - Debug running clojure processes](https://github.com/marick/structural-typing) from the browser\! - upon an exception, the process will pause and S. will show the stack, which you can navigate and see locals and run code in the context of any stack frame; you can also trigger it from your code. It can be used nicely also in pre/post-conditions.
   - [miracle.save](https://github.com/Saikyun/miracle.save) - automatically save arguments and return values of selected functions / all in a ns.
   - [scope-capture](https://github.com/vvvvalvalval/scope-capture) - help you save and restore the local environment of a piece of code with minimal effort. (Wrap an expression in `spy` to save, fns to restore into `def`s or a `let`; `brk`-point to pause the execution.)
+  - [postmortem](https://github.com/athos/postmortem) - A tiny value-oriented debugging tool for Clojure(Script), powered by transducers
 
 Lein
 
