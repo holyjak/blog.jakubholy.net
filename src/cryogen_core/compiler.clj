@@ -480,37 +480,40 @@
   "Generates all the html and copies over resources specified in the config.
 
   Params:
-   - `config` - may contain overrides for `config.edn`; anything here will be
-                available to the page templates, except for these two special
+   - `overrides-and-hooks` - may contain overrides for `config.edn`; anything
+      here will be available to the page templates, except for these two special
                 parameters:
      - `:extend-params-fn` - a function (`params`, `site-data`) -> `params` -
                              use it to derive/add additional params for templates
-     - `:update-article-fn` - a function (`article`) -> `article` to update a
+     - `:update-article-fn` - a function (`article`, `config`) -> `article` to update a
                             parsed page/post"
   ([]
    (compile-assets {}))
   ([{:keys [extend-params-fn update-article-fn]
      :or {extend-params-fn (fn [params _] params)
           update-article-fn identity}
-     :as config}]
+     :as overrides-and-hooks}]
    (println (green "compiling assets..."))
-   (when-not (empty? config)
+   (when-not (empty? overrides-and-hooks)
      (println (yellow "overriding config.edn with:"))
-     (pprint config))
-   (let [overrides     (dissoc config :extend-params-fn, :update-article-fn)
+     (pprint overrides-and-hooks))
+   (let [overrides     (dissoc overrides-and-hooks :extend-params-fn, :update-article-fn)
          {:keys [^String site-url blog-prefix rss-name recent-posts keep-files ignored-files previews? author-root-uri theme]
           :as   config} (resolve-config overrides)
          posts         (->> (read-posts config)
                             (add-prev-next)
                             (map klipse/klipsify)
                             (map (partial add-description config))
-                            (map update-article-fn))
+                            (map #(update-article-fn % config))
+                            (remove nil?))
          posts-by-tag (group-by-tags posts)
          posts        (tag-posts posts config)
          latest-posts (->> posts (take recent-posts) vec)
          pages        (->> (read-pages config)
                            (map klipse/klipsify)
-                           (map (partial add-description config)))
+                           (map (partial add-description config))
+                           (map #(update-article-fn % config))
+                           (remove nil?))
          home-page    (->> pages
                            (filter #(boolean (:home? %)))
                            (first))
@@ -589,3 +592,12 @@
                 (instance? clojure.lang.ExceptionInfo e))
           (println (red "Error:") (yellow (.getMessage e)))
           (write-exception e)))))))
+
+(comment
+  (def *config (resolve-config {}))
+
+  ;; Build and copy only styles & theme
+  (do
+    (sass/compile-sass->css! *config)
+    (cryogen-io/copy-resources-from-theme *config))
+  nil)

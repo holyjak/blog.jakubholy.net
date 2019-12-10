@@ -261,6 +261,18 @@ img {
 }
 
 /* ==================================================
+   Article (post/page)
+================================================== */
+
+#post a.anchor, #custom-page a.anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+
+  //svg { visibility: hidden } // TODO Show on mouse-over
+}
+
+/* ==================================================
    Table of content
 ================================================== */
 .content {

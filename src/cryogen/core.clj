@@ -1,8 +1,7 @@
 (ns cryogen.core
   (:require [cryogen.compile]
             [cryogen-core.compiler :refer [compile-assets-timed]]
-            [cryogen-core.plugins :refer [load-plugins]])
-  (:import (java.io StringWriter)))
+            [cryogen-core.plugins :refer [load-plugins]]))
 
 (defn -main []
   (load-plugins)
