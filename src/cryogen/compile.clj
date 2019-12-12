@@ -41,7 +41,7 @@
   (compile-assets-timed
     {:update-article-fn
      (fn update-article [article config]
-       (if (clojure.string/includes? (:uri article) "about") ;; TODO Remove when done migrating
+       (if (clojure.string/starts-with? (:uri article) "/about/") ;; TODO Remove when done migrating
          (do
            (println ">>> removing" (:uri article))
            nil)

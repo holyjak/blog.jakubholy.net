@@ -6,7 +6,7 @@
             [ring.util.codec :refer [url-decode]]
             [cryogen-core.watcher :refer [start-watcher!]]
             [cryogen-core.plugins :refer [load-plugins]]
-            [cryogen-core.compiler :refer [compile-assets-timed]]
+            ;[cryogen-core.compiler :refer [compile-assets-timed]]
             [cryogen-core.config :refer [resolve-config]]
             [cryogen-core.io :refer [path]]))
 
