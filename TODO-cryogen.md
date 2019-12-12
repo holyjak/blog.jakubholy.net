@@ -20,7 +20,7 @@ TODO Gatsby -> Cryogen
    * 👇show tags next to date
    * 👇date in yyyy-mm-dd inst.of words
    * ✅ move svg icons to the separate file
-1. Rename page About -> Me
+✅ 1. Rename page About -> Me
 1. Disqus integration
 1. Better Tags page - show cloud and articles - re-add "word cloud" with counts; include categories, when supported
 ----
