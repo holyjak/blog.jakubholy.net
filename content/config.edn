@@ -21,7 +21,7 @@
  :compass-path         "compass"
  :theme                "lotus"
  :resources            ["img" "images" "_headers" "_redirects" "favicon.ico" "robots.txt" "google91ccd30255bfe7de.html"]
- :keep-files           [".git"]
+ :keep-files           [".git" ".gitkeep"]
  :disqus?              false
  :disqus-shortname     ""
  :ignored-files        [#"\.#.*" #".*\.swp$"]
