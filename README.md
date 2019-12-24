@@ -1,5 +1,9 @@
 # blog.jakubholy.net
 
+## FIXME
+
+1. _Loading failed for the <script> with source “https://www.googletagmanager.com/gtag/js?id=UA-98603541-2”_
+
 ## TODO
 
 1. Mark posts with `best` tag, show them on the "Best" page
@@ -23,7 +27,9 @@
 - Look & feel:
    - re-enable support for cover images (commented out; need to pass remark its plugins in `gatsby-node`; perhaps move the code into a local plugin first)
    - desktop: show top pages, tag cloud, ...
-
+- Highlight.js - include only + all langs used, incl. e.g. terraform
+  - collapsible code blocks
+- AsciDoc - add styling for NOTE etc.
 ---
 
 # Original README
