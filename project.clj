@@ -8,7 +8,7 @@
                            [compojure "1.6.1"]
                            [ring-server "0.5.0"]
                            [cryogen-asciidoc "0.1.4"]
-                           [cryogen-core "0.2.3"]
+                           [cryogen-core "0.3.0"]
                            ;; TMP data.xml to parse old blog posts:
                            [org.clojure/data.json "0.2.7"]]
             ;:repositories [["local" "file:///Users/holyjak/.m2"]]

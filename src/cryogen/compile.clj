@@ -14,20 +14,20 @@
        [:svg {:aria-hidden true :focusable false :width 16 :height 16}
         [:use {:xlink:href (str blog-prefix "/img/icons.svg#icon-link")}]]])))
 
-(defn autolink-content-headings [content blog-prefix]
-  (let [content-nodes (enlive/html-resource (StringReader. content))]
-    (-> content-nodes
-        (enlive/transform
-          [#{:h1 :h2 :h3 :h4 :h5 :h6}]
-          (fn autolink-heading [heading]
-            (update heading
-                    :content
-                    #(apply vector (permalink-node heading blog-prefix) %))))
-        (enlive/emit*)
-        (->> (apply str)))))
+(defn autolink-content-headings [content-nodes blog-prefix]
+  (-> content-nodes
+      (enlive/transform
+        [#{:h1 :h2 :h3 :h4 :h5 :h6}]
+        (fn autolink-heading [heading]
+          (update heading
+                  :content
+                  #(apply vector (permalink-node heading blog-prefix) %))))
+      #_(enlive/emit*)))
 
-(defn autolink-headings [article {:keys [blog-prefix]}]
-  (update article :content autolink-content-headings blog-prefix))
+(defn autolink-headings
+  "Make all headings into link targets to be accessible with `#heading-id`"
+  [article {:keys [blog-prefix]}]
+  (update article :content-dom autolink-content-headings blog-prefix))
 
 ;;---------------------------------------------------------- custom URI override
 
