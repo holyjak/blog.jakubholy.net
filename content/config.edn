@@ -32,4 +32,5 @@
  :collapse-subdirs?    false
  :hide-future-posts?   true
  :klipse               {}
- :debug?               false}
+ :debug?               false
+ :asciidoctor          {:attributes {"icons" "font"}}}

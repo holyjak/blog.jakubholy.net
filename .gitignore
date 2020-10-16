@@ -1,5 +1,6 @@
 # Generated
 themes/lotus/css/*.css
+!themes/lotus/css/asciidoctor-custom-subset.css
 themes/lotus/css/*.css.map
 
 # dotenv environment variables file

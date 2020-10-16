@@ -21,6 +21,7 @@
 
         <meta content="width=device-width, initial-scale=1" name="viewport">
 
+        {% style "css/asciidoctor-custom-subset.css" %}
         {% style "css/normalize.css" %}
         {% style "css/blog.css" %}
         {% style "css/lotus-highlightjs.min.css" %}
@@ -31,6 +32,13 @@
       {% for css-url in post.extra-css %}
       <link href="{{css-url}}" rel="stylesheet">
       {% endfor %}
+
+      {# Font awesome for AsciiDoctor's `:icons: font`, loaded async; see
+         https://www.filamentgroup.com/lab/load-css-simpler/ (7/2019) #}
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            media="print" onload="this.media='all'">
+
     </head>
     <body>
         <aside id="sidebar">
