@@ -7,10 +7,10 @@
                            [ring/ring-devel "1.7.1"]
                            [compojure "1.6.1"]
                            [ring-server "0.5.0"]
-                           [cryogen-asciidoc "0.3.1"]
-                           [cryogen-core "0.3.1"]
+                           [cryogen-asciidoc "0.3.2"]
+                           [cryogen-core "0.3.2"]
                            ;; TMP data.xml to parse old blog posts:
-                           [org.clojure/data.json "0.2.7"]]
+                           #_[org.clojure/data.json "0.2.7"]]
             ;:repositories [["local" "file:///Users/holyjak/.m2"]]
             :plugins [[lein-ring "0.12.5"]]
             :main cryogen.core
