@@ -16,3 +16,8 @@
 pre .conum[data-value]{position:relative;top:-.125em}
 b.conum *{color:inherit!important}
 .conum:not([data-value]):empty{display:none}
+
+/*My own CSS related to adoc content*/
+.left-floating-img { /* for images with role=left-floating-img, which becomes a class */
+  float: left
+}
