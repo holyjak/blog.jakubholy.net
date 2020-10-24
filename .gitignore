@@ -17,3 +17,5 @@ target/
 .idea/
 
 # other
+.cpcache/
+.lein-repl-history
