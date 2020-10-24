@@ -22,8 +22,8 @@
  :theme                "lotus"
  :resources            ["img" "images" "_headers" "_redirects" "favicon.ico" "robots.txt" "google91ccd30255bfe7de.html"]
  :keep-files           [".git" ".gitkeep"]
- :disqus?              false
- :disqus-shortname     ""
+ :disqus?              true
+ :disqus-shortname     "blog-jakubholy-net"
  :ignored-files        [#"\.#.*" #".*\.swp$"]
  :previews?            true
  :posts-per-page       15
