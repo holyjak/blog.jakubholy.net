@@ -9,7 +9,8 @@
            ;; Start a server serving the blog: `clojure -X:serve`
            ;; (requires tools-deps 0.9.745+)
            :serve {:exec-fn   cryogen.server/serve
-                   :exec-args {:port 8888}}}
+                   :exec-args {:port 8888}}
+           :pr  {:override-deps {cryogen-core/cryogen-core {:local/root "/Users/holyjak/tmp/delme/cryogen-core-iss142"}}}
            :dev {:override-deps {cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
-                                 cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}
+                                 cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}}
  }
