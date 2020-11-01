@@ -33,4 +33,5 @@
  :hide-future-posts?   true
  :klipse               {}
  :debug?               false
- :asciidoctor          {:attributes {"icons" "font"}}}
+ :asciidoctor          {:attributes {"icons" "font"}
+                        :extensions {"abbr" cryogen.asciidoctor/abbr}}}

@@ -7,7 +7,7 @@
                            [ring/ring-devel "1.7.1"]
                            [compojure "1.6.1"]
                            [ring-server "0.5.0"]
-                           [cryogen-asciidoc "0.3.2"]
+                           [cryogen-asciidoc "0.3.3"]
                            [cryogen-core "0.3.2"]
                            ;; TMP data.xml to parse old blog posts:
                            #_[org.clojure/data.json "0.2.7"]]
