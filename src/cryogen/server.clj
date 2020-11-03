@@ -51,3 +51,7 @@
   (ring-server/serve
     handler
     (merge {:init init} opts)))
+
+(comment
+  (serve nil)
+  nil)

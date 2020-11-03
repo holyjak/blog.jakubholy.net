@@ -1,11 +1,15 @@
 (ns cryogen.asciidoctor
   (:import (org.asciidoctor.extension BaseProcessor)
-           (org.asciidoctor.ast ContentNode)))
+           (org.asciidoctor.ast ContentNode)
+           (java.util HashMap)))
 
 (defn ^{:extension/types #{:inline :block}} abbr
   "abbr:AOP[\"Aspect-Oriented Programming\"] -> abbr with title."
   [^BaseProcessor this ^ContentNode parent ^String target attributes]
-  ;; Returning a string is "deprecated" but still possible and since there is no
-  ;; other way...
-  ;; See https://discuss.asciidoctor.org/How-to-create-inline-macro-producing-HTML-In-AsciidoctorJ-td8313.html
-  (str "<abbr title=\"" (get attributes "1" "N/A") "\">" target "</abbr>"))
+  (let [attrs (HashMap. {})
+        opts (HashMap. {"subs" []})]
+    (.createPhraseNode
+      this parent "quoted"
+      (str "<abbr title=\"" (get attributes "1" "N/A") "\">" target "</abbr>")
+      attrs opts)))
+

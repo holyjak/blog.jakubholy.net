@@ -66,7 +66,7 @@
 
 (comment
 
-  (compile-site [(clojure.java.io/file "content/asc/posts/2020/spring-nevermore.asc")])
+  (compile-site [(clojure.java.io/file "content/asc/posts/2020/best-team-ever.asc")])
   (compile-site)
 
   (autolink-content-headings *cnt "")
