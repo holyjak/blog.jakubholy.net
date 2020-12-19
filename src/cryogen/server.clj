@@ -12,40 +12,18 @@
             [cryogen-core.io :refer [path]]
             [clojure.string]))
 
-(def extra-config
-  {:update-article-fn
-   (fn update-article [article config]
-     (if (clojure.string/starts-with? (:uri article) "/about/") ;; TODO Remove when done migrating
-       (do
-         (println ">>> removing" (:uri article))
-         nil)
-       (-> article
-           (my.compile/slug->uri config)
-           (my.compile/autolink-headings config))))
-
-   :extend-params-fn
-   (fn extend-params [params site-data]
-     (let [tag-count (->> (:posts-by-tag site-data)
-                          (map (fn [[k v]] [k (count v)]))
-                          (into {}))]
-       (update
-         params :tags
-         #(map (fn [t] (assoc t
-                         :count (tag-count (:name t))))
-               %))))})
-
-(def extra-config-def
-  (merge extra-config
+(def extra-config-dev
+  (merge my.compile/extra-config
          {:hide-future-posts? false}))
 
 (defn init [fast?]
   (load-plugins)
-  (compile-assets-timed extra-config-def)
+  (compile-assets-timed extra-config-dev)
   (let [ignored-files (-> (resolve-config) :ignored-files)]
     (run!
       #(if fast?
-         (start-watcher-for-changes! % ignored-files compile-assets-timed extra-config-def)
-         (start-watcher! % ignored-files compile-assets-timed extra-config-def))
+         (start-watcher-for-changes! % ignored-files compile-assets-timed extra-config-dev)
+         (start-watcher! % ignored-files compile-assets-timed extra-config-dev))
       ["content" "themes"])))
 
 (defn wrap-subdirectories
