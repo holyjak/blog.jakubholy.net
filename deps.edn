@@ -2,7 +2,7 @@
         ring-server/ring-server {:mvn/version "0.5.0"}
         ring/ring-devel {:mvn/version "1.7.1"}
         compojure/compojure {:mvn/version "1.6.1"}
-        cryogen-core/cryogen-core {:mvn/version "0.3.2"}
+        cryogen-core/cryogen-core {:mvn/version "0.4.0"}
         cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.3"}}
  :aliases {;; Run with `clojure -M:build`
            :build {:main-opts ["-m" "cryogen.core"]}
@@ -10,6 +10,8 @@
            ;; (requires tools-deps 0.9.745+)
            :serve {:exec-fn   cryogen.server/serve
                    :exec-args {:port 8888}}
+           :serve-fast {:exec-fn   cryogen.server/serve
+                        :exec-args {:port 3000, :fast true}}
            :pr  {:override-deps {cryogen-core/cryogen-core {:local/root "/Users/holyjak/tmp/delme/cryogen-core-iss142"}}}
            :dev {:override-deps {cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
                                  cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}}

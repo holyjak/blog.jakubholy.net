@@ -1,22 +1,52 @@
 (ns cryogen.server
-  (:require [cryogen.compile]
+  (:require [cryogen.compile :as my.compile]
             [compojure.core :refer [GET defroutes]]
             [compojure.route :as route]
             [ring.util.response :refer [redirect file-response]]
             [ring.util.codec :refer [url-decode]]
             [ring.server.standalone :as ring-server]
-            [cryogen-core.watcher :refer [start-watcher!]]
+            [cryogen-core.watcher :refer [start-watcher! start-watcher-for-changes!]]
             [cryogen-core.plugins :refer [load-plugins]]
-            ;[cryogen-core.compiler :refer [compile-assets-timed]]
+            [cryogen-core.compiler :refer [compile-assets-timed]]
             [cryogen-core.config :refer [resolve-config]]
-            [cryogen-core.io :refer [path]]))
+            [cryogen-core.io :refer [path]]
+            [clojure.string]))
 
-(defn init []
+(def extra-config
+  {:update-article-fn
+   (fn update-article [article config]
+     (if (clojure.string/starts-with? (:uri article) "/about/") ;; TODO Remove when done migrating
+       (do
+         (println ">>> removing" (:uri article))
+         nil)
+       (-> article
+           (my.compile/slug->uri config)
+           (my.compile/autolink-headings config))))
+
+   :extend-params-fn
+   (fn extend-params [params site-data]
+     (let [tag-count (->> (:posts-by-tag site-data)
+                          (map (fn [[k v]] [k (count v)]))
+                          (into {}))]
+       (update
+         params :tags
+         #(map (fn [t] (assoc t
+                         :count (tag-count (:name t))))
+               %))))})
+
+(def extra-config-def
+  (merge extra-config
+         {:hide-future-posts? false}))
+
+(defn init [fast?]
   (load-plugins)
-  (cryogen.compile/compile-site)
+  (compile-assets-timed extra-config-def)
   (let [ignored-files (-> (resolve-config) :ignored-files)]
-    (start-watcher! "content" ignored-files cryogen.compile/compile-site)
-    (start-watcher! "themes" ignored-files cryogen.compile/compile-site)))
+    (run!
+      #(if fast?
+         (start-watcher-for-changes! % ignored-files compile-assets-timed extra-config-def)
+         (start-watcher! % ignored-files compile-assets-timed extra-config-def))
+      ["content" "themes"])))
 
 (defn wrap-subdirectories
   [handler]
@@ -47,10 +77,10 @@
 
 (defn serve
   "Entrypoint for running via tools-deps (clojure)"
-  [opts]
+  [{:keys [fast] :as opts}]
   (ring-server/serve
     handler
-    (merge {:init init} opts)))
+    (merge {:init (partial init fast)} opts)))
 
 (comment
   (serve nil)

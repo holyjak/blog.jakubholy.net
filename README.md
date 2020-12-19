@@ -36,7 +36,7 @@
 
     # Auto-reloading:
     lein ring server
-    clojure -X:serve
+    clojure -X:serve # or clojure -X:serve-fast
 
     # Build once:
     lein run

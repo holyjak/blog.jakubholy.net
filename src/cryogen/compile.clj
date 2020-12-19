@@ -61,8 +61,7 @@
             #(map (fn [t] (assoc t
                             :count (tag-count (:name t))))
                   %))))}
-     ;; FIXME Re-add 👇 when inc compilation done
-     #_changeset)))
+     changeset)))
 
 (comment
 
