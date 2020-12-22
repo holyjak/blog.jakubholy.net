@@ -33,6 +33,10 @@ p {
   margin: 0 auto 1em auto;
 }
 
+li > p {
+  margin-bottom: 0;
+}
+
 strong, b {
   font-weight: 600;
 }
