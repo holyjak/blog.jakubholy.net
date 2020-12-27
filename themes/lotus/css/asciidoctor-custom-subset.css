@@ -39,3 +39,6 @@ b.conum *{color:inherit!important}
 .left-floating-img { /* for images with role=left-floating-img, which becomes a class */
   float: left
 }
+.right-floating-img { /* for images with role=right-floating-img, which becomes a class */
+  float: right
+}
