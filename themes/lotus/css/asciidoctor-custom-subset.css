@@ -42,3 +42,4 @@ b.conum *{color:inherit!important}
 .right-floating-img { /* for images with role=right-floating-img, which becomes a class */
   float: right
 }
+.line-through{text-decoration:line-through}
