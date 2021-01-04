@@ -15,6 +15,8 @@ $base-color: $purple;
 $base-font-color: $very-dark-grey;
 $body-bgcolor: $very-light-grey;
 
+$anchor-color: lighten(scale_color($base-color, $saturation: 20%), 20%);
+
 // Fonts
 $font-weight-light: 300;
 $font-weight-normal: 400;

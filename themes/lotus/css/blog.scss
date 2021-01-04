@@ -33,8 +33,6 @@ body {
 }
 
 a {
-  $anchor-color: lighten(scale_color($base-color, $saturation: 20%), 20%);
-
   color: $anchor-color;
   text-decoration: none; //fallback
   text-decoration: underline solid currentColor;
@@ -274,6 +272,43 @@ img {
   margin-left: -20px;
 
   //svg { visibility: hidden } // TODO Show on mouse-over
+}
+
+// For .mimdmup collapsed sub-list, see /2020/troubleshooting-fulcro
+@mixin mm-marker {
+  color: white;
+  margin-left: 0.5em;
+  padding: 0 0.3em;
+}
+li.mm-collapsed > {
+  cursor: pointer;
+
+  :first-child:after {
+    @include mm-marker;
+    content: " More... ▶";
+    background-color: $anchor-color;
+  }
+  .ulist {
+    display: none;
+  }
+  .olist {
+    display: none;
+  }
+}
+li.mm-expanded > {
+  cursor: pointer;
+
+  :first-child:after {
+    @include mm-marker;
+    content: " Show less ▼";
+    background-color: lighten($anchor-color, 20%);
+  }
+  .ulist {
+    display: initial;
+  }
+  .olist {
+    display: initial;
+  }
 }
 
 /* ==================================================
