@@ -1,4 +1,4 @@
-/* Minimal subset of //https://asciidoctor.org/stylesheets/styles.css for selected elements */
+/* Minimal subset of https://asciidoctor.org/stylesheets/styles.css for selected elements */
 .admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
 .admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
 .admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
@@ -48,11 +48,16 @@ ol.lowerroman{list-style-type:lower-roman}
 ol.upperroman{list-style-type:upper-roman}
 ol.lowergreek{list-style-type:lower-greek}
 
+.dlist dt {font-style:italic}
+b, dt, strong, th {font-weight:600}
+
 /*My own CSS related to adoc content*/
 .left-floating-img { /* for images with role=left-floating-img, which becomes a class */
-  float: left
+  float: left;
+  margin-right: 0.5em;
 }
 .right-floating-img { /* for images with role=right-floating-img, which becomes a class */
-  float: right
+  float: right;
+  margin-left: 0.5em;
 }
 .line-through{text-decoration:line-through}
