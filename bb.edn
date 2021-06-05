@@ -1,0 +1,3 @@
+{:tasks 
+ {serve (clojure "-X:serve")
+  serve-fast (clojure "-X:serve-fast")}}
