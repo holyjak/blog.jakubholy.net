@@ -1,9 +1,9 @@
 {
 	"folders": [
-		{
-			"path": "."
-		}
-	],
+    {
+      "path": "."
+    }
+  ],
 	"settings": {
 		"asciidoc.preview.attributes": {
       "imagesdir": "/Users/holyjak/Projects/blogs/blog.jakubholy.net/content/img"
