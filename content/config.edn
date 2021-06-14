@@ -30,7 +30,7 @@
  :blocks-per-preview   2
  :clean-urls           :trailing-slash
  :collapse-subdirs?    false
- :hide-future-posts?   true
+ :hide-future-posts?   true ; overriden in server.clj for local dev
  :klipse               {}
  :debug?               false
  :asciidoctor          {:attributes {"icons" "font"
