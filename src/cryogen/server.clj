@@ -23,7 +23,7 @@
     (run!
       #(if fast?
          (start-watcher-for-changes! % ignored-files compile-assets-timed extra-config-dev)
-         (start-watcher! % ignored-files compile-assets-timed extra-config-dev))
+         (start-watcher! % ignored-files compile-assets-timed))
       ["content" "themes"])))
 
 (defn wrap-subdirectories

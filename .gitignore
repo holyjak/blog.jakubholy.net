@@ -19,3 +19,4 @@ target/
 # other
 .cpcache/
 .lein-repl-history
+.lsp
