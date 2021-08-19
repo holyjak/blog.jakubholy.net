@@ -42,7 +42,7 @@
       }
 
       .menu-item-text {
-        padding: $default-gutter/2 $default-gutter;
+        padding: math.div($default-gutter, 2) $default-gutter;
         width: 100%;
         .large-screen { // Hide some labels on small screens so they only show on large ones
           display: none;

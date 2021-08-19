@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
-    "sass": "1.29"
+    "sass": "^1.33"
   }
 }

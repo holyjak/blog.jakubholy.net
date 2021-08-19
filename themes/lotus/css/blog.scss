@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 @import "typography";
 @import "buttons";
@@ -80,7 +81,7 @@ img {
   align-items: stretch;
 
   @media (max-width: $mobile-breakpoint) {
-    padding-bottom: $default-gutter / 2;
+    padding-bottom: math.div($default-gutter, 2);
   }
   @media (min-width: $tablet-breakpoint) {
     width: 10rem;
@@ -207,7 +208,7 @@ img {
       @media (max-width: $mobile-breakpoint) {
         height: $mobile-icon-size;
         width: $mobile-icon-size;
-        margin-left: $mobile-icon-size/3;
+        margin-left: math.div($mobile-icon-size, 3);
       }
     }
 
@@ -286,7 +287,7 @@ li.mm-collapsed > {
 
   :first-child:after {
     @include mm-marker;
-    content: " More... ▶";
+    content: " More... ▶"; // or "\25B6"
     background-color: $anchor-color;
   }
   .ulist {
