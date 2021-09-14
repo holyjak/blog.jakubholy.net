@@ -1,3 +1,4 @@
-{:tasks 
+{:tasks
  {serve (clojure "-X:serve")
-  serve-fast (clojure "-X:serve-fast")}}
+  serve-fast (clojure "-X:serve-fast")
+  build (clojure "-M:build")}}

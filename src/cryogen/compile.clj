@@ -1,18 +1,27 @@
 (ns cryogen.compile
-  (:require [cryogen-core.compiler :as compiler :refer [compile-assets-timed]]
-            [net.cgrand.enlive-html :as enlive])
-  (:import (java.io StringReader)))
+  (:require
+   [clojure.string :as str]
+   [cryogen-core.compiler :as compiler :refer [compile-assets-timed]]
+   [net.cgrand.enlive-html :as enlive])
+  (:import (java.net URLEncoder)))
 
 ;;------------------------------------------------------------ autolink-headings
 
 (defn permalink-node [{{heading-id :id} :attrs :as heading} blog-prefix]
-  (first
-    (enlive/html
-      [:a {:href (str "#" heading-id)
-           :aria-label (str "Permalink to " (enlive/text heading))
-           :class "anchor"}
-       [:svg {:aria-hidden true :focusable false :width 16 :height 16}
-        [:use {:xlink:href (str blog-prefix "/img/icons.svg#icon-link")}]]])))
+  (let [id (or heading-id
+             ;; Note: Some pre-cryogen headings lack heading-id, make one up:
+             (-> (enlive/text heading)
+                 (str/replace #"\s" "-")
+                 (str/replace #"[?!*+='\"&#]" "")
+                 (URLEncoder/encode "UTF-8")))]
+    (first
+      (enlive/html
+        [:a {:id (when-not heading-id id) ; b/c there is not target with this ID
+             :href (str "#" id)
+             :aria-label (str "Permalink to " (enlive/text heading))
+             :class "anchor"}
+         [:svg {:aria-hidden true :focusable false :width 16 :height 16}
+          [:use {:xlink:href (str blog-prefix "/img/icons.svg#icon-link")}]]]))))
 
 (defn autolink-content-headings [content-nodes blog-prefix]
   (-> content-nodes
