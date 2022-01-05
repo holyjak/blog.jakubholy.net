@@ -77,14 +77,17 @@ img {
 
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
   align-items: stretch;
 
   @media (max-width: $mobile-breakpoint) {
+    justify-content: space-between;
     padding-bottom: math.div($default-gutter, 2);
   }
-  @media (min-width: $tablet-breakpoint) {
+  @media (min-width: $mobile-breakpoint) {
     width: 10rem;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    justify-content: space-between;
   }
 
   #logo {
@@ -129,7 +132,7 @@ img {
     #logo-content {
       display: flex;
       flex-direction: column;
-      @media (min-width: $tablet-breakpoint) {
+      @media (min-width: $mobile-breakpoint) {
         display: initial;
       }
     }
@@ -137,7 +140,7 @@ img {
     #sidebar-logo-row {
       display: flex;
       align-items: center;
-      @media (min-width: $tablet-breakpoint) {
+      @media (min-width: $mobile-breakpoint) {
         flex-direction: column;
       }
     }
@@ -148,7 +151,7 @@ img {
         text-transform: lowercase;
         margin-bottom: 0.35em;
 
-        @media (min-width: $tablet-breakpoint) {
+        @media (min-width: $mobile-breakpoint) {
           text-align: center;
         }
       }
@@ -166,7 +169,7 @@ img {
     #sidebar-title {
       margin-bottom: 0.35em;
 
-      @media (min-width: $tablet-breakpoint) {
+      @media (min-width: $mobile-breakpoint) {
         margin-top: 0.35em;
       }
     }

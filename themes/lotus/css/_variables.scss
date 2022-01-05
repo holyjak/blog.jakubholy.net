@@ -8,7 +8,7 @@ $very-dark-grey: #111111;
 $dark-grey: #444;
 $grey: #808080;
 $light-grey: #ccc;
-$very-light-grey: #fffff8; // #fbfbfb; easier on the eyes according to https://edwardtufte.github.io/tufte-css/
+$very-light-grey: #fffff8; // #fbfbfb; easier on the eyes than white according to https://edwardtufte.github.io/tufte-css/
 $white: #fff;
 
 $base-color: $purple;
@@ -48,6 +48,7 @@ $sidebar-width: 220px;
 // Media
 // $tablet-breakpoint: 768px;
 // $mobile-breakpoint: 480px;
+$desktop-breakpoint: 1080px;
 $tablet-breakpoint: 900px;
 $mobile-breakpoint: 700px;
 
