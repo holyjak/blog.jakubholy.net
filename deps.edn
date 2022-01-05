@@ -12,7 +12,7 @@
                    :exec-args {:port 8888}}
            :serve-fast {:exec-fn   cryogen.server/serve
                         :exec-args {:port 8888, :fast true}}
-           :pr  {:override-deps {cryogen-core/cryogen-core {:local/root "/Users/holyjak/tmp/delme/cryogen-core-iss142"}}}
+           #_#_
            :dev {:override-deps {cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
                                  cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}}
  }

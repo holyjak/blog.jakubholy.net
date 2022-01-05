@@ -12,33 +12,51 @@
 <meta property="og:type" content="article" />
 {% endblock %}
 {% block content %}
-<div id="post">
+<section id="post">
     {% include "/html/post-content.html" %}
 
-    <p class="support-hire-me-info"><em>Are you benefitting from my writing? Consider <a href="https://www.buymeacoffee.com/holyjak">buying me a coffee</a>
-     or supporting my work via <a href="http://github.com/holyjak">GitHub Sponsors</a>. Thank you! You can also
-     <a href="https://www.codementor.io/@holyjak">book me for a mentoring / pair-programming session</a> via Codementor 
-     or (cheaper) <a href="/contact/">email</a>.</em></p>
+    <footer>
+      <p class="support-hire-me-info desktop-and-tablet-only"><em>Are you benefitting from my writing? Consider <a href="https://www.buymeacoffee.com/holyjak">buying me a coffee</a>
+      or supporting my work via <a href="http://github.com/holyjak">GitHub Sponsors</a>. Thank you! You can also
+      <a href="https://www.codementor.io/@holyjak">book me for a mentoring / pair-programming session</a> via Codementor
+      or (cheaper) <a href="/contact/">email</a>.</em></p>
+      <p class="support-hire-me-info mobile"><em>Are you benefitting from my writing? Consider <a href="/me/support">supporting or hiring me</a>. Thank you!</p>
 
-    {% with prev=post.prev next=post.next%}
-    {% include "/html/prev-next.html" %}
-    {% endwith %}
-
-    {% if disqus-shortname %}
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        var disqus_config = function () {
-            this.page.url = "{{site-url}}{{uri}}";
-            this.page.identifier = "{{post.title}}";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//{{disqus-shortname}}.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    {% endif %}
+      <div id="subscribe">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
+        <div>
+          <h3>Allow me to write to you!</h3>
+          <p>Let's get in touch! I will occasionally send you a short email with a few links to interesting stuff I found and with summaries of my new blog posts. Max 1-2 emails per month. I read and answer to all replies.</p>
+          <form name="subscribe" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="email" name="email" class="email-input" placeholder="Email" title="Your email address" />
+            <input type="submit" value="Subscribe">
+          </form>
+        </div>
+      </div>
 
 
-</div>
+      {% with prev=post.prev next=post.next%}
+      {% include "/html/prev-next.html" %}
+      {% endwith %}
+
+      {% if disqus? %}
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          var disqus_config = function () {
+              this.page.url = "{{site-url}}{{uri}}";
+              this.page.identifier = "{{post.title}}";
+          };
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//{{disqus-shortname}}.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      {% endif %}
+
+  </footer>
+
+  </section>
 {% endblock %}

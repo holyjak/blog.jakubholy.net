@@ -211,3 +211,24 @@ code {
 code, kbd, samp {
   font-family: $mono-font-family;
 }
+
+#subscribe {
+  background-color: lighten($light-grey, 10%);
+  padding: 1em;
+  margin-bottom: 1em;
+  svg {
+    width:10em;
+    height:10em;
+    margin-right: 0.7em;
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+  h3 {
+    margin-top: 0;
+  }
+  input.email-input {
+    min-width: 15em;
+    margin-bottom: 0.3em;
+  }
+}

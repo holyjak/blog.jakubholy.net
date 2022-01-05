@@ -62,6 +62,24 @@ body {
   }
 }
 
+.support-hire-me-info {
+  &.desktop-and-tablet-only {
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+  &.mobile {
+    @media (min-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+}
+
+
+#subscribe {
+  display: flex;
+}
+
 #prev-next {
   display: flex;
   align-items: center;
