@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
     <head>
+      <meta charset="utf-8"/>
+
 
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98603541-2"></script>
@@ -12,14 +14,13 @@
         gtag('config', 'UA-98603541-2');
       </script>
 
-      <meta charset="utf-8">
-        <title>{{title}}{% block subtitle %}{% endblock %}</title>
-        {% block meta %}
+      <title>{{title}}{% block subtitle %}{% endblock %}</title>
+      {% block meta %}
         <meta name="description" content="{{description}}">
         <meta name="keywords" content="">
-        {% endblock %}
+      {% endblock %}
 
-        <meta content="width=device-width, initial-scale=1" name="viewport">
+      <meta content="width=device-width, initial-scale=1" name="viewport">
 
         {% style "css/asciidoctor-custom-subset.css" %}
         {% style "css/normalize.css" %}
