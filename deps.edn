@@ -3,7 +3,7 @@
         ring/ring-devel {:mvn/version "1.9.5"}
         compojure/compojure {:mvn/version "1.6.2"}
         cryogen-core/cryogen-core {:mvn/version "0.4.1"}
-        cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.3"}}
+        cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.4"}}
  :aliases {;; Run with `clojure -M:build`
            :build {:main-opts ["-m" "cryogen.core"]}
            ;; Start a server serving the blog: `clojure -X:serve`
