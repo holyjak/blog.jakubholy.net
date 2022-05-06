@@ -1,4 +1,4 @@
-{:deps {org.clojure/clojure {:mvn/version "1.10.3"}
+{:deps {org.clojure/clojure {:mvn/version "1.11.1"}
         ring-server/ring-server {:mvn/version "0.5.0"}
         ring/ring-devel {:mvn/version "1.9.5"}
         compojure/compojure {:mvn/version "1.6.2"}
