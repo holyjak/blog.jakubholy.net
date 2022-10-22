@@ -1,3 +1,4 @@
+/* Bring all the styles together + asiidoctor overrides */
 @use "sass:math";
 @import "variables";
 @import "typography";
@@ -364,9 +365,17 @@ li.mm-expanded > {
 }
 
 /* ==================================================
-   AsciiDoctor
+   AsciiDoctor overrides
 ================================================== */
 .exampleblock {
     padding: 1em;
     background-color: #f3f3d163;
 }
+table.tableblock {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    th, td {
+        border: 1px solid #ddd;
+        padding: 0.5em;
+    }
+  }
