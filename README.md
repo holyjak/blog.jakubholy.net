@@ -2,7 +2,7 @@
 
 ## FIXME
 
-1. _Loading failed for the <script> with source “https://www.googletagmanager.com/gtag/js?id=UA-98603541-2”_
+1. _Loading failed for the `<script>` with source “https://www.googletagmanager.com/gtag/js?id=UA-98603541-2”_
 
 ## TODO
 
@@ -34,10 +34,26 @@
 
 # Usage
 
+## Building and serving
+
     # Auto-reloading:
-    lein ring server
-    clojure -X:serve # or clojure -X:serve-fast
+    bb serve-fast
+    #lein ring server
+    #clojure -X:serve # or clojure -X:serve-fast
 
     # Build once:
-    lein run
-    clojure -M:build
+    bb build
+    #lein run
+    #clojure -M:build
+
+## Authoring
+
+
+[Common preamble keys](http://cryogenweb.org/docs/writing-posts.html): `:category :date :draft? :layout  :tags :title :toc`
+
+Special preamble keys (those marked ❌ are carry-over from old platforms and currently do nothing):
+
+ * `:related` - WIP - mark a set of related posts with the same keyword so that you can automatically add links connecting them at the bottom of each post
+ * ❌ `:extra-css`
+ * ❌ `:categories`
+ * ❌ `:slug`
