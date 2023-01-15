@@ -20,3 +20,6 @@ target/
 .cpcache/
 .lein-repl-history
 .lsp
+.nrepl-port
+.portal/
+lsp/
