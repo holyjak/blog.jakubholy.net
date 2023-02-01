@@ -200,9 +200,9 @@ blockquote .author {
 
 code {
   @if(lightness($body-bgcolor) > 50) {
-    background-color: darken($body-bgcolor, 5%);
+    background-color: #f7f7f8;
   } @else {
-    background-color: lighten($body-bgcolor, 5%);
+    background-color: lighten($body-bgcolor, 35%);
   }
 
   border-radius: $default-border-radius;
@@ -211,6 +211,11 @@ code {
 
 code, kbd, samp {
   font-family: $mono-font-family;
+}
+
+.listingblock>.title {
+  margin-top: 1.25em;
+  margin-bottom: 0; /* content has top margin */
 }
 
 #subscribe {
