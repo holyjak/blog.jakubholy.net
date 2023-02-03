@@ -1,12 +1,30 @@
 (ns cryogen.core
   (:require [cryogen.compile :as my.compile]
-            [cryogen-core.compiler :refer [compile-assets-timed]]
-            [cryogen-core.plugins :refer [load-plugins]]))
+            [cryogen-core.compiler :as ccc]
+            [cryogen-core.plugins :refer [load-plugins]]
+            [io.aviso.exception :refer [write-exception]]
+            [text-decoration.core :refer [red yellow]]))
+
+(defn compile-assets-timed
+  "See the docstring for [[compile-assets]]"
+  ([] (compile-assets-timed {}))
+  ([config] (compile-assets-timed config {}))
+  ([config changeset]
+   (time
+    (try
+      (ccc/compile-assets config changeset)
+      0
+      (catch Exception e
+        (if (or (instance? IllegalArgumentException e)
+                (instance? clojure.lang.ExceptionInfo e))
+          (println (red "Error:") (yellow (.getMessage e)))
+          (write-exception e))
+        1)))))
 
 (defn -main []
   (load-plugins)
-  (compile-assets-timed my.compile/extra-config)
-  (System/exit 0))
+  (-> (compile-assets-timed my.compile/extra-config)
+      (System/exit)))
 
 (comment
 
