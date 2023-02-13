@@ -1,4 +1,5 @@
 (ns cryogen.compile
+  "My wrapper around `compile-site` and various customization code"
   (:require
    [clojure.string :as str]
    [cryogen-core.compiler :as compiler :refer [compile-assets-timed]]

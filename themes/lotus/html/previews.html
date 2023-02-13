@@ -2,19 +2,21 @@
 {% block content %}
 <div id="post">
     {% for post in posts %}
-    <div class="post-header">
-        <h1>{{post.title}}</h1>
-        <div class="post-meta">
-            {% if post.author %}
-            <div class="author">{{post.author}}</div>
-            {% endif %}
-            <strong>{{post.date|date:longDate}}</strong>
-        </div>
-    </div>
-    {{post.content|safe}}
-    <br/>
-    <a class="button" href="{{post.uri}}">Continue reading &#8594;</a>
-    <hr>
+      {% if not post.hide-from-home? %}
+      <div class="post-header">
+          <h1>{{post.title}}</h1>
+          <div class="post-meta">
+              {% if post.author %}
+              <div class="author">{{post.author}}</div>
+              {% endif %}
+              <strong>{{post.date|date:longDate}}</strong>
+          </div>
+      </div>
+      {{post.content|safe}}
+      <br/>
+      <a class="button" href="{{post.uri}}">Continue reading &#8594;</a>
+      <hr>
+      {% endif %}
     {% endfor %}
 
     <div id="prev-next">
