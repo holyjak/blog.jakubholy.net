@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Colors
 
 $black: #000;
@@ -12,10 +14,41 @@ $very-light-grey: #fffff8; // #fbfbfb; easier on the eyes than white according t
 $white: #fff;
 
 $base-color: $purple;
+$_base-color-darktheme: $purple; // color.scale($purple, $lightness: 20%);
 $base-font-color: $very-dark-grey;
 $body-bgcolor: $very-light-grey;
+$_body-bgcolor_darktheme: #000;
 
-$anchor-color: lighten(scale_color($base-color, $saturation: 20%), 20%);
+$anchor-color: color.scale(scale_color($base-color, $saturation: 20%), $lightness: 20%);
+$_anchor-color-darktheme: color.scale(scale_color($_base-color-darktheme, $saturation: 20%), $lightness: 15%);
+$anchor-color-hover: color.scale($anchor-color, $lightness: 20%);
+
+:root {
+  --base-color: #{$base-color};
+  --base-font-color: #{$base-font-color};
+  --body-bgcolor: #{$body-bgcolor};
+  --code-bgcolor: #{$body-bgcolor};
+  --code-subst: #000;
+  --code-kwd: #3182bd;
+  --block-bgcolor: #{color.scale($body-bgcolor, $lightness: -20%)};
+  --block-bgcolor-unobtrusive: #e6e6e6;;
+  --anchor-color: #{$anchor-color};
+  --anchor-color-hover: #{$anchor-color-hover};
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --base-color: #{$_base-color-darktheme};
+    --base-font-color: #{color.scale($very-light-grey, $lightness: -20%)};
+    --body-bgcolor: #{$_body-bgcolor_darktheme};
+    --code-bgcolor: #{color.scale($_body-bgcolor_darktheme, $lightness: 20%)};
+    --code-subst: #{$very-light-grey};
+    --code-kwd: #{color.scale(#3182bd, $lightness: 20%)};
+    --block-bgcolor: #{color.scale($_body-bgcolor_darktheme, $lightness: 20%)};
+    --block-bgcolor-unobtrusive: #{color.scale($_body-bgcolor_darktheme, $lightness: 10%)};
+    --anchor-color: #{$_anchor-color-darktheme};
+    --anchor-color-hover: #{color.scale($_anchor-color-darktheme, $lightness: 15%)};
+  }
+}
 
 // Fonts
 $font-weight-light: 300;

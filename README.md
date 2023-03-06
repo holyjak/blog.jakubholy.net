@@ -18,6 +18,10 @@
     #lein run
     #clojure -M:build
 
+### Develop SCSS
+
+Run `bb build` + run a static http file serving server from ./public/ + run `sass -w --stop-on-error --charset themes/lotus/css/blog.scss:public/css/blog.css`. And perhaps also `sass -w --stop-on-error --charset themes/lotus/css/lotus-highlightjs.min.scss:public/css/lotus-highlightjs.min.css`.
+
 ## Authoring
 
 ### Preamble {...}

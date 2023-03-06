@@ -25,22 +25,22 @@
 }
 
 body {
-  background: $body-bgcolor;
-  color: $base-font-color;
+  background: var(--body-bgcolor);
+  color: var(--base-font-color);
 }
 
 ::selection, ::-moz-selection {
-    background: $base-color;
-    color: $body-bgcolor;
+    background: var(--base-color);
+    color: var(--body-bgcolor);
 }
 
 a {
-  color: $anchor-color;
+  color: var(--anchor-color);
   text-decoration: none; //fallback
   text-decoration: underline solid currentColor;
 
   &:hover {
-    color: lighten($anchor-color, 20%);
+    color: var(--anchor-color-hover);
   }
 }
 
@@ -71,8 +71,8 @@ img {
 ================================================== */
 
 #sidebar {
-  background: $base-color;
-  color: $white;
+  background: var(--base-color);
+  color: $white; // FIXME for dark theme
 
   -webkit-overflow-scrolling: touch;
 
@@ -94,13 +94,13 @@ img {
   #logo {
     padding: 10px 0 0 0; //$default-gutter;
     width: 100%;
-    color: $white;
+    color: $white; // FIXME for dark theme
 
     .icon {
       box-shadow: 0px 0px 14px 2px rgba(255, 255, 255, 0.05);
       display: block;
       padding: 10px;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.2); // FIXME for dark theme
       height: 70px;
       width: 70px;
       margin: 0 10px 10px;
@@ -109,7 +109,7 @@ img {
     }
 
     .text {
-      color: $white;
+      color: $white; // FIXME for dark theme
       width: 100%;
       font-size: 30px;
       line-height: .8;
@@ -258,7 +258,7 @@ img {
 }
 
 #footercont {
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(0, 0, 0, 0.54); // FIXME for dark theme
   text-transform: uppercase;
   font-size: 11px;
 }
@@ -281,12 +281,12 @@ img {
 
 // For .mimdmup collapsed sub-list, see /2020/troubleshooting-fulcro
 @mixin mm-marker {
-  color: white;
+  color: white; // FIXME for dark theme
   margin-left: 0.5em;
   padding: 0 0.3em;
   white-space: nowrap;
 }
-li.mm-collapsed > {
+li.mm-collapsed {
   cursor: pointer;
 
   :first-child:after {
@@ -301,13 +301,13 @@ li.mm-collapsed > {
     display: none;
   }
 }
-li.mm-expanded > {
+li.mm-expanded {
   cursor: pointer;
 
   :first-child:after {
     @include mm-marker;
     content: " Show less ▼";
-    background-color: lighten($anchor-color, 20%);
+    background-color: lighten($anchor-color, 20%); // FIXME for dark theme
   }
   .ulist {
     display: initial;
@@ -359,8 +359,8 @@ li.mm-expanded > {
   button {
     margin-right: auto;
     padding: 0.8rem 4rem;
-    background: #709425;
-    color: white;
+    background: #709425; // FIXME for dark theme
+    color: white; // FIXME for dark theme
   }
 }
 
@@ -369,13 +369,13 @@ li.mm-expanded > {
 ================================================== */
 .exampleblock {
     padding: 1em;
-    background-color: #f3f3d163;
+    background-color: #f3f3d163; // FIXME for dark theme
 }
 table.tableblock {
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; // FIXME for dark theme
     th, td {
-        border: 1px solid #ddd;
+        border: 1px solid #ddd; // FIXME for dark theme
         padding: 0.5em;
     }
   }

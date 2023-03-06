@@ -171,10 +171,13 @@ hr {
   text-align: center;
 }
 
-blockquote {
-  background: darken($body-bgcolor, 5%);
+blockquote, .quoteblock blockquote, .quoteblock blockquote p {
+  background: var(--block-bgcolor-unobtrusive);
+  color: var(--base-font-color); // #555;
+}
+
+blockquote, .quoteblock blockquote {
   margin: 1em 0; /* (20px / 20px) */
-  color: #555;
   border-left: 5px solid $base-color;
   padding: .5em;
   font-style: italic;
@@ -199,12 +202,7 @@ blockquote .author {
 }
 
 code {
-  @if(lightness($body-bgcolor) > 50) {
-    background-color: #f7f7f8;
-  } @else {
-    background-color: lighten($body-bgcolor, 35%);
-  }
-
+  background-color: var(--block-bgcolor);
   border-radius: $default-border-radius;
   padding: 1px 3px;
 }
@@ -219,7 +217,7 @@ code, kbd, samp {
 }
 
 #subscribe {
-  background-color: lighten($light-grey, 10%);
+  background-color: var(--block-bgcolor-unobtrusive);
   padding: 1em;
   margin-bottom: 1em;
   svg {
