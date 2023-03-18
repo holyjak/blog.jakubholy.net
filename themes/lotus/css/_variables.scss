@@ -31,7 +31,7 @@ $anchor-color-hover: color.scale($anchor-color, $lightness: 20%);
   --code-subst: #000;
   --code-kwd: #3182bd;
   --block-bgcolor: #{color.scale($body-bgcolor, $lightness: -20%)};
-  --block-bgcolor-unobtrusive: #e6e6e6;;
+  --block-bgcolor-unobtrusive: #e6e6e6;
   --anchor-color: #{$anchor-color};
   --anchor-color-hover: #{$anchor-color-hover};
 }
