@@ -23,3 +23,4 @@ target/
 .nrepl-port
 .portal/
 lsp/
+.calva/

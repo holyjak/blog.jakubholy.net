@@ -1,6 +1,6 @@
-{:title "Holy Dev Newsletter MMM 20YY" ; TODO
+{:title "Holy Dev Newsletter MMM 2023" ; TODO
  :hide-from-home? true
- :date "" ; TODO
+ :date "2023-XX-30" ; TODO
  :tags ["newsletter"]}
 
 Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
@@ -18,5 +18,5 @@ You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
 
 Thank you for reading!
 
-// This newsletter is produced by Jakub Holý (https://holyjak.cz/), a blogger and programming buddy / mentor for hire.
+// This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
 // If youd don't want to receive it anymore, simple respond with "unsubscribe" in the subject
