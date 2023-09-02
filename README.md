@@ -41,6 +41,10 @@ Put them inside `~/content/img/<post name>/` and refer to them from the post via
 
 You can add `role="left-floating-img"` (or `right-...`) to set css class of the same name.
 
+### Custom macros
+
+See `content/config.edn` - e.g. `abbr`
+
 ## TODO
 
 1. Mark posts with `best` tag, show them on the "Best" page

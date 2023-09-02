@@ -35,4 +35,5 @@
  :debug?               false
  :asciidoctor          {:attributes {"icons" "font"
                                      "imagesdir" "/img"} ; + set to abs. file path in VS Code workspace config
-                        :extensions {"abbr" cryogen.asciidoctor/abbr}}}
+                        :extensions {"abbr" cryogen.asciidoctor/abbr ; ex.: abbr:AOP["Aspect-Oriented Programming"]
+                                     }}}
