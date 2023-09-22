@@ -8,6 +8,12 @@
 
 ## Building and serving
 
+Prereq.:
+
+    yarn install # Netlify does this automatically
+
+Regular usage:
+
     # Auto-reloading:
     bb serve-fast
     #lein ring server
@@ -17,6 +23,10 @@
     bb build
     #lein run
     #clojure -M:build
+
+Testing search (after `bb build`):
+
+    npx -y pagefind --site public --serve
 
 ### Develop SCSS
 
@@ -35,8 +45,8 @@ Special preamble keys (those marked ❌ are carry-over from old platforms and cu
  * ❌ `:categories`
  * ❌ `:slug`
  * `:extra-css ["/pagefind/pagefind-ui.css"]` - see ./themes/lotus/html/base.html
- * `:extra-js [{:src "/pagefind/pagefind-ui.js" :async? true}]}` - see ./themes/lotus/html/base.html
-```
+ * `:extra-js [{:src "/pagefind/pagefind-ui.js" :async? true}]}` - see ./themes/lotus/html/base.
+
 ### Images
 
 Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::/img/<post name>/[label]`.
