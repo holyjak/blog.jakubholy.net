@@ -1,132 +1,168 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
-    <head>
-      <meta charset="utf-8"/>
+
+<head>
+  <meta charset="utf-8" />
 
 
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98603541-2"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98603541-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-        gtag('config', 'UA-98603541-2');
-      </script>
+    gtag('config', 'UA-98603541-2');
+  </script>
 
-      <title>{{title}}{% block subtitle %}{% endblock %}</title>
-      {% block meta %}
-        <meta name="description" content="{{description}}">
-        <meta name="keywords" content="">
-      {% endblock %}
+  <title>{{title}}{% block subtitle %}{% endblock %}</title>
+  {% block meta %}
+  <meta name="description" content="{{description}}">
+  <meta name="keywords" content="">
+  {% endblock %}
 
-      <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
 
-        {% style "css/asciidoctor-custom-subset.css" %}
-        {% style "css/normalize.css" %}
-        {% style "css/blog.css" %}
-        {% style "css/lotus-highlightjs.min.css" %}
+  {% style "css/asciidoctor-custom-subset.css" %}
+  {% style "css/normalize.css" %}
+  {% style "css/blog.css" %}
+  {% style "css/lotus-highlightjs.min.css" %}
 
-      {% for js in page.extra-js %}
-      <script src="{{js.src}}" async="{{js.async?}}"></script>
-      {% endfor %}
-      {% for css-url in post.extra-css %}
-      <link href="{{css-url}}" rel="stylesheet">
-      {% endfor %}
+  {% for js in page.extra-js %}
+  <script src="{{js.src}}" {% if js.async?  %}async{% endif %}></script>
+  {% endfor %}
+  {% for css-url in post.extra-css %}
+  <link href="{{css-url}}" rel="stylesheet">
+  {% endfor %}
 
-      {# Font awesome for AsciiDoctor's `:icons: font`, loaded async; see
-         https://www.filamentgroup.com/lab/load-css-simpler/ (7/2019) #}
-      <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-            media="print" onload="this.media='all'">
+  {# Font awesome for AsciiDoctor's `:icons: font`, loaded async; see
+  https://www.filamentgroup.com/lab/load-css-simpler/ (7/2019) #}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    media="print" onload="this.media='all'">
 
-    </head>
-    <body>
-        <aside id="sidebar">
-            <div id="logo">
-                <a id="logo-content" title="{{title}}" href="{{index-uri}}">
-                    <div id="sidebar-logo-row">
-                      <img class="icon" src="{{blog-prefix}}/img/avatar.jpg" alt="author image">
-                      <div id="sidebar-author-block">
-                        <div id="sidebar-author" class="text">{{author}}</div>
-                        <div id="sidebar-subtitle" class="text">{{subtitle}}</div>
-                      </div>
-                    </div>
-                    <div id="sidebar-title" class="text">{{title}}</div>
-                </a>
-            </div>
+</head>
 
-            <nav id="sidebar-links">
+<body>
+  <aside id="sidebar">
+    <div id="logo">
+      <a id="logo-content" title="{{title}}" href="{{index-uri}}">
+        <div id="sidebar-logo-row">
+          <img class="icon" src="{{blog-prefix}}/img/avatar.jpg" alt="author image">
+          <div id="sidebar-author-block">
+            <div id="sidebar-author" class="text">{{author}}</div>
+            <div id="sidebar-subtitle" class="text">{{subtitle}}</div>
+          </div>
+        </div>
+        <div id="sidebar-title" class="text">{{title}}</div>
+      </a>
+    </div>
 
-                <nav id="menucont">
+    <nav id="sidebar-links">
 
-                    <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
-                    <label for="menu-checkbox" class="menutitle">
-                      <svg class="icon icon-menu-up" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-menu-up"></use></svg>
-                      <svg class="icon icon-menu-down" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-menu-down"></use></svg>
-                      <span class="menu-text">Menu</span>
-                    </label>
+      <nav id="menucont">
 
-                    <ul class="menu">
-                        {% if not home %}<li><a title="Home" href="{{index-uri}}"><div class="menu-item-text">
-                          <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-home"></use></svg>
-                        <span class="large-screen">Home</span>
-                        </div></a></li>{% endif %}
-                        <li><a title="Search" href="/search/" aria-label="search"><div class="menu-item-text">
-                          <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#search"></use></svg>
-                          <span class="large-screen">Search</span>
-                        </div></a></li>
-                        {% if tags|not-empty %}
-                        <li {%ifequal uri tags-uri %} class="active" {% endifequal %}><a title="Tags" href="{{tags-uri}}"><div class="menu-item-text">
-                          <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#tag"></use></svg>
-                          Tags
-                        </div></a></li>
-                        {% endif %}
-                        {% for nav-page in navbar-pages %}
-                        <li {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
-                            <a href="{{nav-page.uri}}"><div class="menu-item-text">{{nav-page.title}}</div></a>
-                        </li>
-                        {% endfor %}
-                      <li {% if archives %} class="active" {% endif %}><a title="Archives" href="{{archives-uri}}"><div class="menu-item-text">Archives</div></a></li>
-                      <li><a title="RSS" href="{{rss-uri}}"><div class="menu-item-text">
-                        <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-rss"></use></svg>
-                        RSS</div></a></li>
-                      <li><a href="https://holyjak.tumblr.com/" title="Recommended links feed" aria-label="Recommended links feed"><div class="menu-item-text">
-                        <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-tumblr"></use></svg>
-                        <span class="large-screen">Tumblr</span>
-                      </div></a></li>
-                      <li><a aria-label="contact" href="/contact/"><div class="menu-item-text">
-                        <svg class="icon" aria-hidden="true"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-mail"></use></svg>
-                        <span class="large-screen">Contact</span>
-                      </div></a></li>
-                    </ul>
+        <input type="checkbox" id="menu-checkbox" class="menu-checkbox">
+        <label for="menu-checkbox" class="menutitle">
+          <svg class="icon icon-menu-up" aria-hidden="true">
+            <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-menu-up"></use>
+          </svg>
+          <svg class="icon icon-menu-down" aria-hidden="true">
+            <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-menu-down"></use>
+          </svg>
+          <span class="menu-text">Menu</span>
+        </label>
 
-                </nav>
+        <ul class="menu">
+          {% if not home %}<li><a title="Home" href="{{index-uri}}">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-home"></use>
+                </svg>
+                <span class="large-screen">Home</span>
+              </div>
+            </a></li>{% endif %}
+          <li><a title="Search" href="/search/" aria-label="search">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#search"></use>
+                </svg>
+                <span class="large-screen">Search</span>
+              </div>
+            </a></li>
+          {% if tags|not-empty %}
+          <li {%ifequal uri tags-uri %} class="active" {% endifequal %}><a title="Tags" href="{{tags-uri}}">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#tag"></use>
+                </svg>
+                Tags
+              </div>
+            </a></li>
+          {% endif %}
+          {% for nav-page in navbar-pages %}
+          <li {%ifequal page.uri nav-page.uri %} class="active" {% endifequal %}>
+            <a href="{{nav-page.uri}}">
+              <div class="menu-item-text">{{nav-page.title}}</div>
+            </a>
+          </li>
+          {% endfor %}
+          <li {% if archives %} class="active" {% endif %}><a title="Archives" href="{{archives-uri}}">
+              <div class="menu-item-text">Archives</div>
+            </a></li>
+          <li><a title="RSS" href="{{rss-uri}}">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-rss"></use>
+                </svg>
+                RSS
+              </div>
+            </a></li>
+          <li><a href="https://holyjak.tumblr.com/" title="Recommended links feed" aria-label="Recommended links feed">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-tumblr"></use>
+                </svg>
+                <span class="large-screen">Tumblr</span>
+              </div>
+            </a></li>
+          <li><a aria-label="contact" href="/contact/">
+              <div class="menu-item-text">
+                <svg class="icon" aria-hidden="true">
+                  <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-mail"></use>
+                </svg>
+                <span class="large-screen">Contact</span>
+              </div>
+            </a></li>
+        </ul>
 
-                <!--nav id="socialmedia">
+      </nav>
+
+      <!--nav id="socialmedia">
                     <ul>
                         <li><a title="LinkedIn" href="https://www.linkedin.com/in/jakubholydotnet" rel="external"><svg class="icon icon-linkedin"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-linkedin"></use></svg></a></li>
                         <li><a title="GitHub" href="https://github.com/holyjak" rel="external"><svg class="icon icon-github-circled"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-github-circled"></use></svg></a></li>
                         <li><a title="RSS Feed" href="{{rss-uri}}"><svg class="icon icon-rss-squared"><use xlink:href="{{blog-prefix}}/img/icons.svg#icon-rss-squared"></use></svg></a></li>
                     </ul>
                 </nav-->
-            </nav>
-        </aside>
+    </nav>
+  </aside>
 
-        <article id="main">
-            {% block content %}
-            {% endblock %}
-            <hr/>
-            <div id="footercont">
-                Copyright &copy; {{today|date:yyyy}} {{author}}
-                <br>Powered by <a href="http://cryogenweb.org">Cryogen</a>
-                <br>Theme by <a href="http://github.com/KingMob">KingMob</a>
-            </div>
-        </article>
+  <article id="main">
+    {% block content %}
+    {% endblock %}
+    <hr />
+    <div id="footercont">
+      Copyright &copy; {{today|date:yyyy}} {{author}}
+      <br>Powered by <a href="http://cryogenweb.org">Cryogen</a>
+      <br>Theme by <a href="http://github.com/KingMob">KingMob</a>
+    </div>
+  </article>
 
-        <script src="{{selmer/context}}js/highlight.pack.js" type="text/javascript" async onload="hljs.initHighlightingOnLoad();"></script>
+  <script src="{{selmer/context}}js/highlight.pack.js" type="text/javascript" async
+    onload="hljs.initHighlightingOnLoad();"></script>
 
-        {% if post.klipse %} {{post.klipse|safe}} {% endif %}
-        {% if page.klipse %} {{page.klipse|safe}} {% endif %}
-    </body>
+  {% if post.klipse %} {{post.klipse|safe}} {% endif %}
+  {% if page.klipse %} {{page.klipse|safe}} {% endif %}
+</body>
+
 </html>
