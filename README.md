@@ -34,7 +34,9 @@ Special preamble keys (those marked ❌ are carry-over from old platforms and cu
  * ❌ `:extra-css`
  * ❌ `:categories`
  * ❌ `:slug`
-
+ * `:extra-css ["/pagefind/pagefind-ui.css"]` - see ./themes/lotus/html/base.html
+ * `:extra-js [{:src "/pagefind/pagefind-ui.js" :async? true}]}` - see ./themes/lotus/html/base.html
+```
 ### Images
 
 Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::/img/<post name>/[label]`.
