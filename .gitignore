@@ -2,6 +2,9 @@
 themes/lotus/css/*.css
 !themes/lotus/css/asciidoctor-custom-subset.css
 themes/lotus/css/*.css.map
+# code-editor artifacts used only in dev / not needed
+themes/lotus/js/cljs-runtime/
+themes/lotus/js/manifest.edn
 
 # dotenv environment variables file
 .env

@@ -1,0 +1,12 @@
+{:deps {:aliases [:code-editor]}
+ :dev-http {8118 {:root "themes/lotus", :push-state/index "html/dev-editor.html"}}
+ :nrepl {:port 9000}
+ :builds {; Build the interactive code editor with SCI and Fulcro support, to be
+          ; included in blog posts that need it.
+          ; Build once manually and keep in git.
+          :code-editor {:compiler-options {:output-feature-set :es8
+                                           :optimizations :advanced}
+                        :target :browser
+                        :output-dir "themes/lotus/js"
+                        :asset-path "js"
+                        :modules {:code-editor {:init-fn holyjak.code-editor/render}}}}}
