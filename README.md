@@ -46,6 +46,7 @@ Special preamble keys (those marked ❌ are carry-over from old platforms and cu
  * ❌ `:slug`
  * `:extra-css ["/pagefind/pagefind-ui.css"]` - see ./themes/lotus/html/base.html
  * `:extra-js [{:src "/pagefind/pagefind-ui.js" :async? true}]}` - see ./themes/lotus/html/base.
+ * `:asciidoctor {:attributes {"k1" "v1", ...}}`
 
 ### Images
 

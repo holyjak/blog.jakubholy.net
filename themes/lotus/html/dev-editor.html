@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test the Code Editor</title>
+    <link rel="stylesheet" href="/css/blog.css">
+  </head>
+  <body>
+    <article id="main">
+      <section id="post">
+        <h1>Test the interactive Code Editor at dev time</h1>
+
+        <div class="exampleblock two-columns">
+          <div class="content">
+            <div class="listingblock code-editor">
+              <div class="title">In-browser editable Fulcro app</div>
+              <div class="content">
+                <pre class="highlight">
+            <code class="language-text" data-lang="text">(ns test1
+      (:require
+        [com.fulcrologic.fulcro.application :as app]
+        [com.fulcrologic.fulcro.components :as comp :refer [defsc]]
+        [com.fulcrologic.fulcro.dom :as dom]))
+    (defsc Root [this props]
+     (dom/div (dom/h3 "Hello from Fulcro!")
+       (dom/p "Fulcro is an awesome framework for writing full-stack apps")))
+    (app/mount! (app/fulcro-app) Root "demo-app")</code>
+          </pre>
+              </div>
+            </div>
+            <div class="paragraph">
+              <p></p>
+              <div
+                id="demo-app"
+                style="border: 1px dashed; padding: 0.4rem"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </body>
+  <script src="/js/code-editor.js" async></script>
+</html>

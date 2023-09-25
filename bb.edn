@@ -1,4 +1,6 @@
 {:tasks
  {serve (clojure "-X:serve")
   serve-fast (clojure "-X:serve-fast")
-  build (clojure "-M:build")}}
+  build (clojure "-M:build")
+  code-editor (shell "npx shadow-cljs -A:code-editor release code-editor") ; FIXME We want all of Fulcro, Pathom, no DCE !
+  code-editor-watch (shell "npx shadow-cljs -A:code-editor watch code-editor")}}

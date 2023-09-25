@@ -31,6 +31,12 @@
   {% for js in page.extra-js %}
   <script src="{{js.src}}" {% if js.async?  %}async{% endif %}></script>
   {% endfor %}
+  {% for js in post.extra-js %}
+  <script src="{{js.src}}" {% if js.async?  %}async{% endif %}></script>
+  {% endfor %}
+  {% for css-url in page.extra-css %}
+  <link href="{{css-url}}" rel="stylesheet">
+  {% endfor %}
   {% for css-url in post.extra-css %}
   <link href="{{css-url}}" rel="stylesheet">
   {% endfor %}
