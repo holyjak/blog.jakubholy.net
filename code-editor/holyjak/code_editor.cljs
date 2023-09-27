@@ -1,5 +1,4 @@
 ;; TODO list:
-;; . In-code callouts still become <i ..>..</i> => disable on this page
 ;; . Dark theme
 (ns holyjak.code-editor
   "Add interactive code editors with cljs evaluation to a blog post.

@@ -50,7 +50,7 @@ Special preamble keys (those marked ❌ are carry-over from old platforms and cu
 
 ### Images
 
-Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::/img/<post name>/[label]`.
+Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::/img/<post name>/<img file>[label]`.
 
 You can add `role="left-floating-img"` (or `right-...`) to set css class of the same name.
 
