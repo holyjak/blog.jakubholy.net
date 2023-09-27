@@ -20,8 +20,8 @@ $body-bgcolor: $very-light-grey;
 $_body-bgcolor_darktheme: #000;
 
 $anchor-color: color.scale(scale_color($base-color, $saturation: 20%), $lightness: 20%);
-$_anchor-color-darktheme: color.scale(scale_color($_base-color-darktheme, $saturation: 20%), $lightness: 15%);
-$anchor-color-hover: color.scale($anchor-color, $lightness: 20%);
+$_anchor-color-darktheme: color.scale(scale_color($_base-color-darktheme, $saturation: 20%), $lightness: 25%); // FIXME Too dark
+$anchor-color-hover: color.scale($anchor-color, $lightness: 30%);
 
 :root {
   --base-color: #{$base-color};
