@@ -12,9 +12,10 @@
                    :exec-args {:port 8888}}
            :serve-fast {:exec-fn   cryogen.server/serve
                         :exec-args {:port 8888, :fast true}}
+           :shadow-cli {:main-opts ["-m" "shadow.cljs.devtools.cli"]}
            :code-editor
            {:replace-paths ["code-editor"]
-            :replace-deps {thheller/shadow-cljs {:mvn/version "2.25.6"} ; also brings in cljs
+            :replace-deps {thheller/shadow-cljs {:mvn/version "2.20.0"} ; also brings in cljs
                            org.babashka/sci {:mvn/version "0.8.40"}
                         ; FIXME -> io.github.babashka/sci.configs:
                            io.github.holyjak/sci.configs {:git/sha "cc1df35b14d1be4bc3ce3f3c52d08f5a75c9e2a2"}

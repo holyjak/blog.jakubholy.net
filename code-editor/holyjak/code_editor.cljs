@@ -15,13 +15,19 @@
    ["@codemirror/state" :refer [EditorState]]
    ["@codemirror/view" :as view :refer [EditorView lineNumbers showPanel]]
 
+   ;; For re-export to sci
+   ["react" :as react]
+   ["react-dom" :as react-dom]
+
    [nextjournal.clojure-mode :as cm-clj]))
 
 (enable-console-print!)
 (sci/alter-var-root sci/print-fn (constantly *print-fn*))
 (sci/alter-var-root sci/print-err-fn (constantly *print-err-fn*))
 
-(defonce sci-ctx (doto (sci/init {})
+(defonce sci-ctx (doto (sci/init {:classes {'js js/globalThis :allow :all}
+                                  :js-libs {"react" react
+                                            "react-dom" react-dom}})
                    (sci/merge-opts fulcro-config/config)))
 
 (defn eval-code [code]

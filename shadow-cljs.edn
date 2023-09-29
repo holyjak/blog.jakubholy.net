@@ -5,7 +5,7 @@
           ; included in blog posts that need it.
           ; Build once manually and keep in git.
           :code-editor {:compiler-options {:output-feature-set :es8
-                                           :optimizations :advanced}
+                                           :optimizations :simple}
                         :target :browser
                         :output-dir "themes/lotus/js"
                         :asset-path "js"
