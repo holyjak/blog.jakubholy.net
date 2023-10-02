@@ -33,7 +33,9 @@
 (defn eval-code [code]
   (try (sci/eval-string* sci-ctx code)
        (catch :default e
-         {::error (str (.-message e))})))
+         (cond-> {::error (str (.-message e))}
+           (:line (ex-data e))
+           (assoc ::location (select-keys (ex-data e) [:line :column]))))))
 
 (defn eval-all [on-result  x]
   (on-result (some->> (.-doc (.-state x)) str eval-code))
@@ -57,7 +59,8 @@
                  (if (::error new)
                    (do
                      (.add (.-classList dom) "error")
-                     (set! (.-textContent dom) (str "ERROR: " (::error new))))
+                     (set! (.-textContent dom) (str "ERROR: " (::error new)
+                                                    (some->> new ::location pr-str (str " at ")))))
                    (do
                      (.remove (.-classList dom) "error")
                      (set! (.-textContent dom) (str ";; => " (pr-str new)))))))
