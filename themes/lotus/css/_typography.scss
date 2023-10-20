@@ -216,6 +216,29 @@ code, kbd, samp {
   margin-bottom: 0; /* content has top margin */
 }
 
+.listingblock.code-editor>.content {
+  .cmt-atom      {color: #221199;}
+  .cmt-comment   {color: #AA5500;}
+  .cmt-keyword   {color: #8959A8;}
+  .cmt-literal   {color: #4271AE;}
+  .cmt-number    {color: #F5871F;}
+  .cmt-operator  {color: #008803;}
+  .cmt-separator {color: #990033;}
+  .cmt-string    {color: #FF5500;}
+  @media screen and (prefers-color-scheme: dark) {
+    .cm-gutter     {color: var(--base-font-color); background-color: #5e5e51;}
+    .cm-panel      {color: var(--base-font-color); background-color: #5e5e51;}
+    .cmt-atom      {color: #F78C6C;}
+    .cmt-comment   {color: #545454;}
+    .cmt-keyword   {color: #C792EA;}
+    .cmt-literal   {color: #FFCB6B;}
+    .cmt-number    {color: #FF5370;}
+    .cmt-operator  {color: #89DDFF;}
+    .cmt-separator {color: #FF7DE9;}
+    .cmt-string    {color: #F07178;}
+  }
+}
+
 #subscribe {
   background-color: var(--block-bgcolor-unobtrusive);
   padding: 1em;

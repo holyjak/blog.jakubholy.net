@@ -11,9 +11,11 @@
    ["@codemirror/commands" :refer [history historyKeymap]]
    ["@codemirror/language" :refer [#_foldGutter
                                    syntaxHighlighting
-                                   defaultHighlightStyle]]
+                                   ;defaultHighlightStyle
+                                   HighlightStyle]]
    ["@codemirror/state" :refer [EditorState]]
    ["@codemirror/view" :as view :refer [EditorView lineNumbers showPanel]]
+   ["@lezer/highlight" :refer [tags]]
 
    ;; For re-export to sci
    ["react" :as react]
@@ -77,10 +79,23 @@
    EditorView
    #js {".cm-output-panel.error" #js {:color "red"}}))
 
+;; Define custom classes so that we can control colors => support both light and dark mode
+;; Source: https://discuss.codemirror.net/t/dynamic-light-mode-dark-mode-how/4709/5
+(def highlight-style
+  (.define HighlightStyle
+           #js [#js {:tag (.-atom tags) :class "cmt-atom"}
+                #js {:tag (.-comment tags) :class "cmt-comment"}
+                #js {:tag (.-keyword tags) :class "cmt-keyword"}
+                #js {:tag (.-literal tags) :class "cmt-literal"}
+                #js {:tag (.-number tags) :class "cmt-number"}
+                #js {:tag (.-operator tags) :class "cmt-operator"}
+                #js {:tag (.-separator tags) :class "cmt-separator"}
+                #js {:tag (.-string tags) :class "cmt-string"}]))
+
 (defonce extensions
   #js[theme
       (history)
-      (syntaxHighlighting defaultHighlightStyle)
+      (syntaxHighlighting highlight-style #_defaultHighlightStyle)
       (view/drawSelection)
                         ;(foldGutter)
       (lineNumbers)
@@ -110,8 +125,8 @@
   (println "Code editor: render")
   ;; Asciidoc: process `[source,text,role="code-editor"]` blocks ('text' required
   ;; to disable highlight.js messing with the content)
-  (doseq [code-el (seq (js/document.querySelectorAll ".code-editor .content"))
-          :let [code (some-> (.querySelector code-el "code.language-text") .-textContent)]
+  (doseq [code-el (seq (js/document.querySelectorAll ".code-editor .content code.language-text"))
+          :let [code (some-> code-el .-textContent)]
           :when code]
     (bind-editor! code-el code)))
 

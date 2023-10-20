@@ -3,4 +3,7 @@
   serve-fast (clojure "-X:serve-fast")
   build (clojure "-M:build")
   code-editor (clojure "-M:code-editor:shadow-cli release code-editor")
-  code-editor-watch (clojure "-M:code-editor:shadow-cli watch code-editor")}}
+  code-editor:watch (clojure "-M:code-editor:shadow-cli watch code-editor")
+  sass (shell "sass themes/lotus/css/:themes/lotus/css") ; FIXME overrides .css files we don't want to
+  ; sass:watch (shell "sass --watch themes/lotus/css/:themes/lotus/css") ; loops :-(
+  }}
