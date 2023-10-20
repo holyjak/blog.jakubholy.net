@@ -9,9 +9,9 @@ jobs:
 
     steps:
     - name: Checkout Latest Commit
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
 
     - name: Check deps
-      uses: nnichols/clojure-dependency-update-action@v1
+      uses: nnichols/clojure-dependency-update-action@v5
       with:
         github-token: ${{ secrets.github_token }}
