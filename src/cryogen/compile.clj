@@ -22,7 +22,7 @@
              :aria-label (str "Permalink to " (enlive/text heading))
              :class "anchor"}
          [:svg {:aria-hidden true :focusable false :width 16 :height 16}
-          [:use {:xlink:href (str blog-prefix "/img/icons.svg#icon-link")}]]]))))
+          [:use {:href (str blog-prefix "/img/icons.svg#icon-link")}]]]))))
 
 (defn autolink-content-headings [content-nodes blog-prefix]
   (-> content-nodes

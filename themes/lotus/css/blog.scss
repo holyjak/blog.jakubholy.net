@@ -271,12 +271,28 @@ img {
    Article (post/page)
 ================================================== */
 
+// Make the header link icon only visible on mouse-over
+h2, h3, h4, h5, h6 {
+  & > a.anchor {
+    visibility: hidden;
+  }
+  &:hover > a.anchor {
+    visibility: visible;
+  }
+}
+
 #post a.anchor, #custom-page a.anchor {
   float: left;
   padding-right: 4px;
   margin-left: -20px;
 
-  //svg { visibility: hidden } // TODO Show on mouse-over
+  /* 1. The anchor icon is defined by a child svg, use-d from icons.svg
+     2. It's hidden and only shows on hover - see he h<n> rules above
+     3. We can't target content under use, but stroke will be inherited
+  */
+  & svg>use {
+    stroke: var(--anchor-color);
+  }
 }
 
 // For .mimdmup collapsed sub-list, see /2020/troubleshooting-fulcro
