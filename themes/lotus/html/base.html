@@ -29,10 +29,10 @@
   {% style "css/lotus-highlightjs.min.css" %}
 
   {% for js in page.extra-js %}
-  <script src="{{js.src}}" {% if js.async?  %}async{% endif %}></script>
+  <script src="{{js.src}}" {% if js.async? %}async{% endif %}></script>
   {% endfor %}
   {% for js in post.extra-js %}
-  <script src="{{js.src}}" {% if js.async?  %}async{% endif %}></script>
+  <script src="{{js.src}}" {% if js.async? %}async{% endif %}></script>
   {% endfor %}
   {% for css-url in page.extra-css %}
   <link href="{{css-url}}" rel="stylesheet">
@@ -123,14 +123,18 @@
                 RSS
               </div>
             </a></li>
-          <li><a href="https://holyjak.tumblr.com/" title="Recommended links feed" aria-label="Recommended links feed">
+          <li id="tumblr"><a href="https://holyjak.tumblr.com/" title="Recommended links feed" aria-label="Recommended links feed">
               <div class="menu-item-text">
                 <svg class="icon" aria-hidden="true">
                   <use xlink:href="{{blog-prefix}}/img/icons.svg#icon-tumblr"></use>
                 </svg>
                 <span class="large-screen">Tumblr</span>
               </div>
-            </a></li>
+            </a>
+            <a class="onhover" href="/devlinks"><svg class="icon" aria-hidden="true">
+              <use xlink:href="/img/icons.svg#search"></use>
+            </svg> Search my Gems from the Web links</a>
+          </li>
           <li><a aria-label="contact" href="/contact/">
               <div class="menu-item-text">
                 <svg class="icon" aria-hidden="true">

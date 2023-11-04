@@ -172,3 +172,19 @@
     }
   }
 }
+
+#tumblr {
+  position: relative;
+  > .onhover { display: none; }
+  &:hover > .onhover {
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 8rem;
+    background-color: darkgray;
+    z-index: 1;
+    font-size: small;
+    padding: 2px;
+    letter-spacing: 1px;
+  }
+}
