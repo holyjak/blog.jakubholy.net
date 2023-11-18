@@ -20,7 +20,7 @@
                            io.github.babashka/sci.configs {:git/sha "bf9769c7b9797ac764f4f2fb48fbf342f78c0477"}
                            com.fulcrologic/fulcro {:mvn/version "3.7.0-RC3"}
                            com.wsscode/pathom3 {:mvn/version "2023.01.31-alpha"}
-                           io.github.nextjournal/clojure-mode {:git/sha "7b911bf6feab0f67b60236036d124997627cbe5e"}}}
+                           io.github.nextjournal/clojure-mode {:git/sha "119922327b258e6641d5a10f79cfa8096ab17e7b"}}}
            #_#_:dev {:override-deps {cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
                                      cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}}
  }
