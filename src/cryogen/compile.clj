@@ -50,13 +50,9 @@
 (def extra-config
   {:update-article-fn
    (fn update-article [article config]
-     (if (clojure.string/starts-with? (:uri article) "/about/") ;; TODO Remove when done migrating
-       (do
-         (println ">>> removing" (:uri article))
-         nil)
-       (-> article
-           (slug->uri config)
-           (autolink-headings config))))
+     (-> article
+         (slug->uri config)
+         (autolink-headings config)))
 
    :extend-params-fn
    (fn extend-params [params site-data]
@@ -72,28 +68,7 @@
 (defn compile-site
   ([] (compile-site nil))
   ([changeset]
-   (compile-assets-timed
-     {:update-article-fn
-      (fn update-article [article config]
-        (if (clojure.string/starts-with? (:uri article) "/about/") ;; TODO Remove when done migrating
-          (do
-            (println ">>> removing" (:uri article))
-            nil)
-          (-> article
-              (slug->uri config)
-              (autolink-headings config))))
-
-      :extend-params-fn
-      (fn extend-params [params site-data]
-        (let [tag-count (->> (:posts-by-tag site-data)
-                             (map (fn [[k v]] [k (count v)]))
-                             (into {}))]
-          (update
-            params :tags
-            #(map (fn [t] (assoc t
-                            :count (tag-count (:name t))))
-                  %))))}
-     changeset)))
+   (compile-assets-timed extra-config changeset)))
 
 (comment
 

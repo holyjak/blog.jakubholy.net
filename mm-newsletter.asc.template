@@ -3,10 +3,16 @@
  :date "2023-XX-30" ; TODO
  :tags ["newsletter"]}
 
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to self + subscribers in BCC
+// TODO: 2) Email: comment-out the four `//email:` below & comment-out L14 + `bb build` or `serve` (not fast!), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email)
+// TODO: 4) Re-comment the four `//` & publish to blog
+
 Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
-// (Also https://blog.jakubholy.net/2023/MM-newsletter/[available online].)
+//email: (Also https://blog.jakubholy.net/2023/MM-newsletter/[available online].)
 You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
-// I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
 
 == What is happening
 
@@ -19,5 +25,5 @@ You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
 
 Thank you for reading!
 
-// This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
-// If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
+//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
