@@ -58,6 +58,11 @@ You can add `role="left-floating-img"` (or `right-...`) to set css class of the 
 
 See `content/config.edn` - e.g. `abbr`
 
+### Inter-document links
+
+Use `xref:relative/path/to/target.adoc[some label]`; adoc attributes relfile* in `config.edn` adjust for the fact that we turn `target.adoc -> target/index.html`.
+(FIXME: Rename all .asc to .adoc for easier life.)
+
 ## TODO
 
 1. Mark posts with `best` tag, show them on the "Best" page

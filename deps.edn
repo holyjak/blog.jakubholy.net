@@ -3,7 +3,11 @@
         ring/ring-devel {:mvn/version "1.9.5"}
         compojure/compojure {:mvn/version "1.7.0"}
         cryogen-core/cryogen-core {:mvn/version "0.4.4"}
-        cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.4"}}
+
+        org.asciidoctor/asciidoctorj {:mvn/version #_"3.0.0-alpha.1" "2.5.10"}
+        cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.4"
+                                           :exclusions [org.asciidoctor/asciidoctorj]}
+        }
  :aliases {;; Run with `clojure -M:build`
            :build {:main-opts ["-m" "cryogen.core"]}
            ;; Start a server serving the blog: `clojure -X:serve`
@@ -21,6 +25,6 @@
                            com.fulcrologic/fulcro {:mvn/version "3.7.0-RC3"}
                            com.wsscode/pathom3 {:mvn/version "2023.01.31-alpha"}
                            io.github.nextjournal/clojure-mode {:git/sha "7b911bf6feab0f67b60236036d124997627cbe5e"}}}
-           #_#_:dev {:override-deps {cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
-                                     cryogen-asciidoc/cryogen-asciidoc {:local/root "../../external/cryogen-all/cryogen-asciidoc"}}}}
+           :cryo/dev {:override-deps {;cryogen-core/cryogen-core {:local/root "../../external/cryogen-all/cryogen-core"}
+                                  cryogen-asciidoc/cryogen-asciidoc {:local/root "../external/cryogen-all/cryogen-asciidoc"}}}}
  }
