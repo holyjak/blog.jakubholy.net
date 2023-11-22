@@ -42,7 +42,7 @@
  :debug?               false
  :asciidoctor          {:attributes {"icons" "font"
                                      "imagesdir" "/img"  ; + set to abs. file path in VS Code workspace config
-                                     ;; make xref links -> html links work (needed b/c target.asc becomes target/index.html)
+                                     ;; make xref links -> html links work (needed b/ctarget.asc becomes target/index.html)
                                      "relfileprefix" "../"
                                      "relfilesuffix" "/"
                                      }
