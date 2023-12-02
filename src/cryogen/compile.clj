@@ -72,8 +72,10 @@
 
 (comment
 
-  (compile-site [(clojure.java.io/file "content/asc/posts/2020/best-team-ever.asc")])
-  (compile-site)
+  (do
+    ((requiring-resolve 'cryogen-core.plugins/load-plugins))
+    (compile-site [(clojure.java.io/file "content/asc/posts/2023/4-heads-of-complexity.asc")]))
+  ;(compile-site)
 
   (autolink-content-headings *cnt "")
   (permalink-node "")
@@ -84,11 +86,59 @@
   (def *cnt (-> (last @*dbg)))
 
 
-  (def)
-
-
   (set! *print-length* 15)
   (set! *print-length* nil)
   (set! *print-level* 3)
   (set! *print-level* nil)
+
+  (require 'cryogen-asciidoc.core :reload)
+  ((requiring-resolve 'cryogen-core.plugins/load-plugins))
+  (in-ns 'cryogen-asciidoc.core)
+  (.convert @@cryogen-asciidoc.core/adoc
+            #_"Src abbr:AOT[\"ahead pf time\"]"
+            (slurp "content/asc/posts/2023/4-heads-of-complexity.asc")
+            (-> (org.asciidoctor.Options/builder)
+                ;(.safe org.asciidoctor.SafeMode/SAFE)
+                (.attributes
+                 (-> (org.asciidoctor.Attributes/builder)
+                     (.attribute "icons" "font")
+                     (.attribute "imagesdir" "/img")
+                     (.attribute "relfileprefix" "../")
+                     (.attribute "relfilesuffix" "/")
+                     (.build)))
+                (.build)))
+
+
+  (def adoc (org.asciidoctor.Asciidoctor$Factory/create))
+  (require 'cryogen-asciidoc.extensions)
+  (cryogen-asciidoc.extensions/register-extensions
+   adoc
+   {"abbr" cryogen.asciidoctor/abbr})
+  (.convert adoc
+            "Adoc w/ xref:content/asc/posts/2021/simplicity.asc[link] here"
+            {"attributes"
+             {"relfileprefix" "PREFIX2"
+              "relfilesuffix" "/"}})
+  (.convert adoc ; Adoc 3.0
+            "Adoc w/ xref:path-to/mydoc.adoc[link] here"
+            (-> (org.asciidoctor.Options/builder)
+              (.attributes
+               (-> (org.asciidoctor.Attributes/builder)
+                   (.attribute "relfileprefix" "../")
+                   (.attribute "relfilesuffix" "/")
+                   (.build)))
+                (.build)))
   nil)
+
+(comment
+
+  (def adoc (org.asciidoctor.Asciidoctor$Factory/create))
+  (require 'cryogen-asciidoc.extensions 'cryogen.asciidoctor)
+  (cryogen-asciidoc.extensions/register-extensions
+   adoc
+   {"abbr" 'cryogen.asciidoctor/abbr})
+  (.convert adoc ; Adoc 3.0
+            "Src abbr:AOT[\"ahead pf time\"]"
+            (-> (org.asciidoctor.Options/builder)
+                (.build)))
+  )
