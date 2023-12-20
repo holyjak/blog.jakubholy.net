@@ -9,13 +9,13 @@ You can never really learn Clojure if you only focus on the language. Why? Becau
 
 ## The language
 
-image::/img/trinity-of-clojure/clojure-syntax-slide.png[Clojure syntax, 431, 157, role="right-floating-img"]
+image::trinity-of-clojure/clojure-syntax-slide.png[Clojure syntax, 431, 157, role="right-floating-img"]
 
 Learning the language of Clojure - its syntax and the core library - is the easy part. Learning to write functional code and create functional systems is a bigger challenge but still something newcomers are aware of. (And something https://grokkingsimplicity.com/[📖 Grokking Simplicity] can help with.)
 
 ## Interactive development
 
-image::/img/trinity-of-clojure/video-demo-interactive-dev.png[Interactive development demo video, 350, 218, role="right-floating-img", link="https://www.youtube.com/watch?v=oTy4JYY3CoQ"]
+image::trinity-of-clojure/video-demo-interactive-dev.png[Interactive development demo video, 350, 218, role="right-floating-img", link="https://www.youtube.com/watch?v=oTy4JYY3CoQ"]
 
 Understanding the productivity benefits of interactive development and adopting it as you primary way of working is harder. Many beginners fail to see it for what it is and consequently fail to adopt and leverage it. They think "I know REPL from Python" and stop there. But interactive development is the opposite of the write-compile-test cycle from mainstream languages. It is about developing - or more accurately "growing" - your application while it is running, without ever restarting it, without ever losing its state, and with full access to said state, database connections etc. It is about trying every tiny piece of code immediately in the REPL. If you are new to this, REPL means Read-Eval-Print-Loop, and it is kind of a "programming terminal" connected to your application, where you send new code, run functions, and inspect data. It is also about "productivity hacks" such as capturing the arguments of a function so that you can then invoke it in isolation directly from the REPL, without having to go through all the surrounding code.
 
@@ -23,7 +23,7 @@ Check out my video https://www.youtube.com/watch?v=oTy4JYY3CoQ[Demonstrating the
 
 ## Structural code editing
 
-image::/img/trinity-of-clojure/calva-slurp-forward.gif[Paredit Slurp Forward (from Calva docs), 350, 125, role="right-floating-img"]
+image::trinity-of-clojure/calva-slurp-forward.gif[Paredit Slurp Forward (from Calva docs), 350, 125, role="right-floating-img"]
 
 Last but not least is structural code editing support, represented by the older https://calva.io/paredit/[Paredit] and newer https://shaunlebron.github.io/parinfer/[Parinfer]. They turn parentheses from something confusing to a productivity boost. Essentially, they provide a few commands, bound to hotkeys, for the most common code edit operations. The most used ones are selecting the next surrounding unit of code, moving the closing parenthesis one expression left to throw the last expression out of it ("barf") or moving it right to get it in ("slurp"), and "raising" an expression so that it replaces its parent. There are more but these four are all you really need (perhaps with an occasional use of "split"). Here are https://github.com/holyjak/interactive-dev-wshop/blob/master/Cheatsheet.md#vs-code-and-calva-shortcuts[my top 6 VS Code keybindings] that include structural editing and REPL evaluation commands.
 

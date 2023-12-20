@@ -50,7 +50,7 @@ Special preamble keys (those marked ❌ are carry-over from old platforms and cu
 
 ### Images
 
-Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::/img/<post name>/<img file>[label]`.
+Put them inside `~/content/img/<post name>/` and refer to them from the post via `image::<post name>/<img file>[label]`. (`imagesdir` is configured in config.edn to prepend /img for a correct url, and in local VS Code settings to point to the correct absolute dir path in asciidoc preview.)
 
 You can add `role="left-floating-img"` (or `right-...`) to set css class of the same name.
 

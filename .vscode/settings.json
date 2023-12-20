@@ -1,0 +1,7 @@
+{
+    "owlbear.autoformat.enabled": false,
+    "asciidoc.antora.enableAntoraSupport": false,
+    "asciidoc.preview.asciidoctorAttributes": {
+      "imagesdir": "/Users/holyjak/Projects/blog.jakubholy.net/content/img"
+    }
+}

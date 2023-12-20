@@ -5,7 +5,7 @@
 
 _An extended transcript of https://www.youtube.com/watch?v=F651QCU3Sco[my talk at DevFest Norway 2020] (https://docs.google.com/presentation/d/1LkKnbnvBmmCmN1oFoTd9hSB4oeY_arIuFdHdkfG2Iks/edit?usp=sharing[slides here])._
 
-image::/img/talk-want-more-from-your-frontend-framework/slide-first.png["cover slide",role="left-floating-img"]
+image::talk-want-more-from-your-frontend-framework/slide-first.png["cover slide",role="left-floating-img"]
 
 Do you also love creating useful (web)apps and get easily frustrated by any friction in the development process? I will compare Redux + REST with a full-stack, component-centric solution based on a graph API (think GraphQL) that I came to love. You might not be able to use the same framework - https://github.com/fulcrologic/fulcro[Fulcro] - but you can still look for similar, more developer-friendly solutions that implement some of the same ideas and provide some of the same functionality. We will discuss REST vs. Graph APIs, networking, error handling, and more. (You should have an idea about React, Redux, and GraphQL to gain most out of this.)
 
@@ -295,7 +295,7 @@ This is a big one - I want the ability to easily switch loading modes - load all
 
 ## I want a framework that:
 
-image::/img/talk-want-more-from-your-frontend-framework/slide-want-wfrk-that.png["Slide"]
+image::talk-want-more-from-your-frontend-framework/slide-want-wfrk-that.png["Slide"]
 
 \... is full-stack and integrated, i.e. where the backend and frontend have been made to work together and where there is minimal friction and boilerplate in getting data from the one to the other. A framework that provides a complete, well-integrated solution to all common needs of non-trivial applications.
 

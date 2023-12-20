@@ -370,7 +370,7 @@ And, as we see in the screenshot below (together with the broken report), the da
 
 [#screenshot-inspect-db-explorer]
 .Inventory Report with a missing "Category*" and Fulcro Inspect's DB Explorer for a report row item
-image::/img/troubleshooting-fulcro/demo1-ui_db-missing-label.jpg[]
+image::troubleshooting-fulcro/demo1-ui_db-missing-label.jpg[]
 
 ****
 Note: You find report row data in the DB via `:com.fulcrologic.rad.report/id` -> `:com.example.ui.item-forms/InventoryReport` -> `:ui/current-rows`, which is a list of `:item/id` idents. The _DB Explorer_ is little more useful here as you can click an ident there to get to its details while in the _DB_ view you need to navigate to it manually.
@@ -380,7 +380,7 @@ I expected to see something like this, with the `:category/label-uppercase` prop
 
 [#screenshot-inspect-db]
 .Inspect's DB view of a report row item with the defect fixed
-image::/img/troubleshooting-fulcro/demo2-expected-ui_db.jpg[]
+image::troubleshooting-fulcro/demo2-expected-ui_db.jpg[]
 
 _Conclusion 1_: The problem isn't in DB -> UI but in getting the data into the client DB, i.e. either I failed to issue the load from the backend -> client DB or it is not doing what is expected. Since we see other item data present, the most likely cause is that the load is happening but it is not doing all of what I expect.
 
@@ -388,7 +388,7 @@ _Question 2_: I am exploring _load! - missing data - Has a load actually been is
 
 [#screenshot-inspect-tx]
 .Inspect's Transactions log
-image::/img/troubleshooting-fulcro/demo3-inspect-transactions.jpg[]
+image::troubleshooting-fulcro/demo3-inspect-transactions.jpg[]
 
 _Conclusion 2_: A LOAD for the report is issued (as I expected) and it correctly asks for the missing property.
 
@@ -399,7 +399,7 @@ _Question 3_: _Is there a problem with the query / backend?_ What is the respons
 
 [#screenshot-inspect-network]
 .Inspect's Network tab with a request and the response
-image::/img/troubleshooting-fulcro/demo4-inspect-network.jpg[]
+image::troubleshooting-fulcro/demo4-inspect-network.jpg[]
 
 _Conclusion 3_: The request looks correct, the response lacks the property.
 
@@ -408,7 +408,7 @@ But to see the response as is, before any filtering, we want to use the _[Send t
 _Question 4_: What does the raw response look like? Can I simplify it?
 
 [#screenshot-inspect-eql]
-image::/img/troubleshooting-fulcro/demo5-inspect-EQL.jpg[]
+image::troubleshooting-fulcro/demo5-inspect-EQL.jpg[]
 
 (I use _[Run EQL]_ +++<i class="conum" data-value="1"></i>+++ to send the query to the server
 and I can _[(Re)load Pathom Index]_ +++<i class="conum" data-value="2"></i>+++ to get auto-completion of known properties.)
@@ -437,7 +437,7 @@ _Question 5_: _Is there a resolver for the property/join in question?_ I.e. does
 
 [#screenshot-inspect-IndexExplorer-attribute-list]
 .Inspect's Index Explorer list of known (Pathom, not RAD) "data attributes" a.k.a. properties
-image::/img/troubleshooting-fulcro/demo6a-inspect-IndexExplorer-1-unknown.jpg[]
+image::troubleshooting-fulcro/demo6a-inspect-IndexExplorer-1-unknown.jpg[]
 
 _Conclusion 5_: `:category/label-uppercase` is not in the list of known Pathom properties/attributes, even after I (!) re-loaded the index. So it seems it has not been registered with Pathom correctly.
 
@@ -445,13 +445,13 @@ Let's have a look where the closely related and known property `:category/label`
 
 [#screenshot-inspect-IndexExplorer-attribute-details]
 .Inspect's Index Explorer - details of a data attribute
-image::/img/troubleshooting-fulcro/demo6b-inspect-IndexExplorer-2-label.jpg[]
+image::troubleshooting-fulcro/demo6b-inspect-IndexExplorer-2-label.jpg[]
 
 OK, so we see it is provided by the `category/id-resolver`. This is a https://github.com/realgenekim/fulcro-rad-demo/blob/237db6a213b264bf63a3c77f243142fe6b635782/src/datomic/com/example/components/auto_resolvers.clj[RAD-generated resolver] from the `:category/id` attribute marked with `ao/identity? true` to any other attribute that has it in its `ao/identities` and has the same `ao/schema`. Let's look at the resolver itself:
 
 [#screenshot-inspect-IndexExplorer-resolver]
 .Inspect's Index Explorer - details of a resolver
-image::/img/troubleshooting-fulcro/demo6c-inspect-IndexExplorer-3-resolver.jpg[]
+image::troubleshooting-fulcro/demo6c-inspect-IndexExplorer-3-resolver.jpg[]
 
 We can see that it produces a single property, `:category/label`. Why?
 
@@ -462,13 +462,13 @@ When I look at the code, I can see that this attribute is actually not expected 
 _Conclusion 6_: The attribute is defined but it is not registered with Pathom. And we can see that this is indeed the case, as it is missing from the `attributes` vector below (which is eventually composed to the resolvers passed to the Pathom parser):
 
 .Code defect discovered: missing registration of the attribute
-image::/img/troubleshooting-fulcro/demo7-c_e_m_category.jpg[]
+image::troubleshooting-fulcro/demo7-c_e_m_category.jpg[]
 
 After we fix the defect, restart Fulcro, and (re-)Load the index, we will be able to see both the `:category/label-uppercase-resolver` and the `:category/label-uppercase` data attribute in the Index Explorer, as the screenshot below shows. It also shows the _Graph View_ of the data attribute with 2 levels of direct inputs so that we can see that Pathom is able to go from `:item/id` -> `:category/id` -> `:category/label` -> `:category/label-uppercase` as well as go directly from `:item/id` -> `:category/label` (this latter thanks to our manual https://github.com/holyjak/fulcro-rad-demo/blob/example/broken-resolver-chain/src/shared/com/example/model/item.cljc#L43[`item-category-resolver`]).
 
 [#screenshot-inspect-IndexExplorer-attr-graph-view]
 .Inspect's Index Explorer after the fix - graph view of the data attribute
-image::/img/troubleshooting-fulcro/demo8-inspect-IndexExplorer-fixed-attr-graph.jpg[]
+image::troubleshooting-fulcro/demo8-inspect-IndexExplorer-fixed-attr-graph.jpg[]
 
 == Related resources
 

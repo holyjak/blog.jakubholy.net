@@ -3,7 +3,7 @@
  :tags ["opinion" "productivity"]
  :category "SW Development"}
 
-image::/img/language-of-simplicity/babel-tower.jpg["Babel Tower",role="right-floating-img]
+image::language-of-simplicity/babel-tower.jpg["Babel Tower",role="right-floating-img]
 
 A language suit for purpose enables us to express our thoughts clearly and concisely. In programming, this language consists of our actual programming language, the libraries we use, and the abstractions we build. I believe that _most of the incidental complexity in code stems from an unsuitable language_. A misfit language forces you to speak in a lengthy and roundabout way, never quite getting at what you actually want to say.
 

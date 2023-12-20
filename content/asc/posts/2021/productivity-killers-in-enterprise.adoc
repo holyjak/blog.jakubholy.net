@@ -4,7 +4,7 @@
  :category "SW Development"
  :toc true}
 
-image::/img/productivity-killers-in-enterprise/cover.jpg["Runner stopped by a wall",role="right-floating-img"]
+image::productivity-killers-in-enterprise/cover.jpg["Runner stopped by a wall",role="right-floating-img"]
 
 This article is about "the death [of productivity] by thousand cuts" - about the many obstacles that make enterprise development unnecessarily slow, costly, and painful. And it is about the "invisible cost" of ignoring them. I look at the top obstacles that we encounter and at what we could do about them. I argue that we must prioritize great developer experience and invest into our tools and into simplicity - and that this will yeld benefits both to developers and to the business. Those in power need to realize that developer happiness isn't about perks, huge monitors, and relaxation pods (though those would be cool!). It is, to a large extent, about our ability to do our job without hindrances and thus it is about delivering more value, faster.
 
@@ -30,7 +30,7 @@ I have loosely grouped the technical problems we encounter into two large catego
 
 ### Lack of focus on developer experience
 
-image::/img/productivity-killers-in-enterprise/tools.jpg["Sharpest tool in the shed by Lachlan is licensed with CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
+image::productivity-killers-in-enterprise/tools.jpg["Sharpest tool in the shed by Lachlan is licensed with CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
 
 Nick Tune has written a nice article about https://medium.com/nick-tune-tech-strategy-blog/the-importance-of-a-great-developer-experience-40567abc0e9a[The Importance of a Great Developer Experience]. He concludes:
 
@@ -40,7 +40,7 @@ Developer experience (DX) is crucial not only for the happiness of the developer
 
 #### Where is the data we need? What APIs are there?
 
-image::/img/productivity-killers-in-enterprise/spy-glasses.jpg["Jasmine and her rescue spy glasses by AndrewEick is licensed under CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
+image::productivity-killers-in-enterprise/spy-glasses.jpg["Jasmine and her rescue spy glasses by AndrewEick is licensed under CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
 
 Finding the data I need and the APIs I can to use to achieve my goal is a painstaking detective work. It typically starts by asking more experienced colleagues and posting in a few channels such as `#devs` and `#neo-maintainers`, hoping that for once somebody with an answer will pop up. It is much easier if you have been here a while and know the people who know people. I have no idea how a newcomer would manage it. Having posed my question, it is up to a chance whether somebody is able to point me in the best direction. For example who knows that the shared login team has a service for sending OTP codes? I had no idea until recently.
 
@@ -89,7 +89,7 @@ We know that providing helpful error message is a tough job but not an impossibl
 
 #### Lack of easily accessible, relevant test data
 
-image::/img/productivity-killers-in-enterprise/barrels.jpg["Photo by Quang Nguyen Vinh from Pexels https://www.pexels.com/photo/wood-dark-industry-rope-8257860/",role="right-floating-img"]
+image::productivity-killers-in-enterprise/barrels.jpg["Photo by Quang Nguyen Vinh from Pexels https://www.pexels.com/photo/wood-dark-industry-rope-8257860/",role="right-floating-img"]
 
 One of major pain points and true time sinks. I can sometimes fix a problem within minutes and then spend hours trying (and regularly failing) to get test data to verify the fix. (The good thing is that it then does not matter that the application takes forever to start 😂.) For example I changed the way we fetch information about the logged-in user and need to check that it works properly for multi-organization administrators. Where do I get one? Creating one from scratch requires cooperation from multiple busy teams and likely some luck to find a good starting point. Another example: I needed a B2C user who would be required to pay breakage fee if she changed her subscription now. Despite the long catalogue of various pre-generated test cases, I found none that satisfied that (having tried about 5 most likely ones). Can you imagine how much time we have all collectively wasted over the years here? And when we finally give up, we increase the risk and occasionally inconvenience end-users by releasing untested changes to production.
 
@@ -124,7 +124,7 @@ We need to be aware of the cost of using suboptimal / old tools and invest more 
 
 ### Complexity
 
-image::/img/productivity-killers-in-enterprise/spider-web.jpg["Spider web with water beads by markus174m (CC PDM 1.0)",role="right-floating-img"]
+image::productivity-killers-in-enterprise/spider-web.jpg["Spider web with water beads by markus174m (CC PDM 1.0)",role="right-floating-img"]
 
 The second category of obstacles is unnecessary complexity. Complexity is the true killer of productivity. It increases with the increasing number of parts and of connections between them. As complexity grows linearly, the cost of working with(in) the system grows exponentially.
 
@@ -156,7 +156,7 @@ Is there something with a better balance between flexibility and complexity? Per
 
 ## Counter-example: the customer support app
 
-image::/img/productivity-killers-in-enterprise/holy-grail.jpg["Holy Grail by Cornelia Kopp is licensed under CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
+image::productivity-killers-in-enterprise/holy-grail.jpg["Holy Grail by Cornelia Kopp is licensed under CC BY 2.0, https://creativecommons.org/licenses/by/2.0/",role="right-floating-img"]
 
 To demonstrate that it is possible, with little effort, to improve productivity, I want to tell you about our customer support app.
 

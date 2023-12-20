@@ -4,7 +4,7 @@
  :category "SW Development"
  :toc true}
 
-image::/img/fulcro-divergent-ui-data/cover.png["UI x data tree x Data Entities",role="right-floating-img"]
+image::fulcro-divergent-ui-data/cover.png["UI x data tree x Data Entities",role="right-floating-img"]
 
 Fulcro's stateful components serve normally both as elements of the UI and to define the data model, i.e. data entities with their unique IDs and attributes. And that is what you want 95% of the time. But what if your UI and data model needs diverge?
 
@@ -269,7 +269,7 @@ Then, any component's query can be `+:query [... [:selected-student '_]]+` (and 
 
 === Inserting a stateful UI component between a parent-child entities
 
-What if you want more structure in the UI then is present in the data? For instance if you insert a Fulcro's Dynamic Router between two components or if you want to have a separate component to render a list of children. Sometimes you can solve it with Pathom placeholder (see above), which is simplest, but sometimes you need a different way. Let's explore that/
+What if you want more structure in the UI then is present in the data? For instance if you insert a Fulcro's Dynamic Router between two components or if you want to have a separate component to render a list of children. Sometimes you can solve it with Pathom placeholder (see above), which is simplest, but sometimes you need a different way. Let's explore that.
 
 Imagine you have a `Team` that has a number of ``Player``s and, instead of showing all the players, you want to show them as a "slide show", i.e. just one at a time (likely with buttons to navigate to the next/previous). So while before you had this UI tree:
 
