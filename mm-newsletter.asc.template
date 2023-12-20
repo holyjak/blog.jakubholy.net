@@ -4,8 +4,8 @@
  :tags ["newsletter"]}
 
 // TODO: 0) Fix TODOs to set the correct date, month above
-// TODO: 1) Email: send to self + subscribers in BCC
-// TODO: 2) Email: comment-out the four `//email:` below & comment-out L14 + `bb build` or `serve` (not fast!), copy & paste into email
+// TODO: 1) Email: send to *self* + subscribers in BCC
+// TODO: 2) Email: comment-out the four `//email:` below & fix the MM in the first one & comment-out the subscribe L14, then `bb serve` (not fast!), copy & paste into email
 // TODO: 3) All **links must be ABSOLUTE** (to work for email)
 // TODO: 4) Re-comment the four `//` & publish to blog
 
