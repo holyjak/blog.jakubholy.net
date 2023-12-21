@@ -47,6 +47,24 @@
 
 ;;--------------------------------------------------------------------- compile
 
+(defn uri->related-posts
+  "Find all posts with the same `:related` key and put them into a map of
+   of uri -> the other related posts' {uri,title}."
+  [posts]
+  (->> posts
+       (filter :related)
+       (group-by :related)
+       vals
+       (mapcat (fn [posts-in-group]
+                 (->> posts-in-group
+                      (map #(select-keys % [:title :uri]))
+                      (repeat)
+                      (map (fn [uri rels]
+                             (some->> rels (remove (comp #{uri} :uri)) seq (vector uri)))
+                           (map :uri posts-in-group)))))
+       (remove nil?)
+       (into {})))
+
 (def extra-config
   {:update-article-fn
    (fn update-article [article config]
@@ -55,15 +73,15 @@
          (autolink-headings config)))
 
    :extend-params-fn
-   (fn extend-params [params site-data]
-     (let [tag-count (->> (:posts-by-tag site-data)
+   (fn extend-params [params {:keys [posts #_pages posts-by-tag] :as _site-data}]
+     (let [tag-count (->> posts-by-tag
                           (map (fn [[k v]] [k (count v)]))
                           (into {}))]
-       (update
-         params :tags
-         #(map (fn [t] (assoc t
-                         :count (tag-count (:name t))))
-               %))))})
+       (-> params
+           (assoc :uri->related-posts (uri->related-posts posts))
+           (update :tags
+                   (partial map (fn [t] (assoc t
+                                               :count (tag-count (:name t)))))))))})
 
 (defn compile-site
   ([] (compile-site nil))
@@ -71,20 +89,26 @@
    (compile-assets-timed extra-config changeset)))
 
 (comment
+  (require 'selmer.parser)
+  (selmer.parser/render
+   "{% for k,v in uri->related-posts %}
+      {% ifequal k uri %}`{{v}}`{% endifequal %}
+    {% endfor %}"
+                    {:uri "x"
+                     :uri->related-posts {"x" {:uri "y" :title "YY"}}})
+
+  (do ; PORTAL
+    (require '[portal.api :as p])
+    (def p (p/open {:launcher :vs-code}))
+    (add-tap #'p/submit))
 
   (do
     ((requiring-resolve 'cryogen-core.plugins/load-plugins))
-    (compile-site [(clojure.java.io/file "content/asc/posts/2023/hands-on-rama-day1.adoc")]))
+    (compile-site #_[(clojure.java.io/file "content/asc/posts/2023/hands-on-rama-day1.adoc")]))
   ;(compile-site)
-
-  (autolink-content-headings *cnt "")
-  (permalink-node "")
 
   (require '[net.cgrand.enlive-html :as enlive])
   (def htm (slurp "public/leiningen-split-uberjar-into-dependencies-and-app/index.html"))
-
-  (def *cnt (-> (last @*dbg)))
-
 
   (set! *print-length* 15)
   (set! *print-length* nil)
@@ -122,13 +146,14 @@
   (.convert adoc ; Adoc 3.0
             "Adoc w/ xref:path-to/mydoc.adoc[link] here"
             (-> (org.asciidoctor.Options/builder)
-              (.attributes
-               (-> (org.asciidoctor.Attributes/builder)
-                   (.attribute "relfileprefix" "../")
-                   (.attribute "relfilesuffix" "/")
-                   (.build)))
+                (.attributes
+                 (-> (org.asciidoctor.Attributes/builder)
+                     (.attribute "relfileprefix" "../")
+                     (.attribute "relfilesuffix" "/")
+                     (.build)))
                 (.build)))
-  nil)
+  nil
+  )
 
 (comment
 

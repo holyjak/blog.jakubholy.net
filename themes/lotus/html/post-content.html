@@ -22,4 +22,16 @@
     {% endfor %}
 </div>
 {% endif %}
+
+{% for uri,related-posts in uri->related-posts %}
+    {% ifequal uri post.uri %}
+      <div id="post-related">
+        <b>Related: </b>
+        {% for related in related-posts %}
+        <a href="{{related.uri}}">{{related.title}}</a>
+        {% endfor %}
+      </div>
+    {% endifequal %}
+{% endfor %}
+
 <br/>

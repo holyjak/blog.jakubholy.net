@@ -40,7 +40,7 @@ Run `bb build` + run a static http file serving server from ./public/ + run `sas
 
 Special preamble keys (those marked ❌ are carry-over from old platforms and currently do nothing):
 
- * `:related` - WIP - mark a set of related posts with the same keyword so that you can automatically add links connecting them at the bottom of each post
+ * `:related` - mark a set of related posts with the same keyword so that they will automatically be linked to each other (at the bottom of each post, next to Tags)
  * ❌ `:extra-css`
  * ❌ `:categories`
  * ❌ `:slug`
