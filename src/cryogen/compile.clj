@@ -74,7 +74,7 @@
 
   (do
     ((requiring-resolve 'cryogen-core.plugins/load-plugins))
-    (compile-site [(clojure.java.io/file "content/asc/posts/2023/4-heads-of-complexity.asc")]))
+    (compile-site [(clojure.java.io/file "content/asc/posts/2023/hands-on-rama-day1.adoc")]))
   ;(compile-site)
 
   (autolink-content-headings *cnt "")
