@@ -1,0 +1,56 @@
+{:title "My year 2023 in review"
+:tags []
+:category "General"
+:date "2023-12-31"}
+
+This has been a good year: I have been to my first (and likely last) Conj, where I met a couple of my Clojure heroes and old and new friends. I have finally held my "Why Fulcro, and how to learn it efficiently" https://www.youtube.com/watch?v=f2wzLP4Wbpg&list=WL&index=5[talk at London Clojurians]. After some 9 months, I have finished and fully "productionalized" my tiny ERP, powered by Fulcro RAD and (nowadays) Datomic. RedPlanetLabs have released its "100x productivity backend programming platform," and I am exploring it. Better late than never, I have started bringing https://www.wolfram.com/language/[the mind-bending Wolfram] to Clojurians via https://github.com/scicloj/wolframite[Wolframite].
++++<!--more-->+++
+
+== Work life
+
+I had learned a lot this year. In spring 2022, I took over a small team that should have been finishing a project, and helped bring it to a successful though much delayed conclusion. In the summer we started a new big project, a complete rewrite of our dashboards on both backend and frontend, to provide more flexibility and power, and better "storytelling" capabilities. I would love to say that we finished on time and budget, alas, we did not. Yet it was a marked improvement over the previous project. And I learned about the difficulty of estimation, the need to discover and track dependencies early, flexible scoping, and the importance of good communication. Our users are happy. We nerds are also happy, with how we managed to extend and leverage our existing abstraction for this use case, and ended up deprecating and cleaning up a bunch of old code, simplifying the whole thing, and also getting rid of the need to store huge amounts of raw data.
+
+Throughout the whole year, I have strived to find ways to balance the many conflicting needs: maintaining and improving existing features, delivering new ones, cleaning up and improving the platform itself. Resources are always limited, so how do we ensure that we put them where they produce the biggest effect? How to measure and compare the value of improving existing vs. adding new functionality? What is "good enough," and could we actually be harming ourselves by delivering more good features over fewer great ones? Or the other way around? And what about the cost vs. benefit of improving the codebase? These are hard product and technical questions. A good colleague has recommended the book "Escaping the Build Trap: How Effective Product Management Creates Real Value" which xref:book-highlights-escaping-the-build-trap/[I found insightful and helpful], but not enough to help me resolve this conundrum. I think I believe in fewer, simpler, but awesome features. A deep understanding of your customers and users is a must - but there is no single person possessing it (though some people may have crucial pieces of the puzzle). I believe that a team needs to work on actively building this understanding, to propose, test, and often throw away hypotheses. We need to define value and measure it, not just blindly deliver features. Most of all, we need a clear and strong vision of the product to guide us. My nightmare is drowning people and the product in a flood of half-baked features in an attempt to satisfy disparate, unclear groups of users. Fortunately, we have a very good product culture and deep understanding of the market. Though there is always an opportunity for improvement - at least on my side.
+
+My second big struggle was balancing all my roles: leading people and making sure they are happy, productive, and develop their potential; contributing to project management; contributing to product management; evolving the development process; being the tech lead; troubleshooting production issues; coding; contributing to company-wide culture and efforts. I love coding and solving technical problems. I hate context switching - yet some days felt like that was the only thing I was doing. For some 9 years now I have worked only 70%, but the last year I wasn't able to work little enough, so I increased it to 80%. Yet there are still periods where I am overwhelmed by the amount of work. Fortunately, I have now managed to hand over a key responsibility, and have been in some promising discussions about making my role more flexible and delegating some more responsibilities. I don't need to (and am not) great at everything, so let's explore ways to make us all the most effective, together. I am curious to see where we will get...
+
+I have found a bunch of great ideas in 📖 https://www.amazon.com/Team-That-Managed-Itself-Leadership/dp/0996006079[The Team that Managed Itself: A Story of Leadership], a "business novel," which is easy to read. Sadly, I wasn't able to prioritize applying any of them, yet.
+
+== Writings
+
+I have written 9 posts, primarily about Fulcro, Rama, and learnings from my paid and open-source work:
+
+* xref:hands-on-rama-day1/[Hands on Rama, day 1: Setup, idempotent create & update]
+* xref:exploring-rama/[Exploring Rama, the platform for writing backends 100x more efficiently]
+* xref:pg-select-where-match-on-list-of-tuples/[PostgreSQL & JDBC: How to select rows matching pairs of values]
+* xref:4-heads-of-complexity/[The Four Heads of Complexity]
+* xref:interactive-code-snippets-fulcro/[Include interactive Clojure/script code snippets in a web page with SCI & friends]
+* xref:accessing-google-api-from-clojure/[Accessing Google API with OAuth2 and a service account from Clojure]
+* xref:when-not-to-use-fulcro/[When not to use Fulcro?]
+* xref:book-highlights-escaping-the-build-trap/[Book highlights: Escaping the Build Trap: How Effective Product Management Creates Real Value]
+* xref:pathom-viz-for-fulcro-pathom3/[Get insight into Pathom 3 in Fulcro with Pathom Viz]
+
+I have also published a https://www.youtube.com/playlist?list=PLYvJiiE4TAij-7i6O2qFYPkIS8PZnP-lc[couple of Fulcro live-codings].
+
+== Fulcro
+
+In December 2022, I have started building a tiny ERP system for a friend and his tiny company, both to help him automate and as a real-world learning experience. I have spent many hours building https://github.com/holyjak/fulcro-rad-asami[fulcro-rad-asami] and the application itself, then https://blog.jakubholy.net/2023/08-newsletter/#_my_erp_from_asami_to_datomic[migrated it to embedded Datomic] when Cognitect made it free. Picking Asami in the first place wasn't the best business decision, but it was an awesome learning decision - and that's what this was about. Among others, I gained deep insight into RAD persistence adapters, and learned to really appreciate some Datomic features. These efforts also produced multiple small contributions across the Fulcro ecosystem, including fulcro-rad-datomic and https://github.com/fulcrologic/fulcro-rad-semantic-ui/pulls?q=is%3Apr+is%3Aclosed+author%3Aholyjak[fulcro-rad-semantic-ui].
+
+My main community contributions were improving further https://github.com/holyjak/fulcro-troubleshooting[fulcro-troubleshooting], starting https://fulcro-community.github.io/fulcro-cookbook/[Fulcro Cookbook], and reviving https://github.com/fulcro-community/FulcroDemos[FulcroDemos] with its small examples. The Cookbook has currently one (very useful) recipe, and ideas for couple more, when I (or somebody) get the time.
+
+I had only few https://holyjak.cz/holy-dev.html[mentoring engagements] this year, which is a pity, because I always learn a ton from these. On the other hand, it gave me more time for my other projects 🤷.
+
+== Other
+
+I have contributed in small ways to a bunch of projects, such as the Clojure static blog builder https://cryogenweb.org/[Cryogen], https://github.com/seancorfield/honeysql[Honey SQL], my own https://github.com/holyjak/clj-tumblr-summarizer[clj-tumblr-summarizer]. The one I am most proud of, and which also took most time, is adding https://github.com/babashka/sci.configs#comfulcrologicfulcro[support for Fulcro] to Borkdude's Small Clojure Interpreter and leveraging it to build an interactive web code editor so that https://blog.jakubholy.net/2023/interactive-code-snippets-fulcro/#_demo[you can play with Fulcro] directly in your browser. (Also available in their own https://babashka.org/sci.configs/[SCI Playground].) I have also spent an unreasonable amount of time adding search and other improvements to my blog 😅.
+
+One thing I was very curious about and hoped to try but didn't was https://github.com/hyperfiddle/electric[Electric Clojure], which promises radical simplification of frontend-backend communication and far simpler webapps. Next year... 🤞
+
+== Top highlights from the web
+
+* https://blog.redplanetlabs.com/2023/08/15/how-we-reduced-the-cost-of-building-twitter-at-twitter-scale-by-100x/[Rama announcement & intro post]
+* https://www.youtube.com/watch?v=fTtnx1AAJ-c&list=PLZdCLR02grLpIQQkyGLgIyt0eHE56aJqd&index=1[Rich’s Conj talk on design]
+* https://clojureverse.org/t/electric-clojure-a-signals-dsl-for-fullstack-web-ui/9788[Electric Clojure announcement], a subsequent https://news.ycombinator.com/item?id=34771771[discussion], and https://www.tumblr.com/blog/view/holyjak/711206540146868224[my highlights] from both
+* https://www.delibr.com/post/visual-guide-to-the-best-books-on-product-management[Visual guide to the best books on product management] - from overview ones to others, focused on specific areas. Feature such tresures as Inspired, The Lean Startup, Crossing the Chasm, Escaping the Build Trap, Outcomes over Output, and some 16 more.
+
+Other things I am excited about: https://github.com/Tensegritics/ClojureDart[ClojureDart], a Clojure dialect for Flutter and Dart. My highly respected ex-colleagues were very excited about using Flutter, and ClojureDart opens it for me without having to switch a language 😍. (If I ever need to write a mobile app.)
