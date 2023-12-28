@@ -23,6 +23,7 @@
 
 (defn -main []
   (load-plugins)
+  (my.compile/init!)
   (-> (compile-assets-timed my.compile/extra-config)
       (System/exit)))
 

@@ -23,6 +23,7 @@
 
 (defn init [fast?]
   (load-plugins)
+  (my.compile/init!)
   (compile-assets-timed extra-config-dev)
   (let [ignored-files (-> @resolved-config :ignored-files)]
     (run!

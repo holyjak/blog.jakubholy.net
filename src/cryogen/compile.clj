@@ -3,8 +3,19 @@
   (:require
    [clojure.string :as str]
    [cryogen-core.compiler :as compiler :refer [compile-assets-timed]]
-   [net.cgrand.enlive-html :as enlive])
+   [net.cgrand.enlive-html :as enlive]
+   [selmer.filters :as sf])
   (:import (java.net URLEncoder)))
+
+(defn extend-selmer! []
+  ;; Add a filter for getting a key from a map; @ -> resolved so
+  ;; `uri->related-posts|jh-get:@post.uri` works
+  (sf/add-filter! :jh-get (fn [m k] (get m k))))
+
+(defn init!
+  "Initialize Cryogen with custom stuff before serving/building the site"
+  []
+  (extend-selmer!))
 
 ;;------------------------------------------------------------ autolink-headings
 

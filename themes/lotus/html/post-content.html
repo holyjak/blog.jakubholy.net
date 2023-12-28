@@ -23,15 +23,15 @@
 </div>
 {% endif %}
 
-{% for uri,related-posts in uri->related-posts %}
-    {% ifequal uri post.uri %}
+{% with related-posts=uri->related-posts|jh-get:@post.uri %}
+    {% if related-posts %}
       <div id="post-related">
         <b>Related: </b>
         {% for related in related-posts %}
         <a href="{{related.uri}}">{{related.title}}</a>
         {% endfor %}
       </div>
-    {% endifequal %}
-{% endfor %}
+    {% endif %}
+{% endwith %}
 
 <br/>
