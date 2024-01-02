@@ -9,9 +9,9 @@
 // TODO: 4) Re-comment the four `//` & publish to blog
 
 Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
-//email: (Also https://blog.jakubholy.net/2023/12-newsletter/[available online].)
-You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
-//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+(Also https://blog.jakubholy.net/2023/12-newsletter/[available online].)
+//You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+I am always eager to read your comments and ideas so do not hesitate to press the reply button!
 
 == New blog posts
 
@@ -48,5 +48,5 @@ The theory of a program, is something that could not conceivably be expressed, b
 
 Thank you for reading!
 
-//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
-//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
+This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject

@@ -21,7 +21,7 @@ This is what I did:
 . Take a backup copy of the file, and remove all keys other than `client_email, private_key` and all unnecessary whitespace (to minimize it, so that I can store it more easily into an env variable and thus pass it to my service via https://fly.io/docs/reference/secrets/[Fly.io Secrets])
 . Ready to roll!
 
-Now, I started to craft the https://developers.google.com/identity/protocols/oauth2/service-account?hl=en#creatingjwt[JWT payload according to Google's docs] but it turned out Tim has already done the work for me in https://github.com/timothypratley/happygapi/blob/main/src/happy/oauth2.clj#L93-L114[refresh-credentials]. Let's steal the relevant parts of the code:
+Now, I started to craft the https://developers.google.com/identity/protocols/oauth2/service-account?hl=en#creatingjwt[JWT payload according to Google's docs] but it turned out Tim has already done the work for me in https://github.com/timothypratley/happygapi/blob/main/src/happy/oauth2.clj#L93-L114[refresh-credentials]. Let's reprint the relevant parts of the code for reference:
 
 [source,clojure]
 ----
@@ -53,7 +53,7 @@ Thus I call HappyGAPI like this, to obtain an access token:
 
 ```clojure
 (:access_token
-  (hauth/refresh-credentials
+  (happy.oauth2/refresh-credentials
     (json/parse-string (System/getenv "SERVICE_JSON") keyword)
     ["https://www.googleapis.com/auth/spreadsheets"]
     nil))
