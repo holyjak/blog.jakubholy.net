@@ -1,0 +1,35 @@
+{:title "Holy Dev Newsletter January 2024"
+ :hide-from-home? true
+ :date "2024-01-31"
+ :tags ["newsletter"]}
+
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to *self* + subscribers in BCC
+// TODO: 2) Email: comment-out the four `//email:` below & fix the MM in the first one & comment-out the subscribe L14, then `bb serve` (not fast! <> utf8), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email)
+// TODO: 4) Re-comment the four `//` & publish to blog
+
+Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
+//email: (Also https://blog.jakubholy.net/2024/01-newsletter/[available online].)
+You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+
+== What is happening
+
+Good news, everyone! Me and Thomas have got https://www.clojuriststogether.org/news/q1-2024-funding-announcement/[Clojurists Together funding for Wolframite] in Q2/2024. The primary goal is to stabilize the API and release it, and make great docs. We are even in touch with Wolfram Engineering, which will hopefully help us make the integration rock solid. This month I have https://github.com/scicloj/wolframite/pull/26[reworked interning] of Wolfram symbols as vars to be more efficient and predictable, https://github.com/scicloj/wolframite/commit/db19713b241a9299107143c073b1c416fc97ba8f[simplified customization of Wolfram response parsing], made the https://github.com/scicloj/wolframite/pull/25[discovery of Mathematice / Wolfram] Kernel better and more robust, and further improved the docs. Daniel Slutsky has kindly added a demo of making web-rendered notebooks https://github.com/scicloj/wolframite/blob/main/dev/kindly_demo.clj[with Wolframite and Kindly]. (https://scicloj.github.io/kindly-noted/kindly.html[Kindly] is an emerging SciCloj standard for visualizing data with various backends, such as Portal and Clerk.)
+
+I have also worked on my fulcro-troubleshooting to https://github.com/holyjak/fulcro-troubleshooting/blob/master/CHANGELOG.md#v10---2024-01-14[remove some false positives], which required a small fix of Fulcro to ensure that also https://github.com/fulcrologic/fulcro/pull/550[hooks-based components have a correct parent] setting (released in 3.7.1). I've also added there a Component-inspired improvement to https://github.com/fulcrologic/fulcro/pull/551[print the recursive fulcro-app map in a safe] way.
+
+I have only spent a few hours with Rama, primarily studying the https://redplanetlabs.com/docs/~/index.html#gsc.tab=0[tutorial and docs], as my https://blog.jakubholy.net/2023/hands-on-rama-day1/[first day of Rama coding] taught me that it is hard to program when there is so much I don't know. I have got quite far now.
+
+== Gems from the world wide web
+++++
+
+++++
+
++++--+++
+
+Thank you for reading!
+
+//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
