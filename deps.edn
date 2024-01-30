@@ -5,7 +5,7 @@
         cryogen-core/cryogen-core {:mvn/version "0.4.4"}
         cryogen-asciidoc/cryogen-asciidoc {:git/url "https://github.com/cryogen-project/cryogen-asciidoc.git"
                                            ;; I need :sha, not :git/sha, b/c Netlify has old tools-deps :'(
-                                           :sha "869975b274f463f12dcdfe2466bdc3ea69c38676"
+                                           :sha "3ee7282083c6eef3539c1f09834704fd85650ff1"
                                            #_#_:git/sha "869975b274f463f12dcdfe2466bdc3ea69c38676"} ; FIXME switch to release
         ;cryogen-asciidoc/cryogen-asciidoc {:mvn/version "0.3.4"}
         }
@@ -24,8 +24,8 @@
             :replace-deps {thheller/shadow-cljs {:mvn/version "2.20.0"} ; also brings in cljs
                            org.babashka/sci {:mvn/version "0.8.40"}
                            io.github.babashka/sci.configs {:git/sha "bf9769c7b9797ac764f4f2fb48fbf342f78c0477"}
-                           com.fulcrologic/fulcro {:mvn/version "3.7.0-RC3"}
-                           com.wsscode/pathom3 {:mvn/version "2023.01.31-alpha"}
+                           com.fulcrologic/fulcro {:mvn/version "3.7.2"}
+                           com.wsscode/pathom3 {:mvn/version "2023.08.22-alpha"}
                            io.github.nextjournal/clojure-mode {:git/sha "5d88847" :git/tag "v0.3.1"}}}
            :cryo/dev {:override-deps {cryogen-core/cryogen-core {:local/root "../external/cryogen-all/cryogen-core"}
                                       ;cryogen-asciidoc/cryogen-asciidoc {:local/root "../external/cryogen-all/cryogen-asciidoc"}

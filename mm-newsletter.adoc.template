@@ -1,6 +1,6 @@
-{:title "Holy Dev Newsletter MMM 2023" ; TODO
+{:title "Holy Dev Newsletter MMM 2024" ; TODO
  :hide-from-home? true
- :date "2023-XX-30" ; TODO
+ :date "2024-XX-30" ; TODO
  :tags ["newsletter"]}
 
 // TODO: 0) Fix TODOs to set the correct date, month above
@@ -10,7 +10,7 @@
 // TODO: 4) Re-comment the four `//` & publish to blog
 
 Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
-//email: (Also https://blog.jakubholy.net/2023/MM-newsletter/[available online].)
+//email: (Also https://blog.jakubholy.net/2024/MM-newsletter/[available online].)
 You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
 //email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
 
