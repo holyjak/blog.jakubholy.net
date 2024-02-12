@@ -10,7 +10,7 @@ Given a _sequence_ of pairs of (id, version) in code, how do you _efficiently_ s
 Here is the complete solution:
 
 ```clojure
-(let [id+ver-pairs [[\a,1], [\b,20], [\c,1]]
+(let [id+ver-pairs [["a",1], ["b",20], ["c",1]]
       ids (map first id+ver-pairs)
       versions (map last id+ver-pairs)]
    (next.jdbc/execute! conn
@@ -26,14 +26,15 @@ Bonus: Producing the SQL with https://github.com/seancorfield/honeysql[HoneySQL]
   (-> (hh/select :*)
       (hh/from [:thing :t])
       (hh/join [[:unnest
-                 (into-array [\a \b \c])
+                 (into-array String ["a" "b" "c"]) ; <1>
                  (into-array [1 20 1])]
-                [[:'x :id :version]]] ; <1>
+                [[:'x :id :version]]] ; <2>
                [:and [:= :t.id :x.id]
                 [:= :t.version :x.version]]))
   {:quoted true})
 ```
-<1> The quote in `:'x` ensures that the name stays as-is, i.e. `x(id,version)` - otherwise it would be upper-cased (even though it doesn't really matter, since in effect the name would be unquoted and thus case-insensitive, as identifiers are by default). See https://cljdoc.org/d/com.github.seancorfield/honeysql/2.5.1103/doc/readme#functions[Usage > Functions]: "`If a keyword begins with ', the function name is formatted as a SQL entity rather than being converted to uppercase and having hyphens - converted to spaces`".
+<1> Notice that you may need to provide explicit type argument to `into-array` so that you don't end up with an Object array. The Postgres https://access.crunchydata.com/documentation/pgjdbc/42.2.20/arrays.html[JDBC driver can auto-convert some Java arrays] to binary representations that work with `PreparedStatement.setObject`, but an object array is not one of them.
+<2> The quote in `:'x` ensures that the name stays as-is, i.e. `x(id,version)` - otherwise it would be upper-cased (even though it doesn't really matter, since in effect the name would be unquoted and thus case-insensitive, as identifiers are by default). See https://cljdoc.org/d/com.github.seancorfield/honeysql/2.5.1103/doc/readme#functions[Usage > Functions]: "`If a keyword begins with ', the function name is formatted as a SQL entity rather than being converted to uppercase and having hyphens - converted to spaces`".
 
 TIP: https://clojurians.slack.com/team/U08JKUHA9[Isak mentioned] that he has been using `json_to_recordset` with an array of objects, as in `join json_to_recordset(?::json) as x(id int, version int) ...`, though it is possible my way is more efficient.
 
