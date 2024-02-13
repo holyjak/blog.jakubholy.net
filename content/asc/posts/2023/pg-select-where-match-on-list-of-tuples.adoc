@@ -58,3 +58,19 @@ and in Honey:
            (-> (hh/select-distinct :other-id :other-version)
                (hh/from :other-table))])))
 ```
+
+## Bonus 2: Use a multi-dimensional input with `IN ...` with unnest and composites
+
+We can combine the previous tip with `unnest` for multi-dimensional array input:
+
+```clojure
+;; Return Honey where clause, to include in `(hh/where ...)`:
+(let [id+ver-pairs [["a",1], ["b",20], ["c",1]]]
+  [:in
+   (hh/columns :id :version)
+   (-> (hh/select :input.id :input.version)
+       (hh/from [[:unnest
+                  (into-array String (map first id+ver-pairs))
+                  (long-array (map second id+ver-pairs))]
+                 [[:'input :id :version]]]))])
+```
