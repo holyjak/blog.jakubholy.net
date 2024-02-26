@@ -1,4 +1,4 @@
-{:title "Hands on Rama, day 2: ..."
+{:title "Hands on Rama, day 2: Rewrite CAS, finish basic C(R)UD"
  :date "2024-02-26"
  :category "SW Development"
  :tags ["rama" "experience"]
