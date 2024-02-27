@@ -26,7 +26,14 @@ Leverage `identity` to transform a dataflow var with a fn into the same or new v
 
 [source,clojure]
 ----
-(identity (= *before *existing) :> *unchanged-since-read?)
+(identity (Math/floor (+ *one 0.1)) :> *one)
+----
+
+Notice that this is not necessary for clojure's own fns, as Rama bundles a custom build of Clojure, extended to support dataflow:
+
+[source,clojure]
+----
+(= *before *existing :> *unchanged-since-read?)
 ----
 
 Paths are powerful. For the partial update implementation, I wanted to replace a subset of a map with new values, and `submap` allows me to do just that:
