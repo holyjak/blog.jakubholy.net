@@ -10,6 +10,8 @@ I actually took a long break between my first and second day of coding, because 
 
 Overall, it was pretty smooth sailing, even though I had some rough spots, as you can read below.
 
++++<!--more-->+++
+
 == Code highlights
 
 I wanted a `local-select` returning a `select-keys` of an entity, possibly just `{}`, or - when the entity in question didn't exist -  `nil` . But `select-keys` never returns nil, and wrapping it with `not-empty` doesn't return `{}`. I've tried to modify the path to use https://redplanetlabs.com/clojuredoc/com.rpl.rama.path.html#var-must[`must`], but that returns nothing - a select is a https://redplanetlabs.com/docs/~/clj-dataflow-lang.html#_custom_operations[Rama fragment] and thus can emit 0, 1, or many times - and if `must` is not satisfied then it doesn't emit at all. So I ended up writing a custom `some-select-keys` fn (see the point about no special forms above).
@@ -143,3 +145,7 @@ All query topologies must contain `.originPartition` (= back to the query's orig
 Without subindexing, the entire data structure will be stored and retrieved as a single value. This will get expensive once there’s even just a few hundred elements in it. Subindexing enables inner data structures to efficiently contain huge numbers of elements, even more than could fit into memory.
 
 Query topologies are implicitly batch blocks. So when programming them you’re always thinking in terms of pre-agg, agg, and post-agg phases. All the power of batch blocks, including joins, subbatches, and two-phase aggregation, is available.
+
+== The code
+
+The code is under the https://github.com/holyjak/ardoq-rama-poc/blob/day2[day2 tag in ardoq-rama-poc].
