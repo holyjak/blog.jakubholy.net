@@ -10,6 +10,8 @@ While implementing my https://github.com/holyjak/ardoq-rama-poc/[pet project] on
 
 _Note: You should be familiar with link:{docs}++tutorial1.html#_the_big_picture++[the basics of Rama], such as the concepts of a link:{docs}++terminology.html#_pstate++[PState] and a link:{docs}++terminology.html#_depot++[depot], and how all the data is link:{docs}++terminology.html#_partition++[partitioned] across the Rama cluster._
 
+TIP: After this post has been published, Rama docs got the page link:{docs}acid.html[ACID semantics] which goes into great detail about atomicity, concurrency, isolation, and durability in Rama. I highly recommend reading that page.
+
 == The case
 
 I'm building a CRUD application for "Component" entities. A Component may have another Component as its `:parent`. When that happens, I want transactional semantics to ensure data integrity. Namely:
