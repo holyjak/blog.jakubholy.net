@@ -1,0 +1,100 @@
+{:title "My digital tools and routines (2024)"
+ :date "2024-05-16"
+ :tags ["productivity"]
+ :category "General"}
+
+My computer is my wizard's stuff, the thing that allows me to do my magic. What is my set up, what tools do I use for daily productivity, and how do I keep it safe from a disaster?
+
++++<!--more-->+++
+
+## Hardware & OS
+
+I've been on MacBook pro these last 13 years. OSX is a good compromise between the hackability and dev-friendliness of Linux, and full support for all video streaming services etc. The 11 years prior I have been hard-core Linux users but I do not have the time and patience for compiling kernels and fighting with drivers anymore. (I believe firmly that the situation is much better nowadays, but given how well OSX works for me, I do not feel tempted to try again.)
+
+I use an ergonomic, wireless keyboard from Microsoft and a "horizontal" mouse from Voxicon. I ma happy with the ergonomics of the mouse but not its sensitivity, it is much harder to move the cursor exactly the way I want it then with the built-in trackpad. I'd thus like to explore alternatives to a mouse, but didn't get to it just yet. At work I most stand at a standing desk, at home I have yet to get one.
+
+## Tools
+
+### Essentials
+
+The most important tool is a browser, allowing access to my email, our documentation wiki, pull requests, and knowledge discovery.
+
+*Browsers*: I use three 😅 - _Safari_ for my work apps (email, calendar, wiki), _Vivaldi_ for webapp development, especially when in need of Chromium-only addons such as Fulcro Inspect, and _Firefox_ for everything else. I use Firefox to fight the hegemony of Google and support diversity. I also like its "containers" feature, so that I can keep my banking, shopping, social media, and everything else separate from each other. A colleague (thanks, Petra!) inspired me to try Vivaldi, and I very much like its commands pallette, enabling me to do anything without searching through menus (as I do also in VS Code and IntelliJ). But I haven't really made the time to dig into everything it offers for increased productivity. And it is still Google's Chromium... .
+
+### Communications
+
+* _Slack_ for work and Clojurians. I really like it and find it very productive (aside of a "recent" change that makes it impossible for me to find some "saved for later" entries 😭). I only wish it was more light-weight.
+* _Zoom_ for video calls and pair-programming. I have used the awesome https://tuple.app/[Tuple] for pairing before, but couldn't really justify its cost given how little I pair these days. I may give https://pop.com/home[Pop] a try again... .
+* _Proton Mail and Calendar_ for my private stuff - I like the privacy and security they offer, and the usability is good enough.
+
+### Knowledge management
+
+Programming is primarily knowledge discovery, and I am an avid note taker. I use a combination of tools for this:
+
+* Kindle and its highlights for notes from books
+* https://www.tumblr.com/holyjak[My Tumblr] to keep interesting links with short summaries - I collect these monthly into https://blog.jakubholy.net/me/subscribe/[my newsletter], and build from them a https://blog.jakubholy.net/devlinks/[searchable online database], so that I can always find again what I need
+* Zotero for highlights from pages and papers (though I haven't had much need for it lately)
+* Note taking - I have tried many things but mostly use OSX Notes on my PC and Samsung Notes on my phone. I like mostly how lightweight they are, even though the formatting options are sometimes too limited, and I would have loved the ability to copy as a markup. I've tried https://athensresearch.github.io/athens/#/[Athens], https://obsidian.md/[Obsidian] (inspired by its extensibility and customizability), Evernote. Ideally, I would have something as lightweight as Notes, available and synchronized on both PC and phone, and with the link-ability of Athens/Obsidian, based on Asciidoctor rather then Markdown 🤷. Perhaps I will need to write it one day...
+* My blog, obviously :-)
+
+### Productivity
+
+I use https://www.raycast.com/[Raycast] to lunch application, open files, and make simple computations from my keyboard. It integrates with Dash for quick documentation searches. I've also tried its Zoom integration for quickly joining my scheduled meetings, but it is little cumbersome and, most importantly, fails to show them all. I am sure there is much more I could get out of this tool...
+
+https://justgetflux.com/[f.lux] automatically adjusts the color of my computer's display adapt to the time of day, warm at night and like sunlight during the day.
+
+1Password manages my credentials and secret notes and documents, and helps me to https://blog.jakubholy.net/2022/git-commit-signature-with-1password/[sign my commits]. It's great.
+
+Howler Timer is a fun way to make sure I am not late for a meeting.
+
+### Development
+
+*IDE*: I use IntelliJ + Cursive for the big, important projects, and VS Code + Calva for everything else. IntelliJ is very powerful and has great navigability (including into libraries and Java libs), but is consumes insane amount of resources. Calva is less ergonomic/productive but still powerful enough, and much more lightweight. I also use VS Code for all my other text editing needs.
+
+*Containers*: I run our dev stack in Docker containers, via OrbStack. It makes it easy to bring everything up and down and reset stuff, and doesn't pollute my system. Docker Desktop consumed way too much memory and CPU, so I switch to OrbStack which is much better, and still provides everything I need.
+
+I explore our PostgreSQL with DBeaver. It is something of a CPU hog, so I only run it when necessary. I could use essentially any GUI tool.
+
+I find the documentation browser https://kapeli.com/dash[Dash] very productive - all the docs I need in one place, with a consistent search. It also has cheatsheets (I even made one for Asciidoctor) and snippets, which help me from typing out my most frequently used code snippets.
+
+I combine git with P4Merge for a reasonably good visual tool for resolving merge conflicts. I still mostly invoke git from the command line, using the few commands I know. There are some interesting git GUIs but I haven't really felt the need for one (though I regularly need to search for how to do less usual stuff with the CLI).
+
+### Terminal & scripting
+
+I love the https://www.warp.dev/[Warp] terminal app for bringing modern text editing to the command line (yay, jump around text with keys, cut/paste parts of it, ...), with "advanced" features such as copying the whole output of a command, notifying me automatically when a long-running command finishes, etc. It has many more features and some AI stuff which I haven't really explored yet.
+
+I've switched over to Fish for my shell, attracted by its inline completions and more sane scripting syntax. It works well enough so I wasn't tempted to waste time on exploring other cool kids in the block like Zsh.
+
+I leverage https://www.dotenv.org/[dotenv] to set env variables and switch to the desired runtimes based on the current directory.
+
+I have adopted the new wave of modern, Rust-based alternatives to traditional CLI tools, such as `ripgrep` instead of grep, `fd` instead of find, `bat` instead of cat. Though the CLI I use most is https://github.com/jethrokuan/z[`z`], for jumping into the directories I frequently use without having to care about the whole path, or even their whole name ❤️.
+
+### Authoring
+
+I write most stuff in Asciidoctor, which is much more powerful, flexible, and defined than Markdown. DaVinci Resolve helps me to make my screencasts better.
+
+## Routines
+
+### Backup
+
+Having my computer die in the past, I want to be sure I can restore it quickly and not loose any data. I use _Time Machine_ to back up the whole disk to an external drive irregularly. Time Machine is far from perfect, as it sometimes fails in the middle of a long backup, but mostly works well enough.
+
+I keep valuable documents and other files in a folder that is automatically backed up by https://crossclave.com/opendownload/[SpiderOak One Backup] (I get 150GB for just $6/month).
+
+I regularly copy new photos from my phone to the computer using https://www.photosync-app.com/home[PhotoSync] and its desktop companion, and then duplicate these to a NAS using old good rsync with the RsyncOSX GUI.
+
+Once in a while I package new photo folders and other media and upload them to AWS Glacier for long-term storage via the https://www.freezeapp.net/[Freeze] app.
+
+### Setup
+
+Setting up a computer from scratch and getting it to a usable state ASAP is no small feat. I try to keep this automated as much as possible via Homebrew and a Brewfile and a bunch of scripts I https://github.com/holyjak/mac-setup[keep at GitHub]. I regularly re-run its `./setup-mac.sh` to add new software and update existing ones. I also keep the most important config files in my https://github.com/holyjak/dotfiles[dotfiles repo], with a script to symlink them to the expected locations. Sadly, there is lot of configuration that I haven't yet automated, such as system settings etc.
+
+The process to set up a new computer is:
+
+. Install OSX
+. Install Homebrew (this may require a manual installation of git? not sure...)
+. Run `./setup-mac.sh` to install software
+. Clone the dotfiles repo and run its script
+. Use the in-paper credentials to log into 1Password and use that to log in to SpiderOak, to get my documents, and to decrypt my backup disk
+. Copy files from my home directory in the backup over to the computer
+. Install software not covered by the automation
