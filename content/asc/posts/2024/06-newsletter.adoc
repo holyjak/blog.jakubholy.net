@@ -1,0 +1,35 @@
+{:title "Holy Dev Newsletter June 2024"
+ :hide-from-home? true
+ :date "2024-06-30"
+ :tags ["newsletter"]
+ :asciidoctor {:attributes {"relfileprefix" "https://blog.jakubholy.net/2024/"}}}
+
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to *self* + subscribers in BCC (SCHEDULED, after the blog post goes live)
+// TODO: 2) Email: comment-out the four `//email:` below
+//          & fix the MM in the first one
+//          & comment-out the subscribe L18, then `bb serve` (not fast! <> utf8), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email) - xref + relfileprefix work
+// TODO: 4) Re-comment the four `//` & un-commen L18 & publish to blog
+
+Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
+//email:(Also https://blog.jakubholy.net/2024/06-newsletter/[available online].)
+//email:I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+
+== What is happening
+
+This month has been under the start of https://github.com/scicloj/wolframite/[Wolframite], as we are trying to make good on our promises to Clojurists Together. We have focused on UX and bugs and stabilized the API. There are no more code-related issues that need to be fixed for v1, and an alpha of v1 has been https://clojars.org/org.scicloj/wolframite[released to Clojars]. Now we need to get the site up to date and up, and write tutorials. We also wait for some advice from Wolfram Engineering.
+
+== Gems from the world wide web
+++++
+<p><a href="https://kerkour.com/webassembly-wasi-preview2">WebAssembly: A promising technology that is quietly being sabotaged</a><br /><span>According to the author, the long awaited Component Model is over-engineered and bloated, and WASM becomes even more so worth the planned support for Async. C. M. brings a whole language to describe types and methods, so languages could exchange objects. </span></p><p><span class="link">👓 <a href="https://loglog.games/blog/leaving-rust-gamedev/">Abandoning Rust for game dev after 3 years</a> [rust, criticism, experience]</span><br /><span style="white-space: pre-line;">An insightful article from a tiny indie game dev studio about Rust for game dev. My inaccurate summary is that you are forced to spend a lot of time arguing with Rust, and that quickly iterating on ideas isn't possible.</span><br /><span style="white-space: pre-line;">Disclaimer: it is rather long, so I haven't read it in full.</span><br /><span style="white-space: pre-line;">An interesting quote: " Rust is also a language that will force the user to refactor much more often than other languages. It doesn't take a lot to suddenly be backed in a corner with the borrow Checker...". </span></p><p><span class="link">👓 <a href="https://github.com/microsoft/roosterjs">microsoft/roosterjs: roosterjs is a framework-independent javascript rich text editor.</a> [library, javascript]</span><br /><span style="white-space: pre-line;">Microsoft's framework-independent JavaScript rich-text editor. </span></p>
+<p><span class="link">👓 <a href="https://www.sitepoint.com/how-to-use-css-background-size-and-background-position/">How to Use CSS background-size and background-position — SitePoint</a> [webdev, css]</span><br /><span style="white-space: pre-line;">Great trick for making an image "responsive" so that the most important part of the image is displayed even when the screen is smaller. We use something like <img style="object-fit: cover;object-position: 50% 25%;" ...> - </span><ol><li><em>cover</em> means to completely cover the area of container (the img's parent), showing as much of the image as possible but without distorting it</li><li><em>position</em> then determine which part of the image to focus on when the whole of it does not fit - here the point at 50% horizontal and 25% vertical of the image will be aligned with the 50/25 point of the container (See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position#examples">details & an example at MDN</a>.)</li></ol><span style="white-space: pre-line;">Notice that background-(size|position) on a div work the same as object-(fit|position) in an img. We could have used a div with a background-image but using an actual img is nicer.</span><br /><span style="white-space: pre-line;">(Originally inspired by 🇳🇴 <a href="https://parenteser.mattilsynet.io/responsive-bilder/">https://parenteser.mattilsynet.io/responsive-bilde</a>r/.)</span></p><p><span class="link">👓 <a href="https://www.tunera.xyz/fonts/teranoptia/">Teranoptia - Tunera Type Foundry</a> [webdev, asset, look&feel]</span><br /><span style="white-space: pre-line;">Teranoptia is a typeface without letters, a peculiar contraption that allows you to imagine chimeric creatures just by typing letters with your keyboard. Its design has been inspired by the Bayeux Tapestry and by medieval illustrations, as well as by children's books. You can use it to create border ornaments, to daydream about monsters or just to spice your layouts with marginalia. Free to use. (Via Frontend Focus.) </span></p>
+++++
+
++++--+++
+
+Thank you for reading!
+
+//email:This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email:If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
