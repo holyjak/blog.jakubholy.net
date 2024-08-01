@@ -50,7 +50,7 @@ To learn Clojure, you need to explore multiple dimensions:
 
 === Getting started
 
-The free online book https://www.braveclojure.com/[Clojure for the Brave and True] has been highly recommended to me for beginners. To get your hands dirty, go through the programming exercises at http://www.4clojure.com/[4clojure] and/or through the even more beginner (and non-programmer) friendly https://www.maria.cloud/intro[Maria: learn Clojure with Shapes].
+The free online book https://www.braveclojure.com/[Clojure for the Brave and True] has been highly recommended to me for beginners. To get your hands dirty, go through the programming exercises at https://4clojure.oxal.org/[4clojure] and/or through the even more beginner (and non-programmer) friendly https://www.maria.cloud/intro[Maria: learn Clojure with Shapes].
 
 Always keep the http://jafingerhut.github.io/cheatsheet/grimoire/cheatsheet-tiptip-cdocs-summary.html[Clojure Cheatsheet] close by and read through it (and the referenced resources) regularly. Make sure to study the https://clojure.org/guides/repl/introduction[Programming at the REPL] guide early on (and perhaps invest in Eric Normand’s video course https://purelyfunctional.tv/courses/repl-driven-development-in-clojure/[Repl-Driven Development in Clojure]; the first lesson is free, so check it out.)
 

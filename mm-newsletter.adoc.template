@@ -6,11 +6,11 @@
 
 // TODO: 0) Fix TODOs to set the correct date, month above
 // TODO: 1) Email: send to *self* + subscribers in BCC (SCHEDULED, after the blog post goes live)
-// TODO: 2) Email: comment-out the four `//email:` below
+// TODO: 2) Email: comment-out the four `//email:` bexlow
 //          & fix the MM in the first one
 //          & comment-out the subscribe L18, then `bb serve` (not fast! <> utf8), copy & paste into email
 // TODO: 3) All **links must be ABSOLUTE** (to work for email) - xref + relfileprefix work
-// TODO: 4) Re-comment the four `//` & un-commen L18 & publish to blog
+// TODO: 4) Re-comment the four `//` & un-comment L18 & publish to blog
 
 Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
 //email: (Also https://blog.jakubholy.net/2024/MM-newsletter/[available online].)
