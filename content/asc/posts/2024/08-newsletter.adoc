@@ -1,0 +1,34 @@
+{:title "Holy Dev Newsletter August 2024"
+ :hide-from-home? true
+ :date "2024-08-31"
+ :tags ["newsletter"]
+ :asciidoctor {:attributes {"relfileprefix" "https://blog.jakubholy.net/2024/"}}}
+
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to *self* + subscribers in BCC (SCHEDULED, after the blog post goes live)
+// TODO: 2) Email: comment-out the four `//email:` below
+//          & fix the MM in the first one
+//          & comment-out the subscribe L18, then `bb serve` (not fast! <> utf8), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email) - xref + relfileprefix work
+// TODO: 4) Re-comment the four `//` & un-comment L18 & publish to blog
+
+Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
+//email: (Also https://blog.jakubholy.net/2024/08-newsletter/[available online].)
+//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+
+== What is happening
+
+Not much is happening, since August has been a vacation month. When there was time, I worked on wrapping up https://github.com/scicloj/wolframite[Wolframite] and its documentation.
+
+== Gems from the world wide web
+++++
+<p><span class="link">👓 <a href="https://github.com/potetm/fusebox">potetm/fusebox: An extremely lightweight fault tolerance library for Clojure</a> [library, clojure, devops]</span><br /><span style="white-space: pre-line;">An extremely lightweight fault tolerance library for Clojure. Provides Bulkhead, Circuit Breaker, Fallback, Memoize, Rate Limit, Retry, Timeout, Register, Bulwark. It aims at being simple, favoring functions over options and callbacks.</span><br /><span style="white-space: pre-line;">Noteworthy: "These utilities are identical to Resilience4J at their core, but thanks to immutable data, namespaced keys, and a dash of macros, Clojure affords us <em>much</em> simpler implementations."</span></p><p><span class="link">👓 <a href="https://grishaev.me/en/clojure-with-retry/">Clojure AntiPatterns: the with-retry macro</a> [opinion]</span><br /><span style="white-space: pre-line;">In short, think really hard whether retrying a failed operation makes sense, and beware the negative side-effects (longer timeouts, flood of logs, compounding retries, ...). Especially do not retry on errors where retry cannot help (404, bad credentials, ...). Valuable lessons there! </span></p><p><span class="link">👓 <a href="https://explain.dalibo.com/">explain.dalibo.com</a> [tool, database, performance]</span><br /><span style="white-space: pre-line;">A little buggy but still extremely useful visualizer of PostgreSQL explain data. My dear colleague Jo has used it to troubleshoot a query that he managed to bring down from 4 min to few seconds. (The trick was replacing in with unnest - it seems to create an in-memory table, which is much efficient to search, then the flat list of IN.)</span></p>
+++++
+
++++--+++
+
+Thank you for reading!
+
+//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
