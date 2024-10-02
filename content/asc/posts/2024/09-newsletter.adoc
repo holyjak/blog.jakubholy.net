@@ -1,0 +1,37 @@
+{:title "Holy Dev Newsletter September 2024"
+ :hide-from-home? true
+ :date "2024-09-30"
+ :tags ["newsletter"]
+ :asciidoctor {:attributes {"relfileprefix" "https://blog.jakubholy.net/2024/"}}}
+
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to *self* + subscribers in BCC (SCHEDULED, after the blog post goes live)
+// TODO: 2) Email: comment-out the four `//email:` below
+//          & fix the MM in the first one
+//          & comment-out the subscribe L18, then `bb serve` (not fast! <> utf8), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email) - xref + relfileprefix work
+// TODO: 4) Re-comment the four `//` & un-comment L18 & publish to blog
+
+Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
+//email: (Also https://blog.jakubholy.net/2024/09-newsletter/[available online].)
+//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+
+== What is happening
+
+I have been to https://2024.heartofclojure.eu/[Heart of Clojure] in Belgium, which was a wonderful experience. And I am not saying that only thanks to the home-made waffles. And the pralines. A cozy city, good food, very nice people from all around (primarily) Europe. Surprisingly many expats like me :-). Some talks and workshops I really enjoyed as well. Though the best part was meeting and chatting with people new and old that I meet rarely or never before in the real life, such as a gang from Czech Republic, Lovro, Ben, Sigmund, Sami, Colin, and too many others to name. I've also had a very nice lunch with my tai-chi chuan teacher. If/when the talks come online, I can recommend James Reeve's Living With Legacy Code, XTDB's Richer SQL — Steering SQL's Future Towards Clojure's Philosophy. Sami's Sailing with Scicloj: A Bayesian Adventure demonstrates well the maturity and power of the SciCloj ecosystem for scientific computing. I hear that Staring into the PLFZABYSS - From the IBM AS/400 to Clojure & Datomic was very insightful.
+
+All my remaining time has been consumed by writing and improving documentation of https://github.com/scicloj/wolframite[Wolframite], our Clojure - Wolfram bridge. Both me and Thomas have done a great job and it is turning out to be one of the best documented Clojure libraries. Which is necessary, since we are introducing a wholly new thing to two very different audiences - Wolfram to Clojurians and Clojure to scientists. https://scicloj.github.io/wolframite/[You can see for yourself] our work in progress. After I finish https://github.com/scicloj/wolframite/pull/128[my current review], I will get back to writing a https://scicloj.github.io/wolframite/for_developers.demo_analysis_cycling.html[demo of using Wolfram(ite) to analyze bike trips for Clojurians] - writing it is a great way to finally learn Wolfram 😅 and to discover more ways to improve the library. I hope to wrap the documentation up in a few weeks, and then we can focus on preparing some talks and workshops we want to have ready when we announce v1. We also are looking for beta testers, either from the Clojure or scientific communities - if you know anyone, let me know!
+
+I haven't had any time for Fulcro or Rama in the last months, but I am looking forward to coming back to both of them...
+
+== Gems from the world wide web
+
+N/A. I was too busy writing to read :-). Check out the xref:08-newsletter.adoc[gems from August] or come back in September.
+
++++--+++
+
+Thank you for reading!
+
+//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
