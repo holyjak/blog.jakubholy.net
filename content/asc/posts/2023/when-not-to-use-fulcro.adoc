@@ -1,7 +1,7 @@
 {:title "When not to use Fulcro?"
  :date "2023-07-28"
  :category "SW Development"
- :tags ["fulcro"]}
+ :tags ["Fulcro"]}
 
 Fulcro is great for writing non-trivial, full-stack business SPA web applications, which display and modify data from a general data store. But it can't possibly be perfect for every kind of web app. So when is it less then a perfect fit? Possibly still usable, but not as beneficial?
 
