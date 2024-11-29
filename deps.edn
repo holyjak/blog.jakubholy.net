@@ -23,7 +23,7 @@
            {:replace-paths ["code-editor"]
             :replace-deps {thheller/shadow-cljs {:mvn/version "2.20.0"} ; also brings in cljs
                            org.babashka/sci {:mvn/version "0.8.40"}
-                           io.github.babashka/sci.configs {:git/sha "bf9769c7b9797ac764f4f2fb48fbf342f78c0477"}
+                           io.github.babashka/sci.configs {:git/sha "08bab21643bc0c63a5b99c65193c9d24888270b7"}
                            com.fulcrologic/fulcro {:mvn/version "3.7.0-RC3"}
                            com.wsscode/pathom3 {:mvn/version "2023.01.31-alpha"}
                            io.github.nextjournal/clojure-mode {:git/sha "5d88847" :git/tag "v0.3.1"}}}
