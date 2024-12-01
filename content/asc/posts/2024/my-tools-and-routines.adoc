@@ -3,7 +3,7 @@
  :tags ["productivity"]
  :category "General"}
 
-My computer is my wizard's stuff, the thing that allows me to do my magic. What is my set up, what tools do I use for daily productivity, and how do I keep it safe from a disaster?
+My computer is my wizard's staff, the thing that allows me to do my magic. What is my set up, what tools do I use for daily productivity, and how do I keep it safe from a disaster?
 
 +++<!--more-->+++
 
@@ -92,11 +92,13 @@ Setting up a computer from scratch and getting it to a usable state ASAP is no s
 The process to set up a new computer is:
 
 . Install OSX
-. Install Homebrew (this may require a manual installation of git? not sure...)
+. [Optional] Use Migration Assistant to copy my "user," i.e. whole home directory, from Time Machine backup, overriding the user of the same name created during setup
 . Run `./setup-mac.sh` to install software
-. Clone the dotfiles repo and run its script
-. Use the in-paper credentials to log into 1Password and use that to log in to SpiderOak, to get my documents, and to decrypt my backup disk
-. Copy files from my home directory in the backup over to the computer
+. Setup if home directory not copied:
+  .. Clone the dotfiles repo and run its script
+  .. Use the in-paper credentials to log into 1Password and use that to log in to SpiderOak, to get my documents, and to decrypt my backup disk
+  .. Copy files from my home directory in the backup over to the computer
 . Install software not covered by the automation
-
-Alernatively, I could restore my home folder from a backup and only use Homebrew to install apps from scratch.
+. Software setup
+  .. Raycast - run, tell it to run at login
+  .. Make a Zoom call and allow screen sharing etc.
