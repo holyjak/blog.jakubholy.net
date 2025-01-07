@@ -1,0 +1,42 @@
+{:title "Holy Dev Newsletter December 2024"
+ :hide-from-home? true
+ :date "2024-12-31"
+ :tags ["newsletter"]
+ :asciidoctor {:attributes {"relfileprefix" "https://blog.jakubholy.net/2024/"}}}
+
+// TODO: 0) Fix TODOs to set the correct date, month above
+// TODO: 1) Email: send to *self* + subscribers in BCC (SCHEDULED, after the blog post goes live)
+// TODO: 2) Email: comment-out the four `//email:` below
+//          & fix the MM in the first one
+//          & comment-out the subscribe L18, then `bb serve` (not fast! <> utf8), copy & paste into email
+// TODO: 3) All **links must be ABSOLUTE** (to work for email) - xref + relfileprefix work
+// TODO: 4) Re-comment the four `//` & un-comment L18 & publish to blog
+
+Welcome to the Holy Dev newsletter, which brings you gems I found on the web, updates from my blog, and a few scattered thoughts.
+//email: (Also https://blog.jakubholy.net/2024/12-newsletter/[available online].)
+//email: I am always eager to read your comments and ideas so do not hesitate to press the reply button!
+You can get the next one into your mailbox if you link:/me/subscribe[subscribe].
+
+== Good bye, and thank you for the 🐟!
+
+This is going to be the last issue for a while. I have decided to focus on personal development and making the best out of the time we are given. I cannot spread myself too thin, if I want to achieve anything. Technology is great fun, and I could surely spend multiple lives immersing into it. But it is only fun - it means nothing in the context of Life.
+
+I am sure I will still encounter and store interesting links in the course of my job. You can occasionally https://holyjak.tumblr.com/[check out my Tumblr feed], which is/was anyway the source of my monthly "Gems from the world wide web".
+
+== 2024 in (a brief) review
+
+I've spent most of 2024 working on https://github.com/scicloj/wolframite[Wolframite], the bridge between Clojure and https://www.wolfram.com/[Wolfram] for scientists and people working with data. We still haven't released v1 but the code is done, and we will cut it out very soon. We have spent the last few months creating extensive documentation and tutorials. I don't really plan to be much involved further, beyond necessary maintenance.
+
+Other than that, I have spent some time improving my fulcro tooling and my Chrome plugin https://github.com/holyjak/Testofill-chrome-extension[Testofill], learning https://redplanetlabs.com/[Rama], and writing a few blog posts and talks.
+
+== Gems from the world wide web
+++++
+<p><span class="link">👓 <a href="https://opentofu.org/">OpenTofu</a> [devops, tool]</span><br /><span style="white-space: pre-line;">A year ago, Linux Foundation has formed <a href="http://opentofu.org/">OpenTofu</a>, an open source alternative to Terraform's widely used infrastructure as code provisioning tool. OpenTofu is an open and community-driven response to Terraform's recently announced license change from a Mozilla Public License v2.0 (MPLv2) to a Business Source License v1.1, providing everyone with a reliable, open source alternative under a neutral governance model. Started as a fork of Terraform.</span></p>
+++++
+
++++--+++
+
+Thank you for reading!
+
+//email: This newsletter is produced by Jakub Holý, a blogger and programming buddy / mentor for hire.
+//email: If you don't want to receive it anymore, simple respond with "unsubscribe" in the subject
