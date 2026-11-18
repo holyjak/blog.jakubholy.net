@@ -1,0 +1,69 @@
+{:title "Relational databases impedance mismatch and app dev's frustrations"
+ :date "2026-11-18"
+ :tags ["database" "experience"]
+ :category "SW Development"}
+
+PostgreSQL is undeniably a great tool. Yet I've lost too much of my life to bending my application around it. The problem is not that it's a bad tool. It's that a serious business application you don't need a tool but a toolbox.
+
+.A relational DB gives you a really fancy, excellently made hammer. But life isn't just nails. Sometimes, you have a screw. Or a large nail. Or a tiny one. Or you need to open a jar of pickles. You don't need a one-size-fits-all hammer. You need a toolbox.
+image::rdbms-impedance-mismatch/mjolnir-vs-toolbox.png["Hammer vs. toolbox",100%]
+
+In short: The data model is too limited. You have tables, and that's it. Using a single important table for a number of queries with very different needs and making it perform well in all those cases is impossible. You can get indices - but there is no guarantee the planner will pick the best one. (Plus, they cost.) The query planner is smart, but not smart enough. When it has bad estimates, it will make terrible, slow plans. In PostgreSQL, if your query has Common Table Expressions (CTEs for short; think of these as named sub-queries, or local views), especially if you have a CTE feeding into another CTE, then the planner is screwed. It has limited insight into CTEs and their row count estimates may be made up. As you combine more CTEs, the error multiplies.
+
++++<!--more-->+++
+
+This post is based on my experiences from the past two years, as I work on search and a number of features it powers. My company builds a SaaS, and I work mostly with the two core tables that essentially represent the vertices and edges of a https://en.wikipedia.org/wiki/Property_graph[Property Graph]. Our bigger customers have hundreds of thousands of rows, and we aim to handle millions. All this runs mostly on PostgreSQL.
+
+== The blessing and curse of CTEs
+
+https://www.postgresql.org/docs/current/queries-with.html[CTEs] are great, among others for breaking a complex query into understandable parts. Below is the structure of a beast of a query doing hierarchical search through vertices - find matches, add all their ancestors (along the special parent-child relationship), sort, paginate. Sometimes, we want a "page" of this whole tree, while sometimes we only want the children of a particular vertex, or all "root" (parent-less) vertices. Additionally, we also often need counts: How many matches are there overall? How many root vertices are there in this tree? (I know, trees have only one root. Imagine a virtual NULL vertex as being the parent of all those I call "roots".) How many _visible_ children a vertex has? (Visible = part of this tree, i.e. direct matches or their ancestors.)
+
+```
+-- CTEs:
+matches - find id, parent of each match
+visible_ids - id, parent of matches + all ancestors
+relevant_sort_paths - add array of sort values to each relevant vertex
+                      so we get parents sorted before children
+counted_results - add counts of visible children/all matches/all roots,
+                  leveraging window fns
+child_counts - counted_results puts child counts on the children, here we
+               pull them up to the parents
+-- Query:
+<the final select>
+```
+
+CTEs make this monster query somewhat understandable. The problem is, as mentioned, that despite recent improvements, the Postgres 17 query planner still has limited / no insight into what row counts these will produce, and replaces them with its base (i.e. completely made up) estimates. Column statistics don't carry through well, so join selectivity falls back to defaults too. As the CTEs build off each other, the error multiplies. It thinks it has 12k rows but there are only 100 - or the opposite. It will scan a huge table repeatedly, where one hash join would be best. Or it adds 80% time tax by doing unnecessary just-in-time (JIT) compilation because it thought the data would be bigger (YMMV). To be fair, sometimes Pg can inline a CTE (unless that becomes the source of your problems 😅) and then it will have row estimates, as it does for materialized CTEs. But again, these are estimates and may be very wrong.
+
+There are a few tricks you can do to prevent some of its worst decisions. Disable JIT for the query. Marking selected CTEs `materialized` so it doesn't try to inline them and execute an expensive query for each row. Replacing a table lookup with building a JSON structure and looking up values there, instead of scanning said table repeatedly (true story). Building a query more tuned to the data needed, sacrificing elegance and reuse for performance, paying the complexity tax. But at the end you are just fighting the model and its limitations, and you can never win.
+
+== Query planner is amazing and terrible
+
+The idea of SQL is that you declare the data you want, and a query planner figures out the most efficient way to get them. This is amazing when it works, which is most of the time. The catch is that the planner relies on statistics and other data to figure out what is efficient (hash join? repeated table scan? index?). It knows a little bit about your query - which tables and columns it reads etc. - but can't really know how much data each part of the query will produce. And when its guesses go wrong, it goes very wrong. It makes bad decisions and easily makes your query 100x slower. There is little you can do about it.
+
+One problem is CTEs, as described above. Another one is uneven data. In our case, we have the `vertex` and `vertex_type` tables. The planner knows that on average, there are about 10 vertices of a given type. It also knows which types are more popular, but if the type is a parameter to your query (`?`) and not its literal part then it can't take it into account and falls back to the base estimate, e.g. 10 in this case. You then query for a popular type that has 100k vertices and 💥.
+
+== Limitations of the table and indices model
+
+The only thing that SQL gives you is tables (i.e. relations, for the nerds). Tables are great, but they most certainly are not great for every possible use case. An average application will have many different use cases. Sometimes you need a quick key-value lookup. Sometimes a table is great. Sometimes, you actually need more structured data.
+
+(Yes, Postgres has also stuff like JSONB, arrays, GIN, GiST and BRIN indexes, full-text search, ltree, and recursive CTEs. That certainly helps, but it only makes the box you are in somewhat bigger.)
+
+The most important and large table in our system is `vertex`, joined often with `vertex_type`, `edge` (and back), property definitions etc. It is used throughout the application in numerous ways.
+
+How do you make a single table satisfy all these very varied queries in a performant way? While also keeping bulk updates and deletes sufficiently quick? Well, you don't. There is no way to optimize a single table for very different queries, with very different latency tolerance, data volumes, complexity.
+
+You can add indices, but they slow down updates, and the planner often can't combine indices as effectively as you'd like, and there's no guarantee it picks the best one. (Again, the stats informing its decisions are very limited and sometimes very misleading. And the more indices, the harder the decision becomes.)
+
+You have materialized views, but in Postgres you have to maintain these manually. Updating them takes time, their content could multiply the storage needed. So not good enough for our needs.
+
+You end up making the table perform sufficiently well for most cases, and try to juggle the cost and benefit of indices, and pray.
+
+== Partitioning FTW! Well, not really
+
+Our data is naturally partitioned, as each vertex belongs to one "workspace," and you typically work with one or few. Physical data partitioning would thus help performance a lot - you would easily skip all the vertices not relevant to the current user. But in Postgres, maintaining partitions requires way too much manual work (we'd need to create a partition whenever a workspace is created) and is not worth it for us.
+
+== Conclusion & the dream of Rama
+
+Working with an RDBMS is a pain, the impedance mismatch between its limited data model and the very varied workloads and tasks you want to use it for is a constant source of friction, and countless lost development hours.
+
+I really, really hope that one day I get to ditch it and use instead https://redplanetlabs.com/[Rama], which provides a unified data-and-computation platform with an extremely flexible data model, auto-updated "materialized views" as a key feature, data partitioning and distributed computing as essential building blocks, and fine-grained control over where, when, and how different queries and tasks execute. (I've written an link:/2023/exploring-rama/[introduction to Rama] back in 2023, which is still worth a read.)
